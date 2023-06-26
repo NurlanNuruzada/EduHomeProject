@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Index";
 }
+@model HomeVM
 <!-- Background Area Start -->
 <section id="slider-container" class="slider-area">
     <div class="slider-owl owl-theme owl-carousel">
@@ -413,63 +414,29 @@
             </div>
         </div>
         <div class="row">
+            @foreach (var Blog in Model.Blogs)
+            {
             <div class="col-lg-4 col-md-6">
                 <div class="single-blog">
                     <div class="blog-img">
-                        <a href="blog-details.html"><img src="~/assets/img/blog/blog1.jpg" alt="blog"></a>
+                            <a href="blog-details.html"><img src="@Blog.ImagePath" alt="blog"></a>
                         <div class="blog-hover">
                             <a href="blog-details.html"><i class="fa fa-link"></i></a>
                         </div>
                     </div>
                     <div class="blog-content">
                         <div class="blog-top">
-                            <p>By Alex  /  June 20, 2023  /  <i class="fa fa-comments-o"></i> 4</p>
+                                <p>by @Blog.PostedBy  /  @Blog.PostTime.ToString("dd MMMM, yyyy");  /  <i class="fa fa-comments-o"></i> @Blog.CommentCount</p>
                         </div>
                         <div class="blog-bottom">
-                            <h2><a href="blog-details.html">I must explain to you how all this a mistaken idea </a></h2>
+                                <h2><a href="blog-details.html">@Blog.Comment  </a></h2>
                             <a href="blog-details.html">read more</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single-blog">
-                    <div class="blog-img">
-                        <a href="blog-details.html"><img src="~/assets/img/blog/blog2.jpg" alt="blog"></a>
-                        <div class="blog-hover">
-                            <a href="blog-details.html"><i class="fa fa-link"></i></a>
-                        </div>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-top">
-                            <p>By Alex  /  June 20, 2023  /  <i class="fa fa-comments-o"></i> 4</p>
-                        </div>
-                        <div class="blog-bottom">
-                            <h2><a href="blog-details.html">I must explain to you how all this a mistaken idea </a></h2>
-                            <a href="blog-details.html">read more</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single-blog mb-0">
-                    <div class="blog-img">
-                        <a href="blog-details.html"><img src="~/assets/img/blog/blog3.jpg" alt="blog"></a>
-                        <div class="blog-hover">
-                            <a href="blog-details.html"><i class="fa fa-link"></i></a>
-                        </div>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-top">
-                            <p>By Alex  /  June 20, 2023  /  <i class="fa fa-comments-o"></i> 4</p>
-                        </div>
-                        <div class="blog-bottom">
-                            <h2><a href="blog-details.html">I must explain to you how all this a mistaken idea </a></h2>
-                            <a href="blog-details.html">read more</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            }
+
         </div>
     </div>
 </div>

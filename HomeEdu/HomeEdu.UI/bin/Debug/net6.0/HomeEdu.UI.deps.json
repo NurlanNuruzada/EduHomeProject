@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "HomeEdu.UI/1.0.0": {
         "dependencies": {
+          "HomeEdu.Core": "1.0.0",
           "HomeEdu.DataAccess": "1.0.0",
           "Microsoft.EntityFrameworkCore.Tools": "6.0.18"
         },

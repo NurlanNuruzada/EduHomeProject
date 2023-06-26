@@ -18,5 +18,7 @@ namespace HomeEdu.Core.Entities
         [Required, MaxLength(255)]
         public string? ImagePath { get; set; }
         public int CommentCount { get; set; }
+        [MaxLength(255)]
+        public string? Comment { get; set; }
     }
 }
