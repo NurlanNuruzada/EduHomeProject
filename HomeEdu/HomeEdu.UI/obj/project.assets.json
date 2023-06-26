@@ -9600,7 +9600,8 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 6.0.14"
+      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 6.0.14",
+      "System.Diagnostics.Tools >= 4.3.0"
     ]
   },
   "packageFolders": {
@@ -9646,6 +9647,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[6.0.14, )"
+          },
+          "System.Diagnostics.Tools": {
+            "target": "Package",
+            "version": "[4.3.0, )"
           }
         },
         "imports": [

@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33801.468
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeEdu.UI", "HomeEdu.UI\HomeEdu.UI.csproj", "{A0819361-644B-4DC7-A6ED-FF98DE5B4725}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HomeEdu.UI", "HomeEdu.UI\HomeEdu.UI.csproj", "{A0819361-644B-4DC7-A6ED-FF98DE5B4725}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeEdu.Core", "HomeEdu.Core\HomeEdu.Core.csproj", "{7E04BAE9-1BDF-45A2-80F9-A7E66F5027E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeEdu.DataAccess", "HomeEdu.DataAccess\HomeEdu.DataAccess.csproj", "{69579C55-0CDF-4056-A42A-75147115CEF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{A0819361-644B-4DC7-A6ED-FF98DE5B4725}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0819361-644B-4DC7-A6ED-FF98DE5B4725}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0819361-644B-4DC7-A6ED-FF98DE5B4725}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E04BAE9-1BDF-45A2-80F9-A7E66F5027E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E04BAE9-1BDF-45A2-80F9-A7E66F5027E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E04BAE9-1BDF-45A2-80F9-A7E66F5027E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E04BAE9-1BDF-45A2-80F9-A7E66F5027E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69579C55-0CDF-4056-A42A-75147115CEF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69579C55-0CDF-4056-A42A-75147115CEF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69579C55-0CDF-4056-A42A-75147115CEF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69579C55-0CDF-4056-A42A-75147115CEF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

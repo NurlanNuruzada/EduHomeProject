@@ -1,0 +1,12 @@
+C:\Users\Admin\Desktop\EduHomeProject\HomeEdu\HomeEdu.Core\bin\Debug\net6.0\HomeEdu.Core.deps.json
+C:\Users\Admin\Desktop\EduHomeProject\HomeEdu\HomeEdu.Core\bin\Debug\net6.0\HomeEdu.Core.dll
+C:\Users\Admin\Desktop\EduHomeProject\HomeEdu\HomeEdu.Core\bin\Debug\net6.0\HomeEdu.Core.pdb
+C:\Users\Admin\Desktop\EduHomeProject\HomeEdu\HomeEdu.Core\obj\Debug\net6.0\HomeEdu.Core.csproj.AssemblyReference.cache
+C:\Users\Admin\Desktop\EduHomeProject\HomeEdu\HomeEdu.Core\obj\Debug\net6.0\HomeEdu.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\Desktop\EduHomeProject\HomeEdu\HomeEdu.Core\obj\Debug\net6.0\HomeEdu.Core.AssemblyInfoInputs.cache
+C:\Users\Admin\Desktop\EduHomeProject\HomeEdu\HomeEdu.Core\obj\Debug\net6.0\HomeEdu.Core.AssemblyInfo.cs
+C:\Users\Admin\Desktop\EduHomeProject\HomeEdu\HomeEdu.Core\obj\Debug\net6.0\HomeEdu.Core.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\EduHomeProject\HomeEdu\HomeEdu.Core\obj\Debug\net6.0\HomeEdu.Core.dll
+C:\Users\Admin\Desktop\EduHomeProject\HomeEdu\HomeEdu.Core\obj\Debug\net6.0\refint\HomeEdu.Core.dll
+C:\Users\Admin\Desktop\EduHomeProject\HomeEdu\HomeEdu.Core\obj\Debug\net6.0\HomeEdu.Core.pdb
+C:\Users\Admin\Desktop\EduHomeProject\HomeEdu\HomeEdu.Core\obj\Debug\net6.0\ref\HomeEdu.Core.dll

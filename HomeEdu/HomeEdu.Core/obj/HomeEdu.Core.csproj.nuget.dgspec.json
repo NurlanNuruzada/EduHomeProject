@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\HomeEdu.UI.csproj": {}
+    "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.Core\\HomeEdu.Core.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\HomeEdu.UI.csproj": {
+    "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.Core\\HomeEdu.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\HomeEdu.UI.csproj",
-        "projectName": "HomeEdu.UI",
-        "projectPath": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\HomeEdu.UI.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.Core\\HomeEdu.Core.csproj",
+        "projectName": "HomeEdu.Core",
+        "projectPath": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.Core\\HomeEdu.Core.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\obj\\",
+        "outputPath": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -22,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\sdk\\7.0.304\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -40,16 +39,6 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "dependencies": {
-            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
-              "target": "Package",
-              "version": "[6.0.14, )"
-            },
-            "System.Diagnostics.Tools": {
-              "target": "Package",
-              "version": "[4.3.0, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",
@@ -62,9 +51,6 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
