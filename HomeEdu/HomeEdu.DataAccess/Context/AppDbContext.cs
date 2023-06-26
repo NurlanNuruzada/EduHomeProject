@@ -6,5 +6,6 @@ namespace HomeEdu.DataAccess.Context
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
         public DbSet<Blog> Blogs { get; set; } = null!;
+        public DbSet<BlogCatagory> BlogCatagories { get; set; } = null!;
     }
 }
