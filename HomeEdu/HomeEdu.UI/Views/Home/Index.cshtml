@@ -1,4 +1,5 @@
-﻿@{
+﻿@using HomeEdu.Core.Entities;
+@{
     ViewData["Title"] = "Index";
 }
 @model HomeVM
@@ -430,7 +431,7 @@
                         </div>
                         <div class="blog-bottom">
                                 <h2><a href="blog-details.html">@Blog.Comment  </a></h2>
-                            <a href="blog-details.html">read more</a>
+                                <a asp-controller="blogdetail" asp-action="Index" asp-route-id="@Blog.Id">read more</a>
                         </div>
                     </div>
                 </div>

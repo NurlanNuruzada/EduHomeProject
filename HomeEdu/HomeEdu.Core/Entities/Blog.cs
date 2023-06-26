@@ -21,6 +21,6 @@ namespace HomeEdu.Core.Entities
         [MaxLength(255)]
         public string? Comment { get; set; }
         public int BlogCatagoryId { get; set; }
-        public BlogCatagory BlogCatagory { get; set; }
+        public BlogCatagory BlogCatagory { get; set; } = null!;
     }
 }
