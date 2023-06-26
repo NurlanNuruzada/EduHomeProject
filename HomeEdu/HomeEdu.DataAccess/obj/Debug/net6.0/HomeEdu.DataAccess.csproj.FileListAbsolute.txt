@@ -10,3 +10,8 @@ C:\Users\Admin\Desktop\EduHomeProject\HomeEdu\HomeEdu.DataAccess\obj\Debug\net6.
 C:\Users\Admin\Desktop\EduHomeProject\HomeEdu\HomeEdu.DataAccess\obj\Debug\net6.0\refint\HomeEdu.DataAccess.dll
 C:\Users\Admin\Desktop\EduHomeProject\HomeEdu\HomeEdu.DataAccess\obj\Debug\net6.0\HomeEdu.DataAccess.pdb
 C:\Users\Admin\Desktop\EduHomeProject\HomeEdu\HomeEdu.DataAccess\obj\Debug\net6.0\ref\HomeEdu.DataAccess.dll
+C:\Users\Admin\Desktop\EduHomeProject\HomeEdu\HomeEdu.DataAccess\bin\Debug\net6.0\HomeEdu.Core.dll
+C:\Users\Admin\Desktop\EduHomeProject\HomeEdu\HomeEdu.DataAccess\bin\Debug\net6.0\HomeEdu.Core.pdb
+C:\Users\Admin\Desktop\EduHomeProject\HomeEdu\HomeEdu.DataAccess\obj\Debug\net6.0\HomeEdu.DataAccess.csproj.CopyComplete
+C:\Users\Admin\Desktop\EduHomeProject\HomeEdu\HomeEdu.DataAccess\bin\Debug\net6.0\HomeEdu.DataAccess.runtimeconfig.json
+C:\Users\Admin\Desktop\EduHomeProject\HomeEdu\HomeEdu.DataAccess\obj\Debug\net6.0\HomeEdu.DataAccess.genruntimeconfig.cache
