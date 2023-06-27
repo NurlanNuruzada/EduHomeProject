@@ -1,0 +1,18 @@
+﻿@model Blog
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="card">
+    <div class="card-body">
+        <img width="200" src="@Model.ImagePath" />
+        <h4>@Model.PostedBy</h4>
+        <h4>@Model.PostTime</h4>
+        <h4>@Model.BlogCatagory</h4>
+        <h4>@Model.Comment</h4>
+    </div>
+    <form method="post" asp-action="Delete" asp-route-id="@Model.Id">
+        <button type="submit" class="btn  btn-danger waves-effect">Delete</button>
+    </form>
+    <a asp-area="Admin" asp-controller="blog" asp-action="Index" type="submit" class="btn  btn-light waves-effect">Back to list</a>
+</div>

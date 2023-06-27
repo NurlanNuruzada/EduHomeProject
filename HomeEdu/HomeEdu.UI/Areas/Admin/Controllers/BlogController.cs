@@ -23,6 +23,8 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             List<Blog> Blogs = await _context.Blogs.Include(c => c.BlogCatagory).ToListAsync();
             return View(Blogs);
         }
+      
+
         public async Task<IActionResult> Create()
         {
             ViewBag.Catagories = await _context.BlogCatagories.ToListAsync();
@@ -34,7 +36,8 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                ViewBag.Catagories = await _context.BlogCatagories.ToListAsync();
+                return View(blogPostVM);
             }
             var catagory = _context.BlogCatagories.Find(CatagoryId);
 
@@ -55,6 +58,15 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
           
+        }
+        public async Task<IActionResult> Delete(int Id)
+        {
+            Blog? blogDb = await _context.Blogs.FindAsync(Id);
+            if (blogDb is null)
+            {
+                return NotFound();
+            }
+            return View(blogDb);
         }
     }
 }

@@ -11,41 +11,41 @@
                 <h3 style="color:cornflowerblue">Create Blog</h3>
                 <form method="post">@*default orarag get dir*@
                 <div class="mb-3 row">
-                        <label asp-for="ImagePath" class="col-md-2 col-form-label">Post Image Path</label>
+                        <label asp-for="ImagePath" class="col-md-2 col-form-label"></label>
                     <div class="col-md-10">
                             <input class="form-control" asp-for="ImagePath"/>
+                        <span  class="text-danger"  asp-validation-for="ImagePath"></span>
                     </div>
-                        <span class="text-danger" asp-validation-for="ImagePath"></span>
                 </div>
                 <div class="mb-3 row">
                         <label asp-for="PostedBy" class=" col-md-2 col-form-label"></label>
                     <div class="col-md-10">
                             <input class="form-control" asp-for="PostedBy" />
-                    </div>
                         <span class="text-danger" asp-validation-for="PostedBy"></span>
+                    </div>
                 </div>
                 <div class="mb-3 row">
                         <label asp-for="PostTime" class="col-md-2 col-form-label"></label>
                     <div class="col-md-10">
                             <input class="form-control" asp-for="PostTime" />
-                    </div>
                         <span class="text-danger" asp-validation-for="PostTime"></span>
+                    </div>
 
                 </div>
                 <div class="mb-3 row">
                         <label asp-for="Comment" class="col-md-2 col-form-label"></label>
                     <div class="col-md-10">
                             <input class="form-control" asp-for="Comment" />
-                    </div>
                         <span class="text-danger" asp-validation-for="Comment"></span>
+                    </div>
 
                 </div>
                 <div class="mb-3 row">
                         <label asp-for="CommentCount" class="col-md-2 col-form-label"></label>
                     <div class="col-md-10">
                             <input class="form-control" asp-for="CommentCount" />
-                    </div>
                         <span class="text-danger" asp-validation-for="CommentCount"></span>
+                    </div>
 
                 </div>
                 <div class="mb-3 row">
@@ -63,6 +63,9 @@
                         <button type="submit" class="btn btn-primary ">Submit</button>
                      </div>
                 </form>
+                <div class="mb-3">
+                    <a asp-area="Admin" asp-controller="blog" asp-action="Index" class="btn btn-light ">Return</a>
+                </div>
             </div>
         </div>
     </div> <!-- end col -->
