@@ -12,7 +12,8 @@
         <h4>@Model.Comment</h4>
     </div>
     <form method="post" asp-action="Delete" asp-route-id="@Model.Id">
-        <button type="submit" class="btn  btn-danger waves-effect">Delete</button>
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-danger waves-effect">Delete</button>
     </form>
-    <a asp-area="Admin" asp-controller="blog" asp-action="Index" type="submit" class="btn  btn-light waves-effect">Back to list</a>
+    <a asp-area="Admin" asp-controller="Blog" asp-action="Index" class="btn btn-light waves-effect">Back to list</a>
 </div>

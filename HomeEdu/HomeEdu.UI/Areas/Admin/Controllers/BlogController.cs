@@ -31,7 +31,7 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> Create(BlogPostVM blogPostVM, int CatagoryId)
         {
             if (!ModelState.IsValid)
@@ -59,14 +59,28 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
           
         }
-        public async Task<IActionResult> Delete(int Id)
+        public async Task<IActionResult> Delete(int id)
         {
-            Blog? blogDb = await _context.Blogs.FindAsync(Id);
-            if (blogDb is null)
+            var blog = await _context.Blogs.FindAsync(id);
+            if (blog == null)
             {
                 return NotFound();
             }
-            return View(blogDb);
+            return View(blog);
+        }
+        [HttpPost]
+        [ActionName("Delete")]
+        [AutoValidateAntiforgeryToken]
+        public async Task<IActionResult> DeletePost(int id)
+        {
+            var blog = await _context.Blogs.FindAsync(id);
+            if (blog == null)
+            {
+                return NotFound();
+            }
+            _context.Blogs.Remove(blog);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
     }
 }
