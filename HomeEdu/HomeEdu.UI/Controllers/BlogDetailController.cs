@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using HomeEdu.Core.Entities;
+using Microsoft.AspNetCore.Mvc;
 
 namespace HomeEdu.UI.Controllers
 {
