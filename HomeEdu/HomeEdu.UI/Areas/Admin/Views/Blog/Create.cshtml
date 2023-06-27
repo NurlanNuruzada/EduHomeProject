@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h3 style="color:cornflowerblue">Create Blog</h3>
+                <div class="mb-3 row">
+                    <label for="example-text-input" class="col-md-2 col-form-label">Post Image Path</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="text"  id="example-text-input">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="example-text-input" class="col-md-2 col-form-label">Text</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="text" value="Posted By (Name)" id="example-text-input">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="example-text-input" class="col-md-2 col-form-label">Post Time</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="text" value="Year-mounth-day" id="example-text-input">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="example-text-input" class="col-md-2 col-form-label">Post Description</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="text" value="Post Description" id="example-text-input">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="example-text-input" class="col-md-2 col-form-label">Comment Count</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="text" value="(Number)" id="example-text-input">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label class="col-md-2 col-form-label">Select Blog Catagory</label>
+                    <div class="col-md-10">
+                        <select class="form-select">
+                            <option>Select</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end col -->
+</div>
+

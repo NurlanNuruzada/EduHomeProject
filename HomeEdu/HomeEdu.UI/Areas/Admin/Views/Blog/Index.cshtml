@@ -5,14 +5,14 @@
 }
 
 <h1 style="color:cornflowerblue">Blog's List</h1>
+<a style="margin:20px 0px " asp-action="Create" class="btn btn-primary">Create New Blog <i class="far fa-plus-square"></i></a>
 
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Blog List</h4>
             <div class="table-responsive">
-                <table class="table table-striped mb-0">
+            <table class="table mb-0" ">
                         
-                    <thead>
+                    <thead class="table-light">
                         <tr>
                             <th>Image Path</th>
                             <th>Posted By</th>
@@ -20,6 +20,8 @@
                             <th>Decs</th>
                             <th>Comment Count</th>
                             <th>Blog Catagory Id</th>
+                            <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                 @foreach (var blog in Model)
@@ -32,6 +34,12 @@
                                 <td>@blog.Comment</td>
                                 <td>@blog.CommentCount</td>
                                 <td>@blog.BlogCatagoryId</td>
+                            <td>
+                                <button style="display:flex;gap:5px ;align-items:center" class="btn btn-warning">Edit <i class="fas fa-edit"></i></button>
+                            </td> 
+                            <td>
+                                <button style="display:flex;gap:5px;align-items:center" class="btn btn-danger">Delete <i class="fas fa-trash-alt"></i></button>
+                            </td>
                         </tr>
                     </tbody>
                 }

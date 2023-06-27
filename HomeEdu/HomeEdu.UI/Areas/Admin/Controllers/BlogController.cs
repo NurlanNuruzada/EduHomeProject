@@ -18,5 +18,10 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
         {
             return View(await _context.Blogs.ToListAsync());
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
     }
 }
