@@ -14,6 +14,6 @@
     <form method="post" asp-action="Delete" asp-route-id="@Model.Id">
         @Html.AntiForgeryToken()
         <button type="submit" class="btn btn-danger waves-effect">Delete</button>
-    </form>
     <a asp-area="Admin" asp-controller="Blog" asp-action="Index" class="btn btn-light waves-effect">Back to list</a>
+    </form>
 </div>
