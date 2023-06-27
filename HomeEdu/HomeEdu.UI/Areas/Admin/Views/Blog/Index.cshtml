@@ -1,8 +1,42 @@
-﻿
+﻿@model IEnumerable<Blog>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>blOG</h1>
+<h1 style="color:cornflowerblue">Blog's List</h1>
 
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Blog List</h4>
+            <div class="table-responsive">
+                <table class="table table-striped mb-0">
+                        
+                    <thead>
+                        <tr>
+                            <th>Image Path</th>
+                            <th>Posted By</th>
+                            <th>Post Time</th>
+                            <th>Decs</th>
+                            <th>Comment Count</th>
+                            <th>Blog Catagory Id</th>
+                        </tr>
+                    </thead>
+                @foreach (var blog in Model)
+                {
+                    <tbody>
+                        <tr>
+                            <td> <img width="150px" src="@blog.ImagePath" alt="section-title"></td>
+                                <td>@blog.PostedBy</td>
+                            <td>@blog.PostTime.ToString("dd MMMM, yyyy");</td>
+                                <td>@blog.Comment</td>
+                                <td>@blog.CommentCount</td>
+                                <td>@blog.BlogCatagoryId</td>
+                        </tr>
+                    </tbody>
+                }
+                </table>
+            </div>
+
+        </div>
+    </div>

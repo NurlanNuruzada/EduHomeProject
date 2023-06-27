@@ -1,13 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using HomeEdu.DataAccess.Context;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace HomeEdu.UI.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class BlogController : Controller
     {
-        public IActionResult Index()
+        private readonly AppDbContext _context;
+
+        public BlogController(AppDbContext context)
         {
-            return View();
+            _context = context;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            return View(await _context.Blogs.ToListAsync());
         }
     }
 }
