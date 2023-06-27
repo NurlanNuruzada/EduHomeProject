@@ -13,5 +13,6 @@ namespace HomeEdu.Core.Entities
         public int Id { get; set; }
         [Required, MaxLength(30)]
         public string? Catagory { get; set; }
+        public ICollection<Blog>? Blogs { get; set; }
     }
 }

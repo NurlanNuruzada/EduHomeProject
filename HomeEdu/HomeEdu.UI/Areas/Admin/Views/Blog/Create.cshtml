@@ -1,4 +1,4 @@
-﻿
+﻿@model BlogPostVM
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
@@ -9,44 +9,60 @@
         <div class="card">
             <div class="card-body">
                 <h3 style="color:cornflowerblue">Create Blog</h3>
+                <form method="post">@*default orarag get dir*@
                 <div class="mb-3 row">
-                    <label for="example-text-input" class="col-md-2 col-form-label">Post Image Path</label>
+                        <label asp-for="ImagePath" class="col-md-2 col-form-label">Post Image Path</label>
                     <div class="col-md-10">
-                        <input class="form-control" type="text"  id="example-text-input">
+                            <input class="form-control" asp-for="ImagePath"/>
                     </div>
+                        <span class="text-danger" asp-validation-for="ImagePath"></span>
                 </div>
                 <div class="mb-3 row">
-                    <label for="example-text-input" class="col-md-2 col-form-label">Text</label>
+                        <label asp-for="PostedBy" class=" col-md-2 col-form-label"></label>
                     <div class="col-md-10">
-                        <input class="form-control" type="text" value="Posted By (Name)" id="example-text-input">
+                            <input class="form-control" asp-for="PostedBy" />
                     </div>
+                        <span class="text-danger" asp-validation-for="PostedBy"></span>
                 </div>
                 <div class="mb-3 row">
-                    <label for="example-text-input" class="col-md-2 col-form-label">Post Time</label>
+                        <label asp-for="PostTime" class="col-md-2 col-form-label"></label>
                     <div class="col-md-10">
-                        <input class="form-control" type="text" value="Year-mounth-day" id="example-text-input">
+                            <input class="form-control" asp-for="PostTime" />
                     </div>
+                        <span class="text-danger" asp-validation-for="PostTime"></span>
+
                 </div>
                 <div class="mb-3 row">
-                    <label for="example-text-input" class="col-md-2 col-form-label">Post Description</label>
+                        <label asp-for="Comment" class="col-md-2 col-form-label"></label>
                     <div class="col-md-10">
-                        <input class="form-control" type="text" value="Post Description" id="example-text-input">
+                            <input class="form-control" asp-for="Comment" />
                     </div>
+                        <span class="text-danger" asp-validation-for="Comment"></span>
+
                 </div>
                 <div class="mb-3 row">
-                    <label for="example-text-input" class="col-md-2 col-form-label">Comment Count</label>
+                        <label asp-for="CommentCount" class="col-md-2 col-form-label"></label>
                     <div class="col-md-10">
-                        <input class="form-control" type="text" value="(Number)" id="example-text-input">
+                            <input class="form-control" asp-for="CommentCount" />
                     </div>
+                        <span class="text-danger" asp-validation-for="CommentCount"></span>
+
                 </div>
                 <div class="mb-3 row">
                     <label class="col-md-2 col-form-label">Select Blog Catagory</label>
                     <div class="col-md-10">
-                        <select class="form-select">
-                            <option>Select</option>
+                        <select class="form-select" name="CatagoryId">
+                            @foreach (var catagory in ViewBag.Catagories)
+                            {
+                                <option value="@catagory.Id">@catagory.Catagory</option>
+                            }
                         </select>
                     </div>
                 </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary ">Submit</button>
+                     </div>
+                </form>
             </div>
         </div>
     </div> <!-- end col -->

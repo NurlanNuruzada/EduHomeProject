@@ -2,8 +2,9 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int count = 1;
 }
-
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 <h1 style="color:cornflowerblue">Blog's List</h1>
 <a style="margin:20px 0px " asp-action="Create" class="btn btn-primary">Create New Blog <i class="far fa-plus-square"></i></a>
 
@@ -14,12 +15,13 @@
                         
                     <thead class="table-light">
                         <tr>
+                            <th scope="row">@count</th>
                             <th>Image Path</th>
                             <th>Posted By</th>
                             <th>Post Time</th>
                             <th>Decs</th>
                             <th>Comment Count</th>
-                            <th>Blog Catagory Id</th>
+                            <th>Blog Catagory </th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -33,12 +35,12 @@
                             <td>@blog.PostTime.ToString("dd MMMM, yyyy");</td>
                                 <td>@blog.Comment</td>
                                 <td>@blog.CommentCount</td>
-                                <td>@blog.BlogCatagoryId</td>
+                                <td>@blog.BlogCatagory.Catagory</td>
                             <td>
-                                <button style="display:flex;gap:5px ;align-items:center" class="btn btn-warning">Edit <i class="fas fa-edit"></i></button>
+                                <button asp-action="Update" asp-route-id="@blog.Id" style="display:flex;gap:5px ;align-items:center" class="btn btn-warning">Edit <i class="fas fa-edit"></i></button>
                             </td> 
                             <td>
-                                <button style="display:flex;gap:5px;align-items:center" class="btn btn-danger">Delete <i class="fas fa-trash-alt"></i></button>
+                                <button asp-action="Delete" asp-route-id="@blog.Id" style="display:flex;gap:5px;align-items:center" class="btn btn-danger">Delete <i class="fas fa-trash-alt"></i></button>
                             </td>
                         </tr>
                     </tbody>
