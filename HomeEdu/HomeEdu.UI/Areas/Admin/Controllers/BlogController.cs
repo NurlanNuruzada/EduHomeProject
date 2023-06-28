@@ -50,10 +50,11 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             {
                 return BadRequest();
             }
+            DateTime time = DateTime.Now;
             Blog blog = new()
             {
                 PostedBy = blogPostVM.PostedBy,
-                PostTime = blogPostVM.PostTime,
+                PostTime = time,
                 ImagePath = blogPostVM.ImagePath,
                 CommentCount = blogPostVM.CommentCount,
                 Comment = blogPostVM.Comment,

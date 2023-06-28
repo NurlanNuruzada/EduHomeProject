@@ -26,19 +26,23 @@
                         <th></th>
                     </tr>
                 </thead>
-                @foreach (var blog in Model)
+                @{
+                     var  orderedBlogs = Model.OrderByDescending(blog => blog.PostTime);
+                }
+
+                @foreach (var blog in orderedBlogs)
                 {
                     <tbody>
                         <tr>
                             <th scope="row">@count</th>
-                            <td> <img width="150" src="@blog.ImagePath" alt="section-title"></td>
+                            <td><img width="150" src="@blog.ImagePath" alt="section-title"></td>
                             <td>@blog.PostedBy</td>
                             <td>@blog.PostTime.ToString("dd MMMM, yyyy")</td>
                             <td>@blog.Comment</td>
                             <td>@blog.CommentCount</td>
                             <td>@blog.BlogCatagory.Catagory</td>
                             <td>
-                                <a asp-action="Update" asp-route-id="@blog.Id" style="display:flex;align-items:center ; gap: 10px; max-width: max-content;" class="btn btn-warning">Edit <i class="fas fa-edit"></i></a>
+                                <a asp-action="Update" asp-route-id="@blog.Id" style="display:flex;align-items:center; gap: 10px; max-width: max-content;" class="btn btn-warning">Edit <i class="fas fa-edit"></i></a>
                             </td>
                             <td>
                                 <a asp-action="Delete" asp-route-id="@blog.Id" style="display:flex;align-items:center;gap: 10px; max-width: max-content;" class="btn btn-danger">Delete <i class="fas fa-trash-alt"></i></a>
@@ -47,6 +51,7 @@
                     </tbody>
                     count++;
                 }
+
 
 
             </table>
