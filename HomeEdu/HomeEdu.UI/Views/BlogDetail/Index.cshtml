@@ -86,12 +86,10 @@
                         <div class="single-blog-widget mb-47">
                             <h3>categories</h3>
                             <ul>
+                            @foreach (var item in Model.Blogs)
+                            {
                                 <li><a href="~/assets/#">CSS Engineering (10)</a></li>
-                                <li><a href="~/assets/#">Political Science (12)</a></li>
-                                <li><a href="~/assets/#">Micro Biology (08)</a></li>
-                                <li><a href="~/assets/#">HTML5 &amp; CSS3 (15)</a></li>
-                                <li><a href="~/assets/#">Web Design (20)</a></li>
-                                <li><a href="~/assets/#">PHP (23)</a></li>
+                            }
                             </ul>
                         </div>
                         <div class="single-blog-widget mb-47">
