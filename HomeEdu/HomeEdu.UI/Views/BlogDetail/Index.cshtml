@@ -29,15 +29,20 @@
                 <div class="col-lg-8">
                     <div class="blog-details">
                         <div class="blog-details-img">
-                            <img src="" alt="blog-details">
+                        <img alt="">
                         </div>
-                        <div class="blog-details-content">
+                        
+                    <div class="blog-details-content">
+                    @foreach (var item in Model.Blogs)
+                    {
+                            <div class="blog-details-img">
+                                <img style="width:350px !important" src="@item.ImagePath" alt="blog-details">
+                            </div>
                             <h2>I must explain to you how all this a mistaken idea </h2>
-                            <h6>  /  June 20, 2021  /  <i class="fa fa-comments-o"></i> 4</h6>
-                            <p>I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque sa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam volutatem quia voluptas sit asnatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui </p>
-                            <p>I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam</p>
+                            <h6> @item.PostedBy / @item.PostTime  /  <i class="fa fa-comments-o"></i> @item.CommentCount</h6>
+                            <h3>@item.Comment</h3>
                             <p class="quote">I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque la udantium, totam rem aperiam</p>
-                            <p>I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque sa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo emo enim ipsam</p>
+                    }
                         </div>
                         <div class="reply-area">
                             <h3>LEAVE A REPLY</h3>
