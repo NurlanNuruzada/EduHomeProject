@@ -56,6 +56,7 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             }
             string filePath = await sliderViewModel.Image.CopyFileAsync(_env.WebRootPath, "assets", "img", "slider");
             Slider sldier = _mapper.Map<Slider>(sliderViewModel);
+            sldier.ImagePath = filePath;
             await _context.Sliders.AddAsync(sldier);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

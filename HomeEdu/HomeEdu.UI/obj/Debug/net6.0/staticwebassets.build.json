@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "2MtgfRULbnNC9x1w7QazL2LvtJKY4LDw6tYjC3by7F4=",
+  "Hash": "btIMwsS1eDRU6CIjm/EsoMCypvx70FRpmz9bkhpBOkM=",
   "Source": "HomeEdu.UI",
   "BasePath": "_content/HomeEdu.UI",
   "Mode": "Default",
@@ -6477,12 +6477,12 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\post\\post3.jpg"
     },
     {
-      "Identity": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\wwwroot\\assets\\img\\slider\\766dd602-d267-4b51-8a5c-fc14e90918f3slider1.jpg",
+      "Identity": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\wwwroot\\assets\\img\\slider\\6432e13a-a48d-4c8d-b1e7-9714d35e41c2slider1.jpg",
       "SourceId": "HomeEdu.UI",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\wwwroot\\",
       "BasePath": "_content/HomeEdu.UI",
-      "RelativePath": "assets/img/slider/766dd602-d267-4b51-8a5c-fc14e90918f3slider1.jpg",
+      "RelativePath": "assets/img/slider/6432e13a-a48d-4c8d-b1e7-9714d35e41c2slider1.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -6491,41 +6491,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\img\\slider\\766dd602-d267-4b51-8a5c-fc14e90918f3slider1.jpg"
-    },
-    {
-      "Identity": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\wwwroot\\assets\\img\\slider\\b1de95ee-f4b5-4c90-9f25-d33ed5fddc13slider1.jpg",
-      "SourceId": "HomeEdu.UI",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\wwwroot\\",
-      "BasePath": "_content/HomeEdu.UI",
-      "RelativePath": "assets/img/slider/b1de95ee-f4b5-4c90-9f25-d33ed5fddc13slider1.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\img\\slider\\b1de95ee-f4b5-4c90-9f25-d33ed5fddc13slider1.jpg"
-    },
-    {
-      "Identity": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\wwwroot\\assets\\img\\slider\\e8e9495a-8f45-4abe-92bf-2a896de511521920x1080-942975-Windows-10-Blue-Screen-of-Death-warning-signs-blue.png",
-      "SourceId": "HomeEdu.UI",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\wwwroot\\",
-      "BasePath": "_content/HomeEdu.UI",
-      "RelativePath": "assets/img/slider/e8e9495a-8f45-4abe-92bf-2a896de511521920x1080-942975-Windows-10-Blue-Screen-of-Death-warning-signs-blue.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\img\\slider\\e8e9495a-8f45-4abe-92bf-2a896de511521920x1080-942975-Windows-10-Blue-Screen-of-Death-warning-signs-blue.png"
+      "OriginalItemSpec": "wwwroot\\assets\\img\\slider\\6432e13a-a48d-4c8d-b1e7-9714d35e41c2slider1.jpg"
     },
     {
       "Identity": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\wwwroot\\assets\\img\\slider\\home.png",
