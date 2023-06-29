@@ -342,10 +342,10 @@
 <!-- Testimonial Area Start -->
 <div class="testimonial-area pt-110 pb-105 text-center">
     <div class="container">
-        @foreach (var testimonial in Model.testimonials)
-        {
             <div class="row">
                 <div class="testimonial-owl owl-theme owl-carousel">
+        @foreach (var testimonial in Model.testimonials)
+        {
                     <div class="col-lg-8 offset-lg-2">
                         <div class="single-testimonial">
                             <div class="testimonial-info">
@@ -360,9 +360,9 @@
                             </div>
                         </div>
                     </div>
+        }
                 </div>
             </div>
-        }
     </div>
 </div>
 <!-- Testimonial Area End -->
