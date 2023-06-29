@@ -53,5 +53,28 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+        public async Task<IActionResult> Delete(int id)
+        {
+            var noticeBoard = await _context.noticeBoards.FindAsync(id);
+            if (noticeBoard == null)
+            {
+                return NotFound();
+            }
+            return View(noticeBoard);
+        }
+        [HttpPost]
+        [ActionName("Delete")]
+        [AutoValidateAntiforgeryToken]
+        public async Task<IActionResult> DeletePost(int id)
+        {
+            var noticeBoard = await _context.noticeBoards.FindAsync(id);
+            if (noticeBoard == null)
+            {
+                return NotFound();
+            }
+            _context.noticeBoards.Remove(noticeBoard);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
