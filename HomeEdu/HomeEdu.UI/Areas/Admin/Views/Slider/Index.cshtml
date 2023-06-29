@@ -41,7 +41,7 @@
                                 <a asp-action="Update" asp-route-id="@slider.Id" style="display:flex;align-items:center; gap: 10px; max-width: max-content;" class="btn btn-warning">Edit <i class="fas fa-edit"></i></a>
                             </td>
                             <td>
-                                <a  onclick="document.getElementById('id01').style.display='block'" asp-route-id="@slider.Id" style="display:flex;align-items:center;gap: 10px; max-width: max-content;" class="btn btn-danger">Delete <i class="fas fa-trash-alt"></i></a>
+                                <a asp-action="Delete" asp-route-id="@slider.Id" style="display:flex;align-items:center;gap: 10px; max-width: max-content;" class="btn btn-danger">Delete <i class="fas fa-trash-alt"></i></a>
                             </td>
                         </tr>
                     </tbody>
