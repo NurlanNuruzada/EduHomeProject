@@ -21,7 +21,8 @@ namespace HomeEdu.UI.Controllers
             HomeVM homeVM = new()
             {
                 Blogs = await _context.Blogs.ToListAsync(),
-                sliders = await _context.Sliders.ToListAsync()
+                sliders = await _context.Sliders.ToListAsync(),
+                testimonials = await _context.testimonials.ToListAsync()
             };
             return View(homeVM);
         }
