@@ -45,7 +45,6 @@
                     <h3>notice board</h3>
                     @foreach (var noticeBoard in Model.noticeBoards.OrderByDescending(b => b.Time))
                     {
-
                         <div class="single-notice-left  @(count % 3 == 0 ? " pb-75": "mb-25 pb-25")">
                             <h4>@noticeBoard.Time.ToString("dd MMMM, yyyy")</h4>
                             <p>@noticeBoard.Detail </p>

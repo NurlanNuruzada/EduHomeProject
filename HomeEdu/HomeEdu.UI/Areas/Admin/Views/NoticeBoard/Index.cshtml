@@ -1,0 +1,54 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<NoticeBoard>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int count = 1;
+}
+
+<h1 style="color:cornflowerblue">NoticeBoard's List</h1>
+<a style="margin:20px 0px " asp-action="Create" class="btn btn-primary">Create New Notice <i class="far fa-plus-square"></i></a>
+
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>#</th>
+                        <th>Detail</th>
+                        <th>Time</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                @{
+                    var orderedNoticeBoard = Model.OrderByDescending(NoticeBoard => NoticeBoard.Time);
+                }
+
+                @foreach (var NoticeBoard in orderedNoticeBoard)
+                {
+                    <tbody>
+                        <tr>
+                            <th scope="row">@count</th>
+                            <td>@NoticeBoard.Detail</td>
+                            <td>@NoticeBoard.Time</td>
+                            <td>
+                                <a asp-action="Update" asp-route-id="@NoticeBoard.Id" style="display:flex;align-items:center; gap: 10px; max-width: max-content;" class="btn btn-warning">Edit <i class="fas fa-edit"></i></a>
+                            </td>
+                            <td>
+                                <a asp-action="Delete" asp-route-id="@NoticeBoard.Id" style="display:flex;align-items:center;gap: 10px; max-width: max-content;" class="btn btn-danger">Delete <i class="fas fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                    count++;
+                }
+
+
+
+            </table>
+        </div>
+
+    </div>
+</div>
+
