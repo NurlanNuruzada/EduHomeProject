@@ -2,6 +2,7 @@
 using EduHome.UI.Areas.Admin.ViewModels.CourseViewModels;
 using HomeEdu.Core.Entities;
 using HomeEdu.DataAccess.Context;
+using HomeEdu.UI.Areas.Admin.ViewModels.TestimoniaViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -73,6 +74,52 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
                 return NotFound();
             }
             _context.noticeBoards.Remove(noticeBoard);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+
+        [HttpGet]
+        [Area("Admin")]
+        [ActionName("Update")]
+        public async Task<IActionResult> Update(int id)
+        {
+            var noticeBoard = await _context.noticeBoards.FindAsync(id);
+            if (noticeBoard == null)
+            {
+                return NotFound();
+            }
+            var noticeBoardDb = new NoticeBoard
+            {
+                Time = noticeBoard.Time,
+                Detail = noticeBoard.Detail,
+            };
+            return View(noticeBoardDb);
+        }
+        [HttpPost]
+        [Area("Admin")]
+        [ActionName("Update")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(int id, NoticeBoard noticeBoard)
+        {
+            if (id != noticeBoard.Id)
+            {
+                return BadRequest();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(noticeBoard);
+            }
+
+            NoticeBoard noticeBoard1 = await _context.noticeBoards.FindAsync(id);
+            if (noticeBoard1 == null)
+            {
+                return BadRequest();
+            }
+            noticeBoard1.Time = noticeBoard.Time;
+            noticeBoard1.Detail = noticeBoard.Detail;
+            _context.Entry(noticeBoard1).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
