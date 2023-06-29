@@ -17,7 +17,7 @@ namespace HomeEdu.UI.Controllers
         }
         public async Task<IActionResult> Index(int Id)
         {
-            BlogVM homeVM = new()
+            HomeVM homeVM = new()
             {
                 Blogs = await _context.Blogs.Where(s => s.Id == Id).ToListAsync()
             };

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "HkVrBGdIAJPibcmc26FqeHwwaU6B56iF/JK/i12kn5w=",
+  "Hash": "3vEpWIovaKNRqpGsRRrHTCwXypbiliw5MZrVWFfibPA=",
   "Source": "HomeEdu.UI",
   "BasePath": "_content/HomeEdu.UI",
   "Mode": "Default",
@@ -6492,6 +6492,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\img\\slider\\8526afd7-706c-4062-bb03-e87d36bc8802slider3.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\wwwroot\\assets\\img\\slider\\c8161d54-307e-4b4f-80f1-6ca3a6a1fd50slider2.jpg",
+      "SourceId": "HomeEdu.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\wwwroot\\",
+      "BasePath": "_content/HomeEdu.UI",
+      "RelativePath": "assets/img/slider/c8161d54-307e-4b4f-80f1-6ca3a6a1fd50slider2.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\img\\slider\\c8161d54-307e-4b4f-80f1-6ca3a6a1fd50slider2.jpg"
     },
     {
       "Identity": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\wwwroot\\assets\\img\\slider\\home.png",

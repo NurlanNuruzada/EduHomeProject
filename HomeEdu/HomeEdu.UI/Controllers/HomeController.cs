@@ -18,8 +18,10 @@ namespace HomeEdu.UI.Controllers
 
         public async Task<IActionResult> Index()
         {
-            BlogVM homeVM = new(){
-            Blogs= await _context.Blogs.ToListAsync()
+            HomeVM homeVM = new()
+            {
+                Blogs = await _context.Blogs.ToListAsync(),
+                sliders = await _context.Sliders.ToListAsync()
             };
             return View(homeVM);
         }
