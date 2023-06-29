@@ -8,6 +8,7 @@ namespace HomeEdu.DataAccess.Context
         public DbSet<Blog> Blogs { get; set; } = null!;
         public DbSet<testimonial> testimonials { get; set; } = null!;
         public DbSet<Slider> Sliders { get; set; } = null!;
+        public DbSet<NoticeBoard> noticeBoards { get; set; } = null!;
         public DbSet<BlogCatagory> BlogCatagories { get; set; } = null!;
     }
 }
