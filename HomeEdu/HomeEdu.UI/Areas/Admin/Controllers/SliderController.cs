@@ -74,6 +74,7 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
         }
         [Area("Admin")]
         [HttpPost]
+        [ActionName("Delete")]
         [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> DeletePost(int id)
         {

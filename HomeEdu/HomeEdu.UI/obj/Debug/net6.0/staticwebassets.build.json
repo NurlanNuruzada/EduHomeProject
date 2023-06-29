@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "RLrN3V1fN7H6iVHO61J64TwMdEnacZk8BBiY8ubaGBc=",
+  "Hash": "HkVrBGdIAJPibcmc26FqeHwwaU6B56iF/JK/i12kn5w=",
   "Source": "HomeEdu.UI",
   "BasePath": "_content/HomeEdu.UI",
   "Mode": "Default",
@@ -6477,12 +6477,12 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\post\\post3.jpg"
     },
     {
-      "Identity": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\wwwroot\\assets\\img\\slider\\6432e13a-a48d-4c8d-b1e7-9714d35e41c2slider1.jpg",
+      "Identity": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\wwwroot\\assets\\img\\slider\\8526afd7-706c-4062-bb03-e87d36bc8802slider3.jpg",
       "SourceId": "HomeEdu.UI",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\wwwroot\\",
       "BasePath": "_content/HomeEdu.UI",
-      "RelativePath": "assets/img/slider/6432e13a-a48d-4c8d-b1e7-9714d35e41c2slider1.jpg",
+      "RelativePath": "assets/img/slider/8526afd7-706c-4062-bb03-e87d36bc8802slider3.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -6491,41 +6491,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\img\\slider\\6432e13a-a48d-4c8d-b1e7-9714d35e41c2slider1.jpg"
-    },
-    {
-      "Identity": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\wwwroot\\assets\\img\\slider\\9a42a1df-7afb-4142-a6f0-a34c24058101slider3.jpg",
-      "SourceId": "HomeEdu.UI",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\wwwroot\\",
-      "BasePath": "_content/HomeEdu.UI",
-      "RelativePath": "assets/img/slider/9a42a1df-7afb-4142-a6f0-a34c24058101slider3.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\img\\slider\\9a42a1df-7afb-4142-a6f0-a34c24058101slider3.jpg"
-    },
-    {
-      "Identity": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\wwwroot\\assets\\img\\slider\\b1497f95-3bc3-46f2-8d03-7cc70e33adceslider2.jpg",
-      "SourceId": "HomeEdu.UI",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\wwwroot\\",
-      "BasePath": "_content/HomeEdu.UI",
-      "RelativePath": "assets/img/slider/b1497f95-3bc3-46f2-8d03-7cc70e33adceslider2.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\assets\\img\\slider\\b1497f95-3bc3-46f2-8d03-7cc70e33adceslider2.jpg"
+      "OriginalItemSpec": "wwwroot\\assets\\img\\slider\\8526afd7-706c-4062-bb03-e87d36bc8802slider3.jpg"
     },
     {
       "Identity": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\wwwroot\\assets\\img\\slider\\home.png",
