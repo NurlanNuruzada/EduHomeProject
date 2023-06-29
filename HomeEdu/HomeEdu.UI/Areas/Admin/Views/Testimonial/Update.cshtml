@@ -1,0 +1,43 @@
+﻿@using HomeEdu.UI.Areas.Admin.ViewModels.TestimoniaViewModel
+@model TestimoniaVM
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("Update", "Testimonial", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name)
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Name)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Surname)
+        @Html.TextBoxFor(model => model.Surname, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Surname)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Position)
+        @Html.TextBoxFor(model => model.Position, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Position)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description)
+        @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Description)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Image)
+        @Html.TextBoxFor(model => model.Image, new { type = "file", @class = "form-control-file" })
+        @Html.ValidationMessageFor(model => model.Image)
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+    <a asp-area="Admin" asp-controller="Testimonial" asp-action="Index" class="btn btn-light waves-effect">Back to list</a>
+}
+
+
+
