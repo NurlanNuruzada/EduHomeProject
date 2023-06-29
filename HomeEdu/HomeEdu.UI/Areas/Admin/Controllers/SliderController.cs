@@ -74,7 +74,6 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
         }
         [Area("Admin")]
         [HttpPost]
-        [ActionName("Delete")]
         [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> DeletePost(int id)
         {
@@ -87,5 +86,73 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        [Area("Admin")]
+        [HttpGet]
+        public async Task<IActionResult> Update(int id)
+        {
+            var slider = await _context.Sliders.FindAsync(id);
+            if (slider == null)
+            {
+                return NotFound();
+            }
+
+            var sliderViewModel = new SliderViewModel
+            {
+                Id = slider.Id,
+                Title = slider.Title,
+                Description = slider.Description
+            };
+
+            return View(sliderViewModel);
+        }
+        [Area("Admin")]
+        [HttpPost]
+        [ActionName("Update")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(int id, SliderViewModel updatedSliderViewModel)
+        {
+            if (id != updatedSliderViewModel.Id)
+            {
+                return BadRequest();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(updatedSliderViewModel);
+            }
+
+            Slider slider = await _context.Sliders.FindAsync(id);
+            if (slider == null)
+            {
+                return BadRequest();
+            }
+
+            if (updatedSliderViewModel.Image != null)
+            {
+                if (!updatedSliderViewModel.Image.CheckFileFormat("image"))
+                {
+                    ModelState.AddModelError("Image", "Select Correct Format!");
+                    return View(updatedSliderViewModel);
+                }
+
+                if (!updatedSliderViewModel.Image.CheckFileLength(300))
+                {
+                    ModelState.AddModelError("Image", "Size must be less than 300 KB");
+                    return View(updatedSliderViewModel);
+                }
+
+                string filePath = await updatedSliderViewModel.Image.CopyFileAsync(_env.WebRootPath, "assets", "img", "slider");
+                slider.ImagePath = filePath;
+            }
+
+            slider.Title = updatedSliderViewModel.Title;
+            slider.Description = updatedSliderViewModel.Description;
+
+            _context.Entry(slider).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }
