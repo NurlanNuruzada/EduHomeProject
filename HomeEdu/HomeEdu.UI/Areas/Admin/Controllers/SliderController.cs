@@ -62,5 +62,30 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
 
         }
+        [Area("Admin")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var slider = await _context.Sliders.FindAsync(id);
+            if (slider == null)
+            {
+                return NotFound();
+            }
+            return View(slider);
+        }
+        [Area("Admin")]
+        [HttpPost]
+        [ActionName("Delete")]
+        [AutoValidateAntiforgeryToken]
+        public async Task<IActionResult> DeletePost(int id)
+        {
+            var slider = await _context.Sliders.FindAsync(id);
+            if (slider == null)
+            {
+                return NotFound();
+            }
+            _context.Sliders.Remove(slider);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
