@@ -10,5 +10,8 @@ namespace HomeEdu.DataAccess.Context
         public DbSet<Slider> Sliders { get; set; } = null!;
         public DbSet<NoticeBoard> noticeBoards { get; set; } = null!;
         public DbSet<BlogCatagory> BlogCatagories { get; set; } = null!;
+        public DbSet<Event> Events { get; set; } = null!;
+        public DbSet<EventDetail> EventDetails { get; set; } = null!;
+        public DbSet<Speaker> Speakers { get; set; } = null!;
     }
 }

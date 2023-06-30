@@ -11,6 +11,6 @@ public class Speaker : IEntity
     [Required, MaxLength(50)]
     public string Name { get; set; }
     public string Position { get; set; }
-    public int EventDetailId { get; set; }
     public EventDetail EventDetail { get; set; }
+    public int EventDetailId { get; set; }
 }
