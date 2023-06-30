@@ -6,6 +6,7 @@
     var countEvents = 1;
 }
 @model HomeVM
+
 <!-- Background Area Start -->
 <section id="slider-container" class="slider-area">
     <div class="slider-owl owl-theme owl-carousel">
@@ -186,7 +187,7 @@
                                 </ul>
                             </div>
                             <div class="event-content-right">
-                                <a class="default-btn" href="event-details.html">join now</a>
+                                <a class="default-btn" asp-controller="EventDetail" asp-action="Index" asp-route-id="@Event.Id">join now</a>
                             </div>
                         </div>
                     </div>
