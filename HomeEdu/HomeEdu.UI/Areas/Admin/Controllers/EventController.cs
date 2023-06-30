@@ -1,9 +1,12 @@
 ﻿using AutoMapper;
 using HomeEdu.Core.Entities;
 using HomeEdu.DataAccess.Context;
+using HomeEdu.UI.Areas.Admin.ViewModels.EventViewModel;
+using HomeEdu.UI.Areas.Admin.ViewModels.SliderViewModel;
 using HomeEdu.UI.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Metadata;
 
 namespace HomeEdu.UI.Areas.Admin.Controllers
 {
@@ -20,26 +23,29 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             _env = env;
         }
         [Area("Admin")]
-
-        public async Task<IActionResult> Index(int Id)
+        public async Task<IActionResult> Index()
         {
-            var @event = await _context.Events.FindAsync(Id);
-            var eventDetails = await _context.EventDetails
-                .Where(e => e.EventId == Id)
-                .ToListAsync();
-            var speakers = await _context.Speakers
-       .Include(s => s.EventDetail)
-       .Where(s => s.EventDetail.EventId == Id)
-       .ToListAsync();
 
-            var eventDetailVM = new EventDetailViewModel
-            {
-                Event = @event,
-                eventDetails = eventDetails,
-                Speakers = speakers
-            };
-
-            return View(eventDetailVM);
+            List<Event> events = await _context.Events.Include(e => e.EventDetail).ThenInclude(ed => ed.Speakers).ToListAsync();
+            return View(events);
         }
+        [Area("Admin")]
+        [HttpPost]
+        public async Task<IActionResult> Create(EventViewModel eventViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                var eventEntity = _mapper.Map<Event>(eventViewModel);
+                eventEntity.EventDetail = _mapper.Map<EventDetail>(eventViewModel);
+                return Json(eventEntity, eventEntity.EventDetail);
+                await _context.EventDetails.AddAsync(eventEntity.EventDetail);
+                await _context.Events.AddAsync(eventEntity);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(eventViewModel);
+        }
+
     }
 }
