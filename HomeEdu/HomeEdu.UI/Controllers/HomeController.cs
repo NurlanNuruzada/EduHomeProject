@@ -23,7 +23,8 @@ namespace HomeEdu.UI.Controllers
                 Blogs = await _context.Blogs.ToListAsync(),
                 sliders = await _context.Sliders.ToListAsync(),
                 testimonials = await _context.testimonials.ToListAsync(),
-                noticeBoards = await _context.noticeBoards.ToListAsync()
+                noticeBoards = await _context.noticeBoards.ToListAsync(),
+                events = await _context.Events.ToListAsync()
             };
             return View(homeVM);
         }

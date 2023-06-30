@@ -9,5 +9,7 @@ namespace HomeEdu.UI.ViewModels
         public IEnumerable<Slider> sliders { get; set; } = null!;
         public IEnumerable<testimonial> testimonials { get; set; } = null!;
         public IEnumerable<NoticeBoard> noticeBoards { get; set; } = null!; 
+        public IEnumerable<Event> events { get; set; } = null!; 
+
     }
 }

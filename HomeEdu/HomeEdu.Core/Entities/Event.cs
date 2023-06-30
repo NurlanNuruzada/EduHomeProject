@@ -9,7 +9,11 @@ public class Event : IEntity
     [Required, MaxLength(40)]
     public string Title { get; set; } = null!;
 
-    public DateTime DateTime { get; set; }
+    [Required]
+    public DateTime StartTime { get; set; }
+
+    [Required]
+    public DateTime EndTime { get; set; }
 
     [Required, MaxLength(100)]
     public string Location { get; set; } = null!;
