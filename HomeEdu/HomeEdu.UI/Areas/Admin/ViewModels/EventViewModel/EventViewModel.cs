@@ -20,9 +20,8 @@ namespace HomeEdu.UI.Areas.Admin.ViewModels.EventViewModel
         [StringLength(100, ErrorMessage = "Location cannot exceed 100 characters.")]
         public string Location { get; set; } = null!;
 
-        [Required(ErrorMessage = "Image path is required.")]
-        [StringLength(300, ErrorMessage = "Image path cannot exceed 300 characters.")]
-        public string ImagePath { get; set; } = null!;
+        [Required(ErrorMessage = "Image is required.")]
+        public IFormFile Image { get; set; } = null!;
 
         [Required(ErrorMessage = "Event detail title is required.")]
         [StringLength(50, ErrorMessage = "Event detail title cannot exceed 50 characters.")]
