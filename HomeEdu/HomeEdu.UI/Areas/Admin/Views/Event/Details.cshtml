@@ -39,8 +39,8 @@
                                                     <i class="bx bx-purchase-tag-alt align-middle text-muted me-1"></i> Event
                                                 </a>
                                             </div>
-                                            <h4>@Model.Title</h4>
-                                            <p class="text-muted mb-4"><i class="mdi mdi-calendar me-1"></i> @Model.StartTime.ToString("dd MMMM, yyyy hh:mm tt")</p>
+                                            <h4>@Model?.Title</h4>
+                                            <p class="text-muted mb-4"><i class="mdi mdi-calendar me-1"></i> @Model?.StartTime.ToString("dd MMMM, yyyy hh:mm tt")</p>
                                         </div>
 
                                         <hr>
@@ -55,38 +55,38 @@
                                                 <div class="col-sm-4">
                                                     <div class="mt-4 mt-sm-0">
                                                         <p class="text-muted mb-2">Start Date</p>
-                                                        <h5 class="font-size-15">@Model.StartTime.ToString("dd MMMM, yyyy hh:mm tt")</h5>
+                                                        <h5 class="font-size-15">@Model?.StartTime.ToString("dd MMMM, yyyy hh:mm tt")</h5>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4">
                                                     <div class="mt-4 mt-sm-0">
                                                         <p class="text-muted mb-2">Event Location</p>
-                                                        <h5 class="font-size-15">@Model.Location</h5>
+                                                        <h5 class="font-size-15">@Model?.Location</h5>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-4">
                                                     <div class="mt-4 mt-sm-0">
                                                         <p class="text-muted mb-2">End Date</p>
-                                                        <h5 class="font-size-15">@Model.EndTime.ToString("dd MMMM, yyyy hh:mm tt")</h5>
+                                                        <h5 class="font-size-15">@Model?.EndTime.ToString("dd MMMM, yyyy hh:mm tt")</h5>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="mt-2">
-                                            <img src="@Model.EventDetail.ImagePath" style=" width: 100%;" alt="Event Image" />
-                                            <b> <p>EventDetail Image Path:</p></b><span>@Model.EventDetail.ImagePath</span>
+                                            <img src="@Model?.EventDetail?.ImagePath" style=" width: 100%;" alt="Event Image" />
+                                            <b> <p>EventDetail Image Path:</p></b><span>@Model?.EventDetail?.ImagePath</span>
                                         </div>
                                         <div class="mt-2">
                                             <div class="mt-2">
-                                                <b><p>EventDetail Title:</p></b> <span>@Model.EventDetail.Title</span>
+                                                <b><p>EventDetail Title:</p></b> <span>@Model?.EventDetail?.Title</span>
                                             </div>
                                             <div class="mt-4">
                                                 <div class="text-muted font-size-14">
                                                     <b>
                                                         <p>Description</p>
                                                     </b>
-                                                    <p class="mb-4">@Model.EventDetail.Description</p>
+                                                    <p class="mb-4">@Model?.EventDetail?.Description</p>
                                                     <div class="mt-4">
                                                         <h5 class="mb-3">Speakers: </h5>
                                                         <div>
@@ -106,19 +106,24 @@
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
-                                                                            @foreach (var speaker in Model.EventDetail.Speakers)
+                                                                            @if (Model?.EventDetail?.Speakers == null || !Model.EventDetail.Speakers.Any())
                                                                             {
-                                                                                <tr>
-                                                                                    <th scope="row">@count</th>
-                                                                                    <th scope="row">
-                                                                                        <img src="@speaker?.ImagePath" style=" width: 100%;" alt="Event Image" />
-                                                                                    </th>
-                                                                                    <td>@(speaker?.Name)</td>
-                                                                                    <td>@(speaker?.ImagePath)</td>
-                                                                                    <td>@(speaker?.Position)</td>
-                                                                                </tr>
-                                                                                count++;
+                                                                                <B><p>No speakers found.</p></B>
                                                                             }
+                                                                            else
+                                                                            {
+                                                                                @foreach (var speaker in Model.EventDetail.Speakers)
+                                                                                {
+                                                                                    <tr>
+                                                                                        <th scope="row">@count</th>
+                                                                                        <td>@(speaker?.Name)</td>
+                                                                                        <td>@(speaker?.ImagePath)</td>
+                                                                                        <td>@(speaker?.Position)</td>
+                                                                                    </tr>
+                                                                                    count++;
+                                                                                }
+                                                                            }
+
                                                                         </tbody>
 
 
