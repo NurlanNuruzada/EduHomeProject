@@ -26,8 +26,19 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
 
-            List<Event> events = await _context.Events.Include(e => e.EventDetail).ThenInclude(ed => ed.Speakers).ToListAsync();
+            List<Event> events = await _context.Events.Include(e => e.EventDetail).ToListAsync();
             return View(events);
+        }
+        [Area("Admin")]
+        public async Task<IActionResult> Details(int Id)
+        {
+            Event @event = await _context.Events
+                .Where(e => e.Id == Id)
+                .Include(e => e.EventDetail)
+                .ThenInclude(ed => ed.Speakers)
+                .FirstOrDefaultAsync();
+
+            return View(@event);
         }
         [Area("Admin")]
         [HttpPost]

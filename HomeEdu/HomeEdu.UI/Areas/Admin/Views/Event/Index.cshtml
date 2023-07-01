@@ -17,13 +17,14 @@
                     <tr>
                         <th>#</th>
                         <th>EventDetail Image </th>
-                        <th>EventDetail Image Path</th>
-                        <th>EventDetail Title</th>
-                        <th>EventDetail Description</th>
                         <th>Event Title</th>
                         <th>Event StartTime</th>
                         <th>Event EndTime</th>
-                        <th>Event Location</th>
+@*                        <th>EventDetail Description</th>
+                        <th>EventDetail Image Path</th>
+                        <th>EventDetail Title</th>
+                        <th>Event Location</th>*@
+                        <th></th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -38,18 +39,21 @@
                         <tr>
                             <th scope="row">@count</th>
                             <td><img width="150" src="@(@event?.EventDetail?.ImagePath)" alt="section-title"></td>
-                            <td>@(@event?.EventDetail?.ImagePath)</td>
-                            <td>@(@event?.EventDetail?.Title)</td>
-                            <td>@(@event?.EventDetail?.Description)</td>
                             <td>@(@event?.Title)</td>
-                            <td>@(@event?.StartTime)</td>
-                            <td>@(@event?.EndTime)</td>
-                            <td>@(@event?.Location)</td>
+                            <td>@(@event?.StartTime.ToString("dd MMMM, yyyy hh:mm tt"))</td>
+                            <td>@(@event?.EndTime.ToString("dd MMMM, yyyy hh:mm tt"))</td>
+@*                            <td>@(@event?.EventDetail?.Title)</td>
+                            <td>@(@event?.EventDetail?.ImagePath)</td>
+                            <td>@(@event?.EventDetail?.Description)</td>
+                            <td>@(@event?.Location)</td>*@
                             <td>
                                 <a asp-action="Update" asp-route-id="@(@event?.Id)" style="display:flex;align-items:center; gap: 10px; max-width: max-content;" class="btn btn-warning">Edit <i class="fas fa-edit"></i></a>
                             </td>
                             <td>
                                 <a asp-action="Delete" asp-route-id="@(@event?.Id)" style="display:flex;align-items:center;gap: 10px; max-width: max-content;" class="btn btn-danger">Delete <i class="fas fa-trash-alt"></i></a>
+                            </td>  
+                            <td>
+                                <a asp-action="Details" asp-route-id="@(@event?.Id)" style="display:flex;align-items:center;gap: 10px; max-width: max-content;" class="btn btn-success">Details<i class="fas bx bxs-detail"></i></a>
                             </td>
                         </tr>
                     </tbody>

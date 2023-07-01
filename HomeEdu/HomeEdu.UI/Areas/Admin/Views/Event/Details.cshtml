@@ -1,0 +1,149 @@
+﻿@model Event
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                    <h4 class="mb-sm-0 font-size-18">Event Details</h4>
+
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Blog</a></li>
+                            <li class="breadcrumb-item active">Event Details</li>
+                        </ol>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- end page title -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="pt-3">
+                            <div class="row justify-content-center">
+                                <div class="col-xl-8">
+                                    <div>
+                                        <div class="text-center">
+                                            <div class="mb-4">
+                                                <a href="javascript: void(0);" class="badge bg-light font-size-12">
+                                                    <i class="bx bx-purchase-tag-alt align-middle text-muted me-1"></i> Event
+                                                </a>
+                                            </div>
+                                            <h4>@Model.Title</h4>
+                                            <p class="text-muted mb-4"><i class="mdi mdi-calendar me-1"></i> @Model.StartTime.ToString("dd MMMM, yyyy hh:mm tt")</p>
+                                        </div>
+
+                                        <hr>
+                                        <div class="text-center">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <div>
+                                                        <p class="text-muted mb-2">Category</p>
+                                                        <h5 class="font-size-15">Event</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="mt-4 mt-sm-0">
+                                                        <p class="text-muted mb-2">Start Date</p>
+                                                        <h5 class="font-size-15">@Model.StartTime.ToString("dd MMMM, yyyy hh:mm tt")</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="mt-4 mt-sm-0">
+                                                        <p class="text-muted mb-2">Event Location</p>
+                                                        <h5 class="font-size-15">@Model.Location</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="mt-4 mt-sm-0">
+                                                        <p class="text-muted mb-2">End Date</p>
+                                                        <h5 class="font-size-15">@Model.EndTime.ToString("dd MMMM, yyyy hh:mm tt")</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-2">
+                                            <img src="@Model.EventDetail.ImagePath" style=" width: 100%;" alt="Event Image" />
+                                            <b> <p>EventDetail Image Path:</p></b><span>@Model.EventDetail.ImagePath</span>
+                                        </div>
+                                        <div class="mt-2">
+                                            <div class="mt-2">
+                                                <b><p>EventDetail Title:</p></b> <span>@Model.EventDetail.Title</span>
+                                            </div>
+                                            <div class="mt-4">
+                                                <div class="text-muted font-size-14">
+                                                    <b>
+                                                        <p>Description</p>
+                                                    </b>
+                                                    <p class="mb-4">@Model.EventDetail.Description</p>
+                                                    <div class="mt-4">
+                                                        <h5 class="mb-3">Speakers: </h5>
+                                                        <div>
+                                                            <div class="row">
+                                                                <div class="table-responsive">
+                                                                    <table class="table mb-0">
+                                                                        @{
+                                                                            var count = 1;
+                                                                        }
+                                                                        <thead class="table-light">
+                                                                            <tr>
+                                                                                <th>#</th>
+                                                                                <th>Image</th>
+                                                                                <th>Name</th>
+                                                                                <th>ImagePath</th>
+                                                                                <th>Position</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            @foreach (var speaker in Model.EventDetail.Speakers)
+                                                                            {
+                                                                                <tr>
+                                                                                    <th scope="row">@count</th>
+                                                                                    <th scope="row">
+                                                                                        <img src="@speaker?.ImagePath" style=" width: 100%;" alt="Event Image" />
+                                                                                    </th>
+                                                                                    <td>@(speaker?.Name)</td>
+                                                                                    <td>@(speaker?.ImagePath)</td>
+                                                                                    <td>@(speaker?.Position)</td>
+                                                                                </tr>
+                                                                                count++;
+                                                                            }
+                                                                        </tbody>
+
+
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <hr>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end card body -->
+                    </div>
+                    <!-- end card -->
+                </div>
+                <!-- end col -->
+            </div>
+            <!-- end row -->
+
+        </div> <!-- container-fluid -->
+    </div>
