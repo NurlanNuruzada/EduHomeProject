@@ -103,6 +103,31 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
         }
+        [Area("Admin")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var @event = await _context.Events.FindAsync(id);
+            if (@event == null)
+            {
+                return NotFound();
+            }
+            return View(@event);
+        }
+        [HttpPost]
+        [Area("Admin")]
+        [ActionName("Delete")]
+        [AutoValidateAntiforgeryToken]
+        public async Task<IActionResult> DeletePost(int id)
+        {
+            var @event = await _context.Events.FindAsync(id);
+            if (@event == null)
+            {
+                return NotFound();
+            }
+            _context.Events.Remove(@event);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
 
     }
 }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "DYo7Q/GhrmP6ajjb3m6yjNroqDSuSXKtl8pTPIsfS10=",
+  "Hash": "NufEbgiucGwnKMD3b/E4E+Utn0Ho/0ZfU1qU3knyNDc=",
   "Source": "HomeEdu.UI",
   "BasePath": "_content/HomeEdu.UI",
   "Mode": "Default",
@@ -6152,6 +6152,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\img\\event\\6f34d592-3277-4c35-be32-b4986874707cevent11.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\wwwroot\\assets\\img\\event\\770f5ace-065c-4364-941a-f400fc6ba9eb9b5e4b8c-7498-4d57-9181-c8061f7b6897event13.jpg",
+      "SourceId": "HomeEdu.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\wwwroot\\",
+      "BasePath": "_content/HomeEdu.UI",
+      "RelativePath": "assets/img/event/770f5ace-065c-4364-941a-f400fc6ba9eb9b5e4b8c-7498-4d57-9181-c8061f7b6897event13.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\img\\event\\770f5ace-065c-4364-941a-f400fc6ba9eb9b5e4b8c-7498-4d57-9181-c8061f7b6897event13.jpg"
     },
     {
       "Identity": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\wwwroot\\assets\\img\\event\\8add3439-e0e9-4318-a26d-404ee96efb8aevent3.jpg",
