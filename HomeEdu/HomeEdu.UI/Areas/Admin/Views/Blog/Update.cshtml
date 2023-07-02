@@ -1,4 +1,4 @@
-﻿@model Blog
+﻿@model BlogPostVM
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
@@ -53,10 +53,10 @@
                     <div class="mb-3 row">
                         <label class="col-md-2 col-form-label">Select Blog Catagory</label>
                         <div class="col-md-10">
-                            <select class="form-select" name="CatagoryId">
+                            <select asp-for="BlogCatagoryId" class="form-select" name="blogCatagoryId">
                                 @foreach (var catagory in ViewBag.Catagories)
                                 {
-                                    <option value="@catagory.Id">@catagory.Catagory</option>
+                                    <option asp-for="CommentCount" value="@catagory.Id">@catagory.Catagory</option>
                                 }
                             </select>
                         </div>

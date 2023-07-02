@@ -2,6 +2,7 @@
 using EduHome.UI.Areas.Admin.ViewModels.CourseViewModels;
 using HomeEdu.Core.Entities;
 using HomeEdu.DataAccess.Context;
+using HomeEdu.UI.Areas.Admin.ViewModels.EventViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
@@ -95,29 +96,41 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+            BlogPostVM blogPostVM =  _mapper.Map<BlogPostVM>(blog);
             ViewBag.Catagories = await _context.BlogCatagories.ToListAsync();
-            return View(blog);
+            return View(blogPostVM);
         }
         [HttpPost]
         [ActionName("Update")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(int Id, Blog blog)
+        public async Task<IActionResult> Update(int Id, BlogPostVM blogPostVM,int blogCatagoryId)
         {
-            if (Id != blog.Id)
+            if (blogPostVM == null)
             {
                 return BadRequest();
             }
             if (!ModelState.IsValid)
             {
                 ViewBag.Catagories = await _context.BlogCatagories.ToListAsync();
-                return View(blog);
+                return View(blogPostVM);
+            }
+            var catagory = _context.BlogCatagories.Find(blogCatagoryId);
+            if(catagory== null)
+            {
+                return Json("catargory not found");
             }
             Blog? blogDb = await _context.Blogs.AsNoTracking().FirstOrDefaultAsync(s=>s.Id==Id);
             if (blogDb == null)
             {
                 return NotFound();
             }
-            _context.Entry<Blog>(blog).State = EntityState.Modified;
+            blogDb.PostTime = blogPostVM.PostTime;
+            blogDb.ImagePath = blogPostVM.ImagePath;
+            blogDb.Comment = blogPostVM.Comment;
+            blogDb.PostedBy = blogPostVM.PostedBy;
+            blogDb.BlogCatagoryId = blogCatagoryId;
+            blogDb.CommentCount = blogPostVM.CommentCount;
+            _context.Entry<Blog>(blogDb).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
