@@ -13,5 +13,10 @@ namespace HomeEdu.DataAccess.Context
         public DbSet<Event> Events { get; set; } = null!;
         public DbSet<EventDetail> EventDetails { get; set; } = null!;
         public DbSet<Speaker> Speakers { get; set; } = null!;
+        public DbSet<Course> Courses { get; set; } = null!;
+        public DbSet<CourseCatagory> CourseCatagories { get; set; } = null!;
+        public DbSet<Language> Languages { get; set; } = null!;
+        public DbSet<SkillLevel> SkillLevels { get; set; } = null!;
+        public DbSet<Assesments> Assesments { get; set; } = null!;
     }
 }
