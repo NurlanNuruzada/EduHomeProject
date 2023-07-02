@@ -1,0 +1,77 @@
+﻿@model EventViewModel
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h3 style="color:cornflowerblue">Update Event</h3>
+                <form method="post">
+                    @*default orarag get dir*@
+                    <div class="mb-3 row">
+                        <img style="width:200px;" src="@Model.Image" />
+                    </div>
+                    <div class="mb-3 row">
+                        <label asp-for="Image" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="Image" />
+                            <span class="text-danger" asp-validation-for="Image"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label asp-for="Title" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="Title" />
+                            <span class="text-danger" asp-validation-for="Title"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label asp-for="StartTime" class=" col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="StartTime" />
+                            <span class="text-danger" asp-validation-for="StartTime"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label asp-for="EndTime" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="EndTime" />
+                            <span class="text-danger" asp-validation-for="EndTime"></span>
+                        </div>
+
+                    </div>
+                    <div class="mb-3 row">
+                        <label asp-for="Location" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="Location" />
+                            <span class="text-danger" asp-validation-for="Location"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label asp-for="EventDetailTitle" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="EventDetailTitle" />
+                            <span class="text-danger" asp-validation-for="EventDetailTitle"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label asp-for="EventDetailDescription" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="EventDetailDescription" />
+                            <span class="text-danger" asp-validation-for="EventDetailDescription"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" asp-action="Update" class="btn btn-primary  ">Update</button>
+                    </div>
+                </form>
+                <a asp-area="Admin" asp-controller="Event" asp-action="Index" class="btn btn-light ">Return</a>
+
+            </div>
+        </div>
+    </div> <!-- end col -->
+</div>
+

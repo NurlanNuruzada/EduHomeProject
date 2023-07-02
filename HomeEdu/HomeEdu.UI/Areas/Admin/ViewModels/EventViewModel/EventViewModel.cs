@@ -5,7 +5,6 @@ namespace HomeEdu.UI.Areas.Admin.ViewModels.EventViewModel
 {
     public class EventViewModel
     {
-
         [Required(ErrorMessage = "Title is required.")]
         [StringLength(40, ErrorMessage = "Title cannot exceed 40 characters.")]
         public string Title { get; set; } = null!;
@@ -30,6 +29,8 @@ namespace HomeEdu.UI.Areas.Admin.ViewModels.EventViewModel
         [Required(ErrorMessage = "Event detail description is required.")]
         [StringLength(900, ErrorMessage = "Event detail description cannot exceed 900 characters.")]
         public string EventDetailDescription { get; set; } = null!;
+
+
     }
 }
 

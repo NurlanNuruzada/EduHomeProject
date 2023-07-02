@@ -5840,6 +5840,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\event\ad45b103-5837-4337-9615-b4caa095c121event1.jpg))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\event\bdb0a2b9-615f-473c-80f1-5ad08229d309event1.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>HomeEdu.UI</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/HomeEdu.UI</BasePath>
+      <RelativePath>assets/img/event/bdb0a2b9-615f-473c-80f1-5ad08229d309event1.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\event\bdb0a2b9-615f-473c-80f1-5ad08229d309event1.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\event\d456f678-4806-4a8c-9a36-8bfda26920d1event7.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>HomeEdu.UI</SourceId>
@@ -5855,6 +5871,22 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\event\d456f678-4806-4a8c-9a36-8bfda26920d1event7.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\event\d88cc462-33ca-4f46-8afb-6b216b254e268add3439-e0e9-4318-a26d-404ee96efb8aevent3.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>HomeEdu.UI</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/HomeEdu.UI</BasePath>
+      <RelativePath>assets/img/event/d88cc462-33ca-4f46-8afb-6b216b254e268add3439-e0e9-4318-a26d-404ee96efb8aevent3.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\event\d88cc462-33ca-4f46-8afb-6b216b254e268add3439-e0e9-4318-a26d-404ee96efb8aevent3.jpg))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\event\db27e564-e7ae-45ca-a1da-3a07d064e120event6.jpg))">
       <SourceType>Package</SourceType>

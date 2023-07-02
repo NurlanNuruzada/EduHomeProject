@@ -9,6 +9,8 @@ using HomeEdu.UI.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection.Metadata;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 
 namespace HomeEdu.UI.Areas.Admin.Controllers
 {
@@ -79,7 +81,7 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
                 ModelState.AddModelError("Time", "Please select a future time.");
                 return View(eventViewModel);
             }
-            if ( eventViewModel.StartTime >= eventViewModel.EndTime)
+            if (eventViewModel.StartTime >= eventViewModel.EndTime)
             {
                 ModelState.AddModelError("Time", "Please select a Proper time.");
                 return View(eventViewModel);
@@ -99,9 +101,9 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
                 }
             };
             await _context.EventDetails.AddAsync(eventEntity.EventDetail);
-                await _context.Events.AddAsync(eventEntity);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+            await _context.Events.AddAsync(eventEntity);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
         [Area("Admin")]
         public async Task<IActionResult> Delete(int id)
@@ -128,6 +130,98 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        //var EventViewModel = new EventViewModel
+        //{
+        //    Title = @event.Title,
+        //    StartTime = @event.StartTime,
+        //    EndTime = @event.EndTime,
+        //    Location = @event.Location,
+        //    EventDetailDescription = @event.EventDetail.Description,
+        //    EventDetailTitle = @event.EventDetail.Title
+        //};
+        [HttpGet]
+        [Area("Admin")]
+        public async Task<IActionResult> Update(int id)
+        {
+            Event @event = await _context.Events
+                .Where(e => e.Id == id)
+                .Include(e => e.EventDetail) 
+                .FirstOrDefaultAsync();
 
+            if (@event == null)
+            {
+                return NotFound();
+            }
+
+            if (@event.EventDetail == null)
+            {
+                @event.EventDetail = new EventDetail();
+            }
+
+            var eventViewModel = _mapper.Map<EventViewModel>(@event);
+            eventViewModel.EventDetailDescription = @event.EventDetail.Title;
+            eventViewModel.EventDetailTitle = @event.EventDetail.Description;
+            return View(eventViewModel);
+        }
+
+
+        [Area("Admin")]
+        [HttpPost]
+        [ActionName("Update")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(int Id, EventViewModel eventViewModel)
+        {
+            if (eventViewModel == null)
+            {
+                return NotFound();
+            }
+            if (ModelState.IsValid)
+            {
+                return View(eventViewModel);
+            }
+            Event @event = _context.Events.Include(e => e.EventDetail).FirstOrDefault(e => e.Id == Id);
+            if (@event == null)
+            {
+                return NotFound();
+            }
+
+            if (@event.EventDetail == null)
+            {
+                @event.EventDetail = new EventDetail();
+            }
+            @event.EventDetail.Title = eventViewModel.EventDetailDescription; 
+            @event.EventDetail.Description = eventViewModel.EventDetailTitle;
+            if (@event.EventDetail == null)
+            {
+                return Json(eventViewModel);
+            }
+            if (eventViewModel.Image != null)
+            {
+                if (!eventViewModel.Image.CheckFileFormat("image"))
+                {
+                    ModelState.AddModelError("Image", "Select Correct Format!");
+                    return View(eventViewModel);
+                }
+
+                if (!eventViewModel.Image.CheckFileLength(300))
+                {
+                    ModelState.AddModelError("Image", "Size must be less than 300 KB");
+                    return View(eventViewModel);
+                }
+
+                string filePath = await eventViewModel.Image.CopyFileAsync(_env.WebRootPath, "assets", "img", "slider");
+                @event.EventDetail.ImagePath = filePath;
+            }
+            @event.Title = eventViewModel.Title;
+            @event.StartTime = eventViewModel.StartTime;
+            @event.EndTime = eventViewModel.EndTime;
+            @event.Location = eventViewModel.Location;
+            @event.EventDetail.Description = eventViewModel.EventDetailDescription;
+            @event.EventDetail.Title = eventViewModel.EventDetailTitle;
+            _context.EventDetails.Update(@event.EventDetail);
+            _context.Events.Update(@event);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
