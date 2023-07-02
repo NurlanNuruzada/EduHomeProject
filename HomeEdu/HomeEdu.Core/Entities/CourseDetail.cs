@@ -15,6 +15,13 @@ public class CourseDetail : IEntity
 
     [Required, MaxLength(900)]
     public string Certification { get; set; } = null!;
+    [Required]
+
+    public DateTime Starts { get; set; } 
+    [Required]
+
+    public TimeSpan Duration { get; set; }
+    public TimeSpan ClassDuration { get; set; }
     // One-to-many relationship with Course
     public ICollection<Course> Courses { get; set; }
 

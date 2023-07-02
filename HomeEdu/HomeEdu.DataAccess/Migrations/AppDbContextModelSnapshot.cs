@@ -232,10 +232,19 @@ namespace HomeEdu.DataAccess.Migrations
                         .HasMaxLength(900)
                         .HasColumnType("nvarchar(900)");
 
+                    b.Property<TimeSpan>("ClassDuration")
+                        .HasColumnType("time");
+
+                    b.Property<TimeSpan>("Duration")
+                        .HasColumnType("time");
+
                     b.Property<string>("HowToApply")
                         .IsRequired()
                         .HasMaxLength(900)
                         .HasColumnType("nvarchar(900)");
+
+                    b.Property<DateTime>("Starts")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
