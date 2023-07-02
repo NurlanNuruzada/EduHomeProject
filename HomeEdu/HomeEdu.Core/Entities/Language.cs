@@ -7,7 +7,8 @@ public class Language : IEntity
 {
     public int Id { get; set; }
     [Required, MaxLength(50)]
-    public string Langugage { get; set; } = null!;
-    public int EventDetailId { get; set; }
-    public CourseCatagory EventDetail { get; set; } = null!;
+    public string language { get; set; } = null!;
+
+    public int CourseDetailId { get; set; }
+    public CourseDetail CourseDetail { get; set; } = null!;
 }
