@@ -15,10 +15,8 @@ public class CourseDetail : IEntity
 
     [Required, MaxLength(900)]
     public string Certification { get; set; } = null!;
-
-    // One-to-one relationship with Course
-    public int CourseId { get; set; }
-    public Course Course { get; set; } = null!;
+    // One-to-many relationship with Course
+    public ICollection<Course> Courses { get; set; }
 
     // One-to-many relationship with Language
     public ICollection<Language> Languages { get; set; } = new List<Language>();

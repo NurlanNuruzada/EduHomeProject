@@ -21,4 +21,5 @@ public class Course: IEntity
     // Many-to-one relationship with CourseDetail
     public int CourseDetailId { get; set; }
     public CourseDetail CourseDetail { get; set; } = null!;
+
 }
