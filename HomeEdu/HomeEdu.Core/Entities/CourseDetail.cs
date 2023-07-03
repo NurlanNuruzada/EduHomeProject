@@ -21,8 +21,8 @@ public class CourseDetail : IEntity
     public DateTime Starts { get; set; } 
     [Required]
 
-    public TimeSpan Duration { get; set; }
-    public TimeSpan ClassDuration { get; set; }
+    public DateTime Duration { get; set; }
+    public DateTime ClassDuration { get; set; }
     // One-to-many relationship with Course
     public ICollection<Course> Courses { get; set; }
 

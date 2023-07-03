@@ -1,0 +1,105 @@
+﻿@model CourseViewModel
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h3 style="color:cornflowerblue">Create Course</h3>
+                <form method="post">
+                    @*default orarag get dir*@
+                    <div class="mb-3 row">
+                        <label asp-for="ImagePath" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="ImagePath" />
+                            <span class="text-danger" asp-validation-for="ImagePath"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label asp-for="Title" class=" col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="Title" />
+                            <span class="text-danger" asp-validation-for="Title"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label asp-for="Description" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="Description" />
+                            <span class="text-danger" asp-validation-for="Description"></span>
+                        </div>
+
+                    </div>
+                    <div class="mb-3 row">
+                        <label asp-for="Starts" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="Starts" />
+                            <span class="text-danger" asp-validation-for="Starts"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label asp-for="AboutCourse" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="AboutCourse" />
+                            <span class="text-danger" asp-validation-for="AboutCourse"></span>
+                        </div>
+                    </div> 
+                    <div class="mb-3 row">
+                        <label asp-for="HowToApply" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="HowToApply" />
+                            <span class="text-danger" asp-validation-for="HowToApply"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label asp-for="Certification" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="Certification" />
+                            <span class="text-danger" asp-validation-for="Certification"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label asp-for="ClassDuration" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="ClassDuration" />
+                            <span class="text-danger" asp-validation-for="ClassDuration"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label asp-for="Duration" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="Duration" />
+                            <span class="text-danger" asp-validation-for="Duration"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label asp-for="CourseFee" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="CourseFee" />
+                            <span class="text-danger" asp-validation-for="CourseFee"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-md-2 col-form-label">Select Blog Catagory</label>
+                        <div class="col-md-10">
+                            <select class="form-select" name="CatagoryId">
+                                @foreach (var catagory in ViewBag.Catagories)
+                                {
+                                    <option value="@catagory.Id">@catagory.Catagory</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary ">Submit</button>
+                        <a asp-area="Admin" asp-controller="blog" asp-action="Index" class="btn btn-light ">Return</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div> <!-- end col -->
+</div>
+

@@ -6,37 +6,39 @@ namespace HomeEdu.UI.Areas.Admin.ViewModels.CourseViewModel;
 public class CourseViewModel
 {
     [Required, MaxLength(50)]
-    public string? Title { get; set; }
+    public string Title { get; set; }
+
     [Required, MaxLength(150)]
-    public string? Description { get; set; }
+    public string Description { get; set; }
 
     public int CourseCatagoryId { get; set; }
-    public CourseCatagory CourseCatagory { get; set; } = null!;
+    public CourseCatagory CourseCatagory { get; set; }
 
     [Required]
-    public string ImagePath { get; set; } = null!;
+    public string ImagePath { get; set; }
 
     public int CourseDetailId { get; set; }
-    [Required]
-    public CourseDetail CourseDetail { get; set; } = null!;
+    public CourseDetail CourseDetail { get; set; }
+
     [Required]
     public int CourseFee { get; set; }
 
-    [Required, StringLength(900)]
-    public string AboutCourse { get; set; } = null!;
+    [Required, MaxLength(900)]
+    public string AboutCourse { get; set; }
 
-    [Required, StringLength(900)]
-    public string HowToApply { get; set; } = null!;
+    [Required, MaxLength(900)]
+    public string HowToApply { get; set; }
 
-    [Required, StringLength(900)]
-    public string Certification { get; set; } = null!;
+    [Required, MaxLength(900)]
+    public string Certification { get; set; }
+
     [Required]
-    public TimeSpan Duration { get; set; }  
+    public DateTime Duration { get; set; }
+
     [Required]
     public DateTime Starts { get; set; }
+
     [Required]
-    public TimeSpan ClassDuration { get; set; }
-    public ICollection<Assesments> Assessments { get; set; }
-    public ICollection<SkillLevel> SkillLevels { get; set; }
-    public ICollection<Language> Languages { get; set; }
+    public DateTime ClassDuration { get; set; }
+
 }
