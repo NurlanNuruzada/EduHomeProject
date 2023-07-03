@@ -4,6 +4,7 @@ using HomeEdu.DataAccess.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HomeEdu.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230702232652_addedColumnToCourse")]
+    partial class addedColumnToCourse
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,7 +50,7 @@ namespace HomeEdu.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Events", (string)null);
+                    b.ToTable("Events");
                 });
 
             modelBuilder.Entity("EventDetail", b =>
@@ -82,7 +84,7 @@ namespace HomeEdu.DataAccess.Migrations
                     b.HasIndex("EventId")
                         .IsUnique();
 
-                    b.ToTable("EventDetails", (string)null);
+                    b.ToTable("EventDetails");
                 });
 
             modelBuilder.Entity("HomeEdu.Core.Entities.Assesments", b =>
@@ -105,7 +107,7 @@ namespace HomeEdu.DataAccess.Migrations
 
                     b.HasIndex("CourseDetailId");
 
-                    b.ToTable("Assesments", (string)null);
+                    b.ToTable("Assesments");
                 });
 
             modelBuilder.Entity("HomeEdu.Core.Entities.Blog", b =>
@@ -138,7 +140,7 @@ namespace HomeEdu.DataAccess.Migrations
 
                     b.HasIndex("BlogCatagoryId");
 
-                    b.ToTable("Blogs", (string)null);
+                    b.ToTable("Blogs");
                 });
 
             modelBuilder.Entity("HomeEdu.Core.Entities.BlogCatagory", b =>
@@ -156,7 +158,7 @@ namespace HomeEdu.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("BlogCatagories", (string)null);
+                    b.ToTable("BlogCatagories");
                 });
 
             modelBuilder.Entity("HomeEdu.Core.Entities.Course", b =>
@@ -193,7 +195,7 @@ namespace HomeEdu.DataAccess.Migrations
 
                     b.HasIndex("CourseDetailId");
 
-                    b.ToTable("Courses", (string)null);
+                    b.ToTable("Courses");
                 });
 
             modelBuilder.Entity("HomeEdu.Core.Entities.CourseCatagory", b =>
@@ -211,7 +213,7 @@ namespace HomeEdu.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CourseCatagories", (string)null);
+                    b.ToTable("CourseCatagories");
                 });
 
             modelBuilder.Entity("HomeEdu.Core.Entities.CourseDetail", b =>
@@ -251,7 +253,7 @@ namespace HomeEdu.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CourseDetail", (string)null);
+                    b.ToTable("CourseDetail");
                 });
 
             modelBuilder.Entity("HomeEdu.Core.Entities.Language", b =>
@@ -274,7 +276,7 @@ namespace HomeEdu.DataAccess.Migrations
 
                     b.HasIndex("CourseDetailId");
 
-                    b.ToTable("Languages", (string)null);
+                    b.ToTable("Languages");
                 });
 
             modelBuilder.Entity("HomeEdu.Core.Entities.NoticeBoard", b =>
@@ -295,7 +297,7 @@ namespace HomeEdu.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("noticeBoards", (string)null);
+                    b.ToTable("noticeBoards");
                 });
 
             modelBuilder.Entity("HomeEdu.Core.Entities.SkillLevel", b =>
@@ -318,7 +320,7 @@ namespace HomeEdu.DataAccess.Migrations
 
                     b.HasIndex("CourseDetailId");
 
-                    b.ToTable("SkillLevels", (string)null);
+                    b.ToTable("SkillLevels");
                 });
 
             modelBuilder.Entity("HomeEdu.Core.Entities.Slider", b =>
@@ -346,7 +348,7 @@ namespace HomeEdu.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Sliders", (string)null);
+                    b.ToTable("Sliders");
                 });
 
             modelBuilder.Entity("HomeEdu.Core.Entities.testimonial", b =>
@@ -384,7 +386,7 @@ namespace HomeEdu.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("testimonials", (string)null);
+                    b.ToTable("testimonials");
                 });
 
             modelBuilder.Entity("Speaker", b =>
@@ -416,7 +418,7 @@ namespace HomeEdu.DataAccess.Migrations
 
                     b.HasIndex("EventDetailId");
 
-                    b.ToTable("Speakers", (string)null);
+                    b.ToTable("Speakers");
                 });
 
             modelBuilder.Entity("EventDetail", b =>

@@ -104,27 +104,27 @@
         </div>
         <div class="row">
 
-                @foreach (var item in Model.Courses)
-                {
-            <div class="col-lg-4 col-md-6">
-                <div class="single-course">
-                    <div class="course-img">
-                        <a href="course-details.html">
-                            <img src="/@item.ImagePath" alt="course">
-                            <div class="course-hover">
-                                <i class="fa fa-link"></i>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="course-content">
-                        <h3><a href="course-details.html">@item.Title</a></h3>
-                        <p>@item.Description</p>
-                            <a class="default-btn" asp-controller="CouseDetail" asp-action="Index" asp-route-id="@item.Id">join now</a>
+            @foreach (var item in Model.Courses)
+            {
+                <div class="col-lg-4 col-md-6">
+                    <div class="single-course">
+                        <div class="course-img">
+                            <a asp-controller="CourseDetail" asp-action="Index" asp-route-id="@item.Id">
+                                <img src="/@item.ImagePath" alt="course">
+                                <div class="course-hover">
+                                    <i class="fa fa-link"></i>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="course-content">
+                            <h3><a href="course-details.html">@item.Title</a></h3>
+                            <p>@item.Description</p>
+                            <a class="default-btn" asp-controller="CourseDetail" asp-action="Index" asp-route-id="@item.Id">join now</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-                }
- 
+            }
+
         </div>
     </div>
 </div>
@@ -144,8 +144,8 @@
             @foreach (var Event in Model.events)
             {
                 <div class="col-lg-6  @(countEvents < 5 ? "pt-5 pt-lg-0": "pt-5 pt-lg-0")">
-                    <div class="single-event mb-35 " >
-                        
+                    <div class="single-event mb-35 ">
+
                         <div class="event-date">
                             <h3><a href="event-details.html">@Event.StartTime.Day <span>@Event.StartTime.ToString("MMMM")</span></a></h3>
                         </div>

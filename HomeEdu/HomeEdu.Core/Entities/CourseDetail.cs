@@ -6,6 +6,7 @@ namespace HomeEdu.Core.Entities;
 public class CourseDetail : IEntity
 {
     public int Id { get; set; }
+    public int CourseFee { get; set; }
 
     [Required, MaxLength(900)]
     public string AboutCourse { get; set; } = null!;
