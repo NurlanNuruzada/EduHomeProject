@@ -125,20 +125,33 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
                  .Where(e => e.Id == id)
                  .Include(e => e.CourseDetail)
                  .FirstOrDefaultAsync();
+
             if (course == null)
             {
                 return NotFound();
             }
+
             if (course.CourseDetail == null)
             {
                 course.CourseDetail = new CourseDetail();
             }
+
+            var courseViewModel = _mapper.Map<CourseViewModel>(course);
             Course? courseDb = await _context.Courses.FindAsync(id);
-            CourseViewModel courseViewModel = _mapper.Map<CourseViewModel>(course);
             courseViewModel.ImagePath = courseDb.ImagePath;
+            courseViewModel.HowToApply = course.CourseDetail.HowToApply;
+            courseViewModel.AboutCourse = course.CourseDetail.AboutCourse;
+            courseViewModel.Certification = course.CourseDetail.Certification;
+            courseViewModel.ClassDuration = course.CourseDetail.ClassDuration;
+            courseViewModel.Duration= course.CourseDetail.Duration ;
+          courseViewModel.Starts=   course.CourseDetail.Starts ;
+           courseViewModel.CourseFee = course.CourseDetail.CourseFee  ;
             ViewBag.Catagories = await _context.CourseCatagories.ToListAsync();
+
+
             return View(courseViewModel);
         }
+
         [HttpPost]
         [Area("Admin")]
         [ActionName("Update")]

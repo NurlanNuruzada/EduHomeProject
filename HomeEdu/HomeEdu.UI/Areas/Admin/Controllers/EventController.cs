@@ -143,14 +143,18 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+
             if (@event.EventDetail == null)
             {
                 @event.EventDetail = new EventDetail();
             }
-            ViewBag.Catagories = await _context.BlogCatagories.ToListAsync();
             var eventViewModel = _mapper.Map<EventViewModel>(@event);
+            eventViewModel.EventDetailDescription = @event.EventDetail.Title;
+            eventViewModel.EventDetailTitle = @event.EventDetail.Description;
             return View(eventViewModel);
         }
+
+
         [Area("Admin")]
         [HttpPost]
         [ActionName("Update")]
