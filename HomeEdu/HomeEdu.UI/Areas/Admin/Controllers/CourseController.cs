@@ -24,6 +24,28 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             List<Course> courses = await _context.Courses.Include(e => e.CourseCatagory).ToListAsync();
             return View(courses);
         }
+        [Area("Admin")]
+        public async Task<IActionResult> Details(int id)
+        {
+            Course course = await _context.Courses
+                .Include(c => c.CourseCatagory)
+                .Include(c => c.CourseDetail)
+                    .ThenInclude(cd => cd.SkillLevels)
+                .Include(c => c.CourseDetail)
+                    .ThenInclude(cd => cd.Languages)
+                .Include(c => c.CourseDetail)
+                    .ThenInclude(cd => cd.Assesments)
+                .FirstOrDefaultAsync(c => c.Id == id);
+
+            if (course == null)
+            {
+                return NotFound();
+            }
+
+            return View(course);
+        }
+
+
 
     }
 }

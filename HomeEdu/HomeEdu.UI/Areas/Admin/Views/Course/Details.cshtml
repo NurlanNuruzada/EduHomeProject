@@ -1,0 +1,125 @@
+﻿@model Course
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                    <h4 class="mb-sm-0 font-size-18">Event Details</h4>
+
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Blog</a></li>
+                            <li class="breadcrumb-item active">Event Details</li>
+                        </ol>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- end page title -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="pt-3">
+                            <div class="row justify-content-center">
+                                <div class="col-xl-8">
+                                    <div>
+                                        <div class="text-center">
+                                            <div class="mb-4">
+                                                <a href="javascript: void(0);" class="badge bg-light font-size-12">
+                                                    <i class="bx bx-purchase-tag-alt align-middle text-muted me-1"></i> Event
+                                                </a>
+                                            </div>
+                                            <h4>@Model?.Title</h4>
+                                            <p class="text-muted mb-4"><i class="mdi mdi-calendar me-1"></i> @Model?.CourseDetail?.Starts.Date</p>
+                                        </div>
+
+                                        <hr>
+                                        <div class="text-center">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <div>
+                                                        <p class="text-muted mb-2">Category</p>
+                                                        <h5 class="font-size-15">@Model?.CourseCatagory.Catagory</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="mt-4 mt-sm-0">
+                                                        <p class="text-muted mb-2">Course Description</p>
+                                                        <h5 class="font-size-15">@Model?.Description.</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="mt-4 mt-sm-0">
+                                                        <p class="text-muted mb-2">Course Title</p>
+                                                        <h5 class="font-size-15">@Model?.Title</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-2">
+                                            <img src="\@Model?.ImagePath?" style=" width: 100%;" alt="Event Image" />
+                                            <b> <p>EventDetail Image Path:</p></b><span>@Model?.ImagePath?</span>
+                                        </div>
+                                        <div class="mt-2">
+                                            <div class="mt-2">
+                                                <b><p>AboutCourse:</p></b> <span>@Model?.CourseDetail?.AboutCourse</span>
+                                                <b><p>HowToApply:</p></b> <span>@Model?.CourseDetail?.HowToApply</span>
+                                                <b><p>Certification:</p></b> <span>@Model?.CourseDetail?.Certification</span>
+                                            </div>
+                                            <div class="mt-4">
+                                                <div class="text-muted font-size-14">
+                                                    <div class="mt-4">
+                                                        <div class="course-details-right">
+                                                            <h3>COURSE FEATURES</h3>
+                                                            <ul>
+                                                                <li>starts <span>@Model?.CourseDetail?.Starts</span></li>
+                                                                <li>duration <span>@Model?.CourseDetail?.Duration</span></li>
+                                                                <li>class duration <span>@Model?.CourseDetail?.ClassDuration</span></li>
+                                                                @foreach (var skillLevel in Model.CourseDetail.SkillLevels)
+                                                                {
+                                                                    <li>@skillLevel.skillLevel</li>
+                                                                }
+                                                                @foreach (var language in Model.CourseDetail.Languages)
+                                                                {
+                                                                    <li>@language.language</li>
+                                                                }
+                                                                <li>students <span>420</span></li>
+                                                                @foreach (var assessment in Model.CourseDetail.Assesments)
+                                                                {
+                                                                    <li>@assessment.assesments</li>
+                                                                }
+                                                            </ul>
+                                                            <h3 class="red">course fee $@Model?.CourseDetail?.CourseFee</h3>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <hr>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end card body -->
+                    </div>
+                    <!-- end card -->
+                </div>
+                <!-- end col -->
+            </div>
+            <!-- end row -->
+
+        </div> <!-- container-fluid -->
+    </div>
