@@ -93,7 +93,42 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
+        [Area("Admin")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var Course = await _context.Courses.FindAsync(id);
+            if (Course == null)
+            {
+                return NotFound();
+            }
+            return View(Course);
+        }
+        [HttpPost]
+        [Area("Admin")]
+        [ActionName("Delete")]
+        [AutoValidateAntiforgeryToken]
+        public async Task<IActionResult> DeletePost(int id)
+        {
+            var Course = await _context.Courses.FindAsync(id);
+            if (Course == null)
+            {
+                return NotFound();
+            }
+            _context.Courses.Remove(Course);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+        public async Task<IActionResult> Update(int id)
+        {
+            Blog? blog = await _context.Blogs.FindAsync(id);
+            if (blog == null)
+            {
+                return NotFound();
+            }
+            BlogPostVM blogPostVM = _mapper.Map<BlogPostVM>(blog);
+            ViewBag.Catagories = await _context.BlogCatagories.ToListAsync();
+            return View(blogPostVM);
+        }
 
 
     }

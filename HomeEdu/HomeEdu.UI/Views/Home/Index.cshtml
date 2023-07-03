@@ -45,7 +45,7 @@
             <div class="col-md-6">
                 <div class="notice-left">
                     <h3>notice board</h3>
-                    @foreach (var noticeBoard in Model.noticeBoards.OrderBy(b => b.Time))
+                    @foreach (var noticeBoard in Model.noticeBoards.OrderBy(b => b.Time).Take(10))
                     {
                         <div class="single-notice-left  @(count % 3 == 0 ? " pb-75": "mb-25 pb-25")">
                             <h4>@noticeBoard.Time.ToString("dd MMMM, yyyy")</h4>
@@ -104,13 +104,13 @@
         </div>
         <div class="row">
 
-            @foreach (var item in Model.Courses)
+            @foreach (var item in Model.Courses.OrderByDescending(b => b.Id).Take(3))
             {
                 <div class="col-lg-4 col-md-6">
                     <div class="single-course">
                         <div class="course-img">
                             <a asp-controller="CourseDetail" asp-action="Index" asp-route-id="@item.Id">
-                                <img src="/@item.ImagePath" alt="course">
+                                <img src="@item.ImagePath" alt="course">
                                 <div class="course-hover">
                                     <i class="fa fa-link"></i>
                                 </div>
