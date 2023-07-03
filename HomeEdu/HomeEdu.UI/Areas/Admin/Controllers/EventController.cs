@@ -130,20 +130,11 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        //var EventViewModel = new EventViewModel
-        //{
-        //    Title = @event.Title,
-        //    StartTime = @event.StartTime,
-        //    EndTime = @event.EndTime,
-        //    Location = @event.Location,
-        //    EventDetailDescription = @event.EventDetail.Description,
-        //    EventDetailTitle = @event.EventDetail.Title
-        //};
         [HttpGet]
         [Area("Admin")]
         public async Task<IActionResult> Update(int id)
         {
-            Event @event = await _context.Events
+            Event? @event = await _context.Events
                 .Where(e => e.Id == id)
                 .Include(e => e.EventDetail) 
                 .FirstOrDefaultAsync();
@@ -152,19 +143,14 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-
             if (@event.EventDetail == null)
             {
                 @event.EventDetail = new EventDetail();
             }
-
+            ViewBag.Catagories = await _context.BlogCatagories.ToListAsync();
             var eventViewModel = _mapper.Map<EventViewModel>(@event);
-            eventViewModel.EventDetailDescription = @event.EventDetail.Title;
-            eventViewModel.EventDetailTitle = @event.EventDetail.Description;
             return View(eventViewModel);
         }
-
-
         [Area("Admin")]
         [HttpPost]
         [ActionName("Update")]

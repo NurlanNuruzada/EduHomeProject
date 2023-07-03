@@ -53,10 +53,10 @@
                     <div class="mb-3 row">
                         <label class="col-md-2 col-form-label">Select Blog Catagory</label>
                         <div class="col-md-10">
-                            <select asp-for="BlogCatagoryId" class="form-select" name="blogCatagoryId">
+                            <select class="form-select" name="CatagoryId">
                                 @foreach (var catagory in ViewBag.Catagories)
                                 {
-                                    <option asp-for="CommentCount" value="@catagory.Id">@catagory.Catagory</option>
+                                    <option value="@catagory.Id">@catagory.Catagory</option>
                                 }
                             </select>
                         </div>
@@ -65,7 +65,7 @@
                         <button type="submit" asp-action="Update" class="btn btn-primary  ">Update</button>
                     </div>
                 </form>
-                        <a asp-area="Admin" asp-controller="blog" asp-action="Index" class="btn btn-light ">Return</a>
+                        <a asp-area="Admin" asp-controller="Course" asp-action="Index" class="btn btn-light ">Return</a>
 
             </div>
         </div>

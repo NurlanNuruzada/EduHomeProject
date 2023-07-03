@@ -75,7 +75,7 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
                 Title = courseViewModel.Title,
                 Description = courseViewModel.Description,
                 ImagePath = courseViewModel.ImagePath,
-                CourseCatagoryId= CatagoryId,
+                CourseCatagoryId = CatagoryId,
                 CourseDetail = new CourseDetail
                 {
                     AboutCourse = courseViewModel.AboutCourse,
@@ -118,18 +118,63 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        [Area("Admin")]
         public async Task<IActionResult> Update(int id)
         {
-            Blog? blog = await _context.Blogs.FindAsync(id);
-            if (blog == null)
+            Course? course = await _context.Courses
+                 .Where(e => e.Id == id)
+                 .Include(e => e.CourseDetail)
+                 .FirstOrDefaultAsync();
+            if (course == null)
             {
                 return NotFound();
             }
-            BlogPostVM blogPostVM = _mapper.Map<BlogPostVM>(blog);
-            ViewBag.Catagories = await _context.BlogCatagories.ToListAsync();
-            return View(blogPostVM);
+            if (course.CourseDetail == null)
+            {
+                course.CourseDetail = new CourseDetail();
+            }
+            Course? courseDb = await _context.Courses.FindAsync(id);
+            CourseViewModel courseViewModel = _mapper.Map<CourseViewModel>(course);
+            courseViewModel.ImagePath = courseDb.ImagePath;
+            ViewBag.Catagories = await _context.CourseCatagories.ToListAsync();
+            return View(courseViewModel);
         }
+        [HttpPost]
+        [Area("Admin")]
+        [ActionName("Update")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(int Id, CourseViewModel courseViewModel, int CatagoryId)
+        {
+            Course? course = await _context.Courses
+     .Include(c => c.CourseDetail)
+     .FirstOrDefaultAsync(s => s.Id == Id);
 
+            if (course == null)
+            {
+                return NotFound();
+            }
+
+            course.Title = courseViewModel.Title;
+            course.ImagePath = courseViewModel.ImagePath;
+            course.Description = courseViewModel.Description;
+            course.CourseCatagoryId = CatagoryId;
+
+            if (course.CourseDetail == null)
+            {
+                course.CourseDetail = new CourseDetail();
+            }
+
+            course.CourseDetail.HowToApply = courseViewModel.HowToApply;
+            course.CourseDetail.AboutCourse = courseViewModel.AboutCourse;
+            course.CourseDetail.Certification = courseViewModel.Certification;
+            course.CourseDetail.ClassDuration = courseViewModel.ClassDuration;
+            course.CourseDetail.Duration = courseViewModel.Duration;
+            course.CourseDetail.Starts = courseViewModel.Starts;
+            course.CourseDetail.CourseFee = courseViewModel.CourseFee;
+            _context.Entry<Course>(course).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
 
     }
 }
