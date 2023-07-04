@@ -47,22 +47,20 @@
                                 <nav>
                                     <ul>
                                         <li>
-                                            <a href="index.html">Home</a>
-                                            <ul>
-                                                <li><a href="index.html">Home One</a></li>
-                                                <li><a href="index-2.html">Home Two</a></li>
-                                                <li><a href="index-3.html">Home Three</a></li>
-                                                <li><a href="index-4.html">Home Four</a></li>
-                                                <li><a href="index-5.html">Home Five</a></li>
-                                            </ul>
+                                            <a asp-controller="Home" asp-action="Index">Course</a>
+                                           @* <ul>
+                                             you can able to add some thing here 
+                                            </ul>*@
                                         </li>
                                         <li><a href="about.html">About</a></li>
                                         <li>
-                                            <a href="course.html">courses</a>
-                                            <ul>
-                                                <li><a href="course.html">courses</a></li>
+                                            <a asp-controller="Courses" asp-action="Index">Course</a>
+
+                                           @* <ul>
+                                                <li><a href="course.html">courses</a></li> 
+                                                you can able to add here some section
                                                 <li><a href="course-details.html">courses details</a></li>
-                                            </ul>
+                                            </ul>*@
                                         </li>
                                         <li>
                                             <a href="event.html">event</a>
