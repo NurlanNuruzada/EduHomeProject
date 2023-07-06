@@ -1,12 +1,35 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using EduHome.UI.Areas.Admin.ViewModels.CourseViewModels;
+using HomeEdu.Core.Entities;
+using HomeEdu.DataAccess.Context;
+using HomeEdu.UI.ViewModels;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace HomeEdu.UI.Controllers
 {
     public class BlogsController : Controller
     {
-        public IActionResult Index()
+        private readonly AppDbContext _context;
+        private readonly IMapper _mapper;
+        public BlogsController(AppDbContext context, IMapper mapper)
         {
-            return View();
+            _context = context;
+            _mapper = mapper;
+        }
+        public async Task<IActionResult> Index()
+        {
+            PagesVM pagesVM = new()
+            {
+                Courses = await _context.Courses.ToListAsync(),
+                Blogs = await _context.Blogs.ToListAsync()
+            };
+            if (pagesVM==null)
+            {
+                return NotFound();
+            }
+            return View(pagesVM);
         }
     }
 }

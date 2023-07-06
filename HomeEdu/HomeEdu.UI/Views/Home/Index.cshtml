@@ -213,7 +213,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="single-blog">
                         <div class="blog-img">
-                            <a href="blog-details.html"><img src="@blog.ImagePath" alt="blog"></a>
+                            <a asp-controller="blogdetail" asp-action="Index" asp-route-id="@blog.Id"><img src="@blog.ImagePath" alt="blog"></a>
                             <div class="blog-hover">
                                 <a href="blog-details.html"><i class="fa fa-link"></i></a>
                             </div>

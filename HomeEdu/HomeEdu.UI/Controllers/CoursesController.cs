@@ -18,12 +18,16 @@ namespace HomeEdu.UI.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            CoursesVM coursesVM = new()
+            PagesVM pagesVM = new()
             {
                 Courses = await _context.Courses.ToListAsync(),
                 Blogs = await _context.Blogs.ToListAsync()
             };
-            return View(coursesVM);
+            if(pagesVM == null)
+            {
+                return NotFound();
+            }
+            return View(pagesVM);
         }
     }
 }

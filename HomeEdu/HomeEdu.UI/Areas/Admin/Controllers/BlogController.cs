@@ -49,7 +49,7 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
 
             if (catagory is null)
             {
-                return BadRequest();
+                return NotFound();
             }
             DateTime time = DateTime.Now;
             Blog blog = new()
