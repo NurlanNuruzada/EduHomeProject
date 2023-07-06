@@ -1,19 +1,16 @@
 ﻿using AutoMapper;
-using EduHome.UI.Areas.Admin.ViewModels.CourseViewModels;
-using HomeEdu.Core.Entities;
 using HomeEdu.DataAccess.Context;
 using HomeEdu.UI.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace HomeEdu.UI.Controllers
 {
-    public class BlogsController : Controller
+    public class EventsController : Controller
     {
         private readonly AppDbContext _context;
         private readonly IMapper _mapper;
-        public BlogsController(AppDbContext context, IMapper mapper)
+        public EventsController(AppDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -22,10 +19,10 @@ namespace HomeEdu.UI.Controllers
         {
             PagesVM pagesVM = new()
             {
-                Courses = await _context.Courses.Include(c=>c.CourseDetail).ToListAsync(),
-                Blogs = await _context.Blogs.ToListAsync()
+                Events = await _context.Events.ToListAsync(),
+                Blogs = await _context.Blogs.Include(b=>b.BlogCatagory).ToListAsync()
             };
-            if (pagesVM==null)
+            if (pagesVM == null)
             {
                 return NotFound();
             }

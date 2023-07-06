@@ -14,21 +14,21 @@ namespace HomeEdu.UI.Controllers
         {
             _context = context;
         }
-
         public async Task<IActionResult> Index(int id)
         {
             var courseDetailVMs = await _context.Courses
                 .Include(c => c.CourseDetail)
                 .Include(c => c.CourseCatagory)
-                .Where(c => c.Id == id) 
+                .Where(c => c.Id == id)
                 .Select(c => new CouseDetailViewModel
                 {
+                    Blogs = _context.Blogs.Include(B=>B.BlogCatagory).ToList(),
                     Course = c,
                     CourseDetail = c.CourseDetail,
                     CourseCatagory = c.CourseCatagory,
                     Assesments = _context.Assesments.FirstOrDefault(a => a.CourseDetailId == c.CourseDetail.Id),
                     SkillLevel = _context.SkillLevels.FirstOrDefault(s => s.CourseDetailId == c.CourseDetail.Id),
-                    Language = _context.Languages.FirstOrDefault(l => l.CourseDetailId == c.CourseDetail.Id)
+                    Language = _context.Languages.FirstOrDefault(l => l.CourseDetailId == c.CourseDetail.Id),
                 })
                 .ToListAsync();
             if(courseDetailVMs == null)

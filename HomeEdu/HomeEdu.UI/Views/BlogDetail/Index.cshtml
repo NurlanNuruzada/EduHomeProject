@@ -1,7 +1,6 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_SeccondLayout.cshtml";
 }
 @model HomeVM
 
@@ -13,7 +12,7 @@
                     <div class="col-12">
                         <div class="banner-content-wrapper">
                             <div class="banner-content">
-                                <h2>blog details</h2>
+                                <h2>blog detail</h2>
                             </div>
                         </div>
                     </div>
@@ -99,49 +98,28 @@
                             </div>
                         </div>
                         <div class="single-blog-widget mb-47">
-                            <h3>latest post</h3>
-                            <div class="single-post mb-30">
+                        <h3>latest Blog post</h3>
+                        @{
+                            int countBlog = 1;
+                        }
+                        @foreach (var blog in Model.Blogs.OrderByDescending(b => b.PostTime).Take(3))
+                        {
+                            <div class="single-post" @(countBlog == 3 ? " mb-30" : "")>
                                 <div class="single-post-img">
-                                    <a href="~/assets/blog-details.html">
-                                        <img src="~/assets/img/post/post1.jpg" alt="post">
+                                    <a asp-controller="blogdetail" asp-action="Index" asp-route-id="@blog.Id">
+                                        <img style="width:90px;" src="@blog.ImagePath" alt="post">
                                         <div class="blog-hover">
                                             <i class="fa fa-link"></i>
                                         </div>
                                     </a>
                                 </div>
                                 <div class="single-post-content">
-                                    <h4><a href="~/assets/blog-details.html">English Language Course for you</a></h4>
-                                    <p>By Alex  /  June 20, 2021</p>
+                                    <h4><a asp-controller="blogdetail" asp-action="Index" asp-route-id="@blog.Id">English Language Blogs for you</a></h4>
+                                    <p>@blog.PostedBy /  @blog.PostTime.ToString("dd MMMM, yyyy")</p>
                                 </div>
                             </div>
-                            <div class="single-post mb-30">
-                                <div class="single-post-img">
-                                    <a href="~/assets/blog-details.html">
-                                        <img src="~/assets/img/post/post2.jpg" alt="post">
-                                        <div class="blog-hover">
-                                            <i class="fa fa-link"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="single-post-content">
-                                    <h4><a href="~/assets/blog-details.html">Advance Web Design and Develop</a></h4>
-                                    <p>By Alex  /  June 20, 2021</p>
-                                </div>
-                            </div>
-                            <div class="single-post">
-                                <div class="single-post-img">
-                                    <a href="~/assets/blog-details.html">
-                                        <img src="~/assets/img/post/post3.jpg" alt="post">
-                                        <div class="blog-hover">
-                                            <i class="fa fa-link"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="single-post-content">
-                                    <h4><a href="~/assets/blog-details.html">English Language Course for you</a></h4>
-                                    <p>By Alex  /  June 20, 2021</p>
-                                </div>
-                            </div>
+                            countBlog++;
+                        }
                         </div>
                         <div class="single-blog-widget">
                             <h3>tags</h3>
