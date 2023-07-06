@@ -19,7 +19,7 @@ namespace HomeEdu.UI.Controllers
         {
             PagesVM pagesVM = new()
             {
-                Events = await _context.Events.ToListAsync(),
+                Events = await _context.Events.Include(e=>e.EventDetail).ToListAsync(),
                 Blogs = await _context.Blogs.Include(b=>b.BlogCatagory).ToListAsync()
             };
             if (pagesVM == null)

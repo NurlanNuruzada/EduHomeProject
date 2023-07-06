@@ -1,4 +1,6 @@
 using HomeEdu.DataAccess.Context;
+using HomeEdu.UI.Services.Concretes;
+using HomeEdu.UI.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
@@ -7,6 +9,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
 });
+builder.Services.AddScoped<IBlogService, BlogService>();
 var app = builder.Build();
 app.UseStaticFiles();
 app.MapControllerRoute(

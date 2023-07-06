@@ -1,12 +1,10 @@
 ﻿using AutoMapper;
-using EduHome.UI.Areas.Admin.ViewModels.CourseViewModels;
 using HomeEdu.Core.Entities;
 using HomeEdu.DataAccess.Context;
 using HomeEdu.UI.Areas.Admin.ViewModels.SliderViewModel;
 using HomeEdu.UI.Helpers.Extentions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using NuGet.ContentModel;
 
 namespace HomeEdu.UI.Areas.Admin.Controllers
 {
@@ -122,7 +120,7 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
                 return View(updatedSliderViewModel);
             }
 
-            Slider slider = await _context.Sliders.FindAsync(id);
+            Slider? slider = await _context.Sliders.FindAsync(id);
             if (slider == null)
             {
                 return BadRequest();

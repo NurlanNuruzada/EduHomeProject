@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using EduHome.UI.Areas.Admin.ViewModels.CourseViewModels;
+using HomeEdu.UI.Areas.Admin.ViewModels.BlogViewModels;
 using HomeEdu.Core.Entities;
 
 namespace HomeEdu.UI.Mapper
@@ -8,7 +8,7 @@ namespace HomeEdu.UI.Mapper
     {
         public BlogProfile()
         {
-            CreateMap<BlogPostVM,Blog>().ReverseMap();
+            CreateMap<BlogVM,Blog>().ReverseMap();
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using EduHome.UI.Areas.Admin.ViewModels.CourseViewModels;
+using HomeEdu.UI.Areas.Admin.ViewModels.BlogViewModels;
 using HomeEdu.Core.Entities;
 using HomeEdu.DataAccess.Context;
 using HomeEdu.UI.Areas.Admin.ViewModels.EventViewModel;
@@ -7,29 +7,28 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Cryptography;
+using HomeEdu.UI.Services.Interfaces;
 
 namespace HomeEdu.UI.Areas.Admin.Controllers
 {
-    //Blog blog = _mapper.Map<Blog>(blogPostVM);
+    //Blog blog = _mapper.Map<Blog>(BlogVM);
     [Area("Admin")]
     public class BlogController : Controller
     {
         private readonly AppDbContext _context;
         private readonly IMapper _mapper;
-
-        public BlogController(AppDbContext context, IMapper mapper)
+        private readonly IBlogService _blogService;
+        public BlogController(AppDbContext context, IMapper mapper, IBlogService blogService)
         {
             _context = context;
             _mapper = mapper;
+            _blogService = blogService;
         }
-
         public async Task<IActionResult> Index()
         {
-
-            List<Blog> Blogs = await _context.Blogs.Include(c => c.BlogCatagory).ToListAsync();
-            return View(Blogs);
+            List<Blog> blogs = await _blogService.GetAllBlogAsync();
+            return View(blogs);
         }
-
 
         public async Task<IActionResult> Create()
         {
@@ -38,12 +37,12 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
         }
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public async Task<IActionResult> Create(BlogPostVM blogPostVM, int CatagoryId)
+        public async Task<IActionResult> Create(BlogVM BlogVM, int CatagoryId)
         {
             if (!ModelState.IsValid)
             {
                 ViewBag.Catagories = await _context.BlogCatagories.ToListAsync();
-                return View(blogPostVM);
+                return View(BlogVM);
             }
             var catagory = _context.BlogCatagories.Find(CatagoryId);
 
@@ -54,11 +53,11 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             DateTime time = DateTime.Now;
             Blog blog = new()
             {
-                PostedBy = blogPostVM.PostedBy,
+                PostedBy = BlogVM.PostedBy,
                 PostTime = time,
-                ImagePath = blogPostVM.ImagePath,
-                CommentCount = blogPostVM.CommentCount,
-                Comment = blogPostVM.Comment,
+                ImagePath = BlogVM.ImagePath,
+                CommentCount = BlogVM.CommentCount,
+                Comment = BlogVM.Comment,
                 BlogCatagoryId = CatagoryId
             };
             await _context.Blogs.AddAsync(blog);
@@ -96,23 +95,23 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            BlogPostVM blogPostVM =  _mapper.Map<BlogPostVM>(blog);
+            BlogVM BlogVM =  _mapper.Map<BlogVM>(blog);
             ViewBag.Catagories = await _context.BlogCatagories.ToListAsync();
-            return View(blogPostVM);
+            return View(BlogVM);
         }
         [HttpPost]
         [ActionName("Update")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(int Id, BlogPostVM blogPostVM,int blogCatagoryId)
+        public async Task<IActionResult> Update(int Id, BlogVM BlogVM,int blogCatagoryId)
         {
-            if (blogPostVM == null)
+            if (BlogVM == null)
             {
                 return BadRequest();
             }
             if (!ModelState.IsValid)
             {
                 ViewBag.Catagories = await _context.BlogCatagories.ToListAsync();
-                return View(blogPostVM);
+                return View(BlogVM);
             }
             var catagory = _context.BlogCatagories.Find(blogCatagoryId);
             if(catagory== null)
@@ -124,12 +123,12 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            blogDb.PostTime = blogPostVM.PostTime;
-            blogDb.ImagePath = blogPostVM.ImagePath;
-            blogDb.Comment = blogPostVM.Comment;
-            blogDb.PostedBy = blogPostVM.PostedBy;
+            blogDb.PostTime = BlogVM.PostTime;
+            blogDb.ImagePath = BlogVM.ImagePath;
+            blogDb.Comment = BlogVM.Comment;
+            blogDb.PostedBy = BlogVM.PostedBy;
             blogDb.BlogCatagoryId = blogCatagoryId;
-            blogDb.CommentCount = blogPostVM.CommentCount;
+            blogDb.CommentCount = BlogVM.CommentCount;
             _context.Entry<Blog>(blogDb).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

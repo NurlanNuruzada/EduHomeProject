@@ -123,7 +123,7 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
                 return View(testimoniaVM);
             }
 
-            testimonial Testimonials = await _context.testimonials.FindAsync(id);
+            testimonial? Testimonials = await _context.testimonials.FindAsync(id);
             if (Testimonials == null)
             {
                 return BadRequest();

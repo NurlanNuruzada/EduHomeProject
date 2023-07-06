@@ -169,7 +169,7 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             {
                 return View(eventViewModel);
             }
-            Event @event = _context.Events.Include(e => e.EventDetail).FirstOrDefault(e => e.Id == Id);
+            Event? @event = _context.Events.Include(e => e.EventDetail).FirstOrDefault(e => e.Id == Id);
             if (@event == null)
             {
                 return NotFound();

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using EduHome.UI.Areas.Admin.ViewModels.CourseViewModels;
+using HomeEdu.UI.Areas.Admin.ViewModels.BlogViewModels;
 using HomeEdu.Core.Entities;
 using HomeEdu.DataAccess.Context;
 using HomeEdu.UI.Areas.Admin.ViewModels.TestimoniaViewModel;
@@ -112,7 +112,7 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
                 return View(noticeBoard);
             }
 
-            NoticeBoard noticeBoard1 = await _context.noticeBoards.FindAsync(id);
+            NoticeBoard? noticeBoard1 = await _context.noticeBoards.FindAsync(id);
             if (noticeBoard1 == null)
             {
                 return BadRequest();

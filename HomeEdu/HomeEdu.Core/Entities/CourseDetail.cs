@@ -24,7 +24,7 @@ public class CourseDetail : IEntity
     public DateTime Duration { get; set; }
     public DateTime ClassDuration { get; set; }
     // One-to-many relationship with Course
-    public ICollection<Course> Courses { get; set; }
+    public ICollection<Course>? Courses { get; set; }
 
     // One-to-many relationship with Language
     public ICollection<Language> Languages { get; set; } = new List<Language>();

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using EduHome.UI.Areas.Admin.ViewModels.CourseViewModels;
+using HomeEdu.UI.Areas.Admin.ViewModels.BlogViewModels;
 using HomeEdu.Core.Entities;
 using HomeEdu.DataAccess.Context;
 using HomeEdu.UI.Areas.Admin.ViewModels.CourseViewModel;
