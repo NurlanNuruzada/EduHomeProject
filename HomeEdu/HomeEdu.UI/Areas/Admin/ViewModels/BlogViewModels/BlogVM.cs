@@ -1,4 +1,5 @@
 ﻿using HomeEdu.Core.Entities;
+using Microsoft.DotNet.Scaffolding.Shared.Messaging;
 using System.ComponentModel.DataAnnotations;
 
 namespace HomeEdu.UI.Areas.Admin.ViewModels.BlogViewModels

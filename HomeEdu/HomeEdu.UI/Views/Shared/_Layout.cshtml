@@ -3,6 +3,7 @@
 
 <!-- Mirrored from htmldemo.net/tm/eduhome/eduhome/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 24 Jun 2023 06:56:44 GMT -->
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Eduhome - Educational HTML Template</title>
@@ -90,9 +91,16 @@
                                                 <li><a href="blog-details.html">blog details</a></li>
                                             </ul>
                                                 *@
-                                        </li>
+                                        </li> 
                                         <li><a href="contact.html">Contact</a></li>
                                         <li><a href="contact.html">Buy Now</a>
+                                        <li>
+                                            <a asp-controller="auth" asp-action="register">register</a>
+                                              @*  <li><a href="blog.html">blog</a></li>
+                                            <ul>
+                                            </ul>
+                                                *@
+                                        </li>
                                     </ul>
                                 </nav>
                             </div>
@@ -185,6 +193,7 @@
     <script src="~/assets/js/jquery.nicescroll.min.js"></script>
     <script src="~/assets/js/plugins.js"></script>
     <script src="~/assets/js/main.js"></script>
+@RenderSection("Scripts", required: false)
 </body>
 
 <!-- Mirrored from htmldemo.net/tm/eduhome/eduhome/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 24 Jun 2023 06:57:08 GMT -->
