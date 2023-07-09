@@ -11,9 +11,12 @@ using Microsoft.EntityFrameworkCore;
 using System.Reflection.Metadata;
 using System.Text.Json.Serialization;
 using System.Text.Json;
+using Microsoft.AspNetCore.Authorization;
+using static HomeEdu.UI.Helpers.Utilities.AppUserRole;
 
 namespace HomeEdu.UI.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class EventController : Controller
     {
         private readonly AppDbContext _context;

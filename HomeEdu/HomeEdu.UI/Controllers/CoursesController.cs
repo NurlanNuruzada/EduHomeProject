@@ -4,9 +4,12 @@ using Microsoft.EntityFrameworkCore;
 using HomeEdu.DataAccess.Context;
 using AutoMapper;
 using HomeEdu.UI.ViewModels;
+using Microsoft.AspNetCore.Authorization;
+using static HomeEdu.UI.Helpers.Utilities.AppUserRole;
 
 namespace HomeEdu.UI.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CoursesController : Controller
     {
         private readonly AppDbContext _context;

@@ -5,11 +5,14 @@ using HomeEdu.DataAccess.Migrations;
 using HomeEdu.UI.Areas.Admin.ViewModels.SliderViewModel;
 using HomeEdu.UI.Areas.Admin.ViewModels.TestimoniaViewModel;
 using HomeEdu.UI.Helpers.Extentions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using static HomeEdu.UI.Helpers.Utilities.AppUserRole;
 
 namespace HomeEdu.UI.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class TestimonialController : Controller
     {
         private readonly AppDbContext _context;

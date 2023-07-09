@@ -1,19 +1,24 @@
 ﻿using HomeEdu.Core.Entities;
+using HomeEdu.UI.Helpers.Utilities;
 using HomeEdu.UI.ViewModels.AuthViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HomeEdu.UI.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AuthController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _singInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public AuthController(UserManager<AppUser> userManager, SignInManager<AppUser> singInManager)
+        public AuthController(UserManager<AppUser> userManager, SignInManager<AppUser> singInManager, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _singInManager = singInManager;
+            _roleManager = roleManager;
         }
 
         public IActionResult Register()
@@ -40,6 +45,7 @@ namespace HomeEdu.UI.Controllers
                 }
                 return View(newUser);
             }
+            await _userManager.AddToRoleAsync(user, AppUserRole.Member);
             return RedirectToAction("Index", "Home");
         }
         public IActionResult Login()
@@ -52,17 +58,17 @@ namespace HomeEdu.UI.Controllers
         public async Task<IActionResult> Login(LoginVM User)
         {
             if (!ModelState.IsValid) return View(User);
-             AppUser UserName=await _userManager.FindByNameAsync(User.UserName);
-            if(User is null)
+            AppUser UserName = await _userManager.FindByNameAsync(User.UserName);
+            if (User is null)
             {
                 ModelState.AddModelError("", "Invalid Login!");
             }
-            var signInResult= await _singInManager.PasswordSignInAsync(UserName, User.Password,User.RememberMe,true);
+            var signInResult = await _singInManager.PasswordSignInAsync(UserName, User.Password, User.RememberMe, true);
             if (signInResult.IsLockedOut)
             {
                 ModelState.AddModelError("", "Your accound Is Locked Try Later!");
                 return View(User);
-            } 
+            }
             if (!signInResult.Succeeded)
             {
                 ModelState.AddModelError("", "Invalid Login!");
@@ -70,13 +76,29 @@ namespace HomeEdu.UI.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
+        [Authorize]
         public async Task<IActionResult> Logout()
         {
             if (User.Identity.IsAuthenticated)
             {
                 await _singInManager.SignOutAsync();
             }
-                return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Home");
         }
+        #region Create Role
+        //public async Task CreateRole()
+        //{
+        //    foreach (var role in Enum.GetValues(typeof(AppUserRole.Roles)))
+        //    {
+        //        var roleName = role.ToString();
+        //        bool isExist = await _roleManager.RoleExistsAsync(roleName);
+
+        //        if (!isExist)
+        //        {
+        //            object value = await _roleManager.CreateAsync(new IdentityRole { Name = "Admin" });
+        //        }
+        //    }
+        //}
+        #endregion
     }
 }

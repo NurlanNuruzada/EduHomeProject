@@ -5,10 +5,13 @@ using HomeEdu.DataAccess.Context;
 using HomeEdu.UI.Areas.Admin.ViewModels.TestimoniaViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+using static HomeEdu.UI.Helpers.Utilities.AppUserRole;
 
 namespace HomeEdu.UI.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class NoticeBoardController : Controller
     {
         private readonly AppDbContext _context;

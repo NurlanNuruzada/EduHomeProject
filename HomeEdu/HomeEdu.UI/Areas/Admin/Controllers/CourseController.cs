@@ -7,10 +7,12 @@ using HomeEdu.UI.Areas.Admin.ViewModels.EventViewModel;
 using HomeEdu.UI.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+using static HomeEdu.UI.Helpers.Utilities.AppUserRole;
 
 namespace HomeEdu.UI.Areas.Admin.Controllers
 {
-
+    [Authorize(Roles = "Admin")]
     public class CourseController : Controller
     {
         private readonly AppDbContext _context;

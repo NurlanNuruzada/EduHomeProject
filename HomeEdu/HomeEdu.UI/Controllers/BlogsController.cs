@@ -6,9 +6,12 @@ using HomeEdu.UI.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.AspNetCore.Authorization;
+using static HomeEdu.UI.Helpers.Utilities.AppUserRole;
 
 namespace HomeEdu.UI.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class BlogsController : Controller
     {
         private readonly AppDbContext _context;

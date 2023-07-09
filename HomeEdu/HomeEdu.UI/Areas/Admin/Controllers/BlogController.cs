@@ -8,11 +8,13 @@ using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Cryptography;
 using HomeEdu.UI.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HomeEdu.UI.Areas.Admin.Controllers
 {
     //Blog blog = _mapper.Map<Blog>(BlogVM);
     [Area("Admin")]
+    [Authorize(Roles ="Admin")]
     public class BlogController : Controller
     {
         private readonly AppDbContext _context;
