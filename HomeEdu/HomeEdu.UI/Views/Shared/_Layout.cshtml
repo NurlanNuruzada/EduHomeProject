@@ -95,12 +95,29 @@
                                         <li><a href="contact.html">Contact</a></li>
                                         <li><a href="contact.html">Buy Now</a>
                                         <li>
-                                            <a asp-controller="auth" asp-action="register">register</a>
+                                            <a asp-controller="auth" asp-action="register">Register</a>
                                                         @*  <li><a href="blog.html">blog</a></li>
                                             <ul>
                                             </ul>
                                             *@
                                         </li>
+                                        <li>
+                                                        @if (User.Identity.IsAuthenticated)
+                                                        {
+                                                <a style="color:white">@User.Identity.Name</a>
+                                                <ul>
+                                                    <li>         <a asp-controller="Auth" asp-action="logout">Log out</a></li>
+                                                </ul>
+                                                        }
+                                                        else
+                                                        {
+                                                <a asp-controller="auth" asp-action="login">Login</a>
+                                                        }
+
+
+                                        </li>
+
+                                        <li>
                                     </ul>
                                 </nav>
                             </div>

@@ -41,8 +41,16 @@
                     <div class="col-md-4 col-sm-4">
                         <div class="header-top-right text-md-end text-center">
                             <ul>
-                                <li><a href="/assets/login.html">login</a></li>
-                                <li><a href="/assets/signup.html">signup</a></li>
+                                  @if (User.Identity.IsAuthenticated)
+                                {
+                                    <li> <a style="color:white">@User.Identity.Name</a></li>
+                                    <li><a asp-controller="Auth" asp-action="logout">Log out</a></li>
+                                }
+                                else
+                                {
+                                <li><a asp-controller="Auth" asp-action="login">login</a></li>
+                                }
+                                <li><a asp-controller="Auth" asp-action="Register">Register</a></li>
                             </ul>
                         </div>
                     </div>

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\Desktop\\HomeEdu\\HomeEdu.DataAccess\\HomeEdu.DataAccess.csproj": {}
+    "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.DataAccess\\HomeEdu.DataAccess.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\Desktop\\HomeEdu\\HomeEdu.Core\\HomeEdu.Core.csproj": {
+    "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.Core\\HomeEdu.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\HomeEdu\\HomeEdu.Core\\HomeEdu.Core.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.Core\\HomeEdu.Core.csproj",
         "projectName": "HomeEdu.Core",
-        "projectPath": "C:\\Users\\Admin\\Desktop\\HomeEdu\\HomeEdu.Core\\HomeEdu.Core.csproj",
+        "projectPath": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.Core\\HomeEdu.Core.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Desktop\\HomeEdu\\HomeEdu.Core\\obj\\",
+        "outputPath": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.18, )"
+            },
             "Microsoft.AspNetCore.Mvc.TagHelpers": {
               "target": "Package",
               "version": "[2.2.0, )"
@@ -65,14 +69,14 @@
         }
       }
     },
-    "C:\\Users\\Admin\\Desktop\\HomeEdu\\HomeEdu.DataAccess\\HomeEdu.DataAccess.csproj": {
+    "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.DataAccess\\HomeEdu.DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\HomeEdu\\HomeEdu.DataAccess\\HomeEdu.DataAccess.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.DataAccess\\HomeEdu.DataAccess.csproj",
         "projectName": "HomeEdu.DataAccess",
-        "projectPath": "C:\\Users\\Admin\\Desktop\\HomeEdu\\HomeEdu.DataAccess\\HomeEdu.DataAccess.csproj",
+        "projectPath": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.DataAccess\\HomeEdu.DataAccess.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Desktop\\HomeEdu\\HomeEdu.DataAccess\\obj\\",
+        "outputPath": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.DataAccess\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -89,8 +93,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Admin\\Desktop\\HomeEdu\\HomeEdu.Core\\HomeEdu.Core.csproj": {
-                "projectPath": "C:\\Users\\Admin\\Desktop\\HomeEdu\\HomeEdu.Core\\HomeEdu.Core.csproj"
+              "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.Core\\HomeEdu.Core.csproj": {
+                "projectPath": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.Core\\HomeEdu.Core.csproj"
               }
             }
           }
@@ -105,6 +109,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.18, )"
+            },
             "Microsoft.AspNetCore.Mvc.TagHelpers": {
               "target": "Package",
               "version": "[2.2.0, )"
