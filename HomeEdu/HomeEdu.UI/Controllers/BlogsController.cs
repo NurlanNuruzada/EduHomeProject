@@ -22,10 +22,10 @@ namespace HomeEdu.UI.Controllers
         {
             PagesVM pagesVM = new()
             {
-                Courses = await _context.Courses.Include(c=>c.CourseDetail).ToListAsync(),
+                Courses = await _context.Courses.Include(c => c.CourseDetail).ToListAsync(),
                 Blogs = await _context.Blogs.ToListAsync()
             };
-            if (pagesVM==null)
+            if (pagesVM == null)
             {
                 return NotFound();
             }

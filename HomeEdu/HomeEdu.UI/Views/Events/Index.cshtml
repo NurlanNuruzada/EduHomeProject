@@ -42,7 +42,7 @@
                                     </div>
                                 </div>
                                 <div class="event-content text-start">
-                                    <h4><a  asp-controller="EventDetail" asp-action="Index" asp-route-id="@Event.Id">@Event.Title</a></h4>
+                                    <h4><a asp-controller="EventDetail" asp-action="Index" asp-route-id="@Event.Id">@Event.Title</a></h4>
                                     <ul>
                                         <li><span>time:</span> @Event.StartTime.ToString("hh:mm tt") - @Event.EndTime.ToString("hh:mm tt")</li>
                                         <li><span>venue</span> @Event.Location</li>

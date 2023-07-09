@@ -6528,22 +6528,6 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\slider\8526afd7-706c-4062-bb03-e87d36bc8802slider3.jpg))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\slider\a3039174-a03a-436c-bf7f-e63491fd8d4e1920x1080-393884-windows-11-microsoft-background-colorful-4k-pc.jpg))">
-      <SourceType>Package</SourceType>
-      <SourceId>HomeEdu.UI</SourceId>
-      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
-      <BasePath>_content/HomeEdu.UI</BasePath>
-      <RelativePath>assets/img/slider/a3039174-a03a-436c-bf7f-e63491fd8d4e1920x1080-393884-windows-11-microsoft-background-colorful-4k-pc.jpg</RelativePath>
-      <AssetKind>All</AssetKind>
-      <AssetMode>All</AssetMode>
-      <AssetRole>Primary</AssetRole>
-      <RelatedAsset></RelatedAsset>
-      <AssetTraitName></AssetTraitName>
-      <AssetTraitValue></AssetTraitValue>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\slider\a3039174-a03a-436c-bf7f-e63491fd8d4e1920x1080-393884-windows-11-microsoft-background-colorful-4k-pc.jpg))</OriginalItemSpec>
-    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\slider\c8161d54-307e-4b4f-80f1-6ca3a6a1fd50slider2.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>HomeEdu.UI</SourceId>
