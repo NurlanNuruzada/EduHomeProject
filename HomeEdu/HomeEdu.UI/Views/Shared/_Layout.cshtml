@@ -1,7 +1,6 @@
 ﻿<!doctype html>
 <html class="no-js" lang="en">
 
-<!-- Mirrored from htmldemo.net/tm/eduhome/eduhome/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 24 Jun 2023 06:56:44 GMT -->
 <head>
 
     <meta charset="utf-8">
@@ -32,103 +31,10 @@
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
     <!-- Header Area Start -->
-    <header class="top">
-        <div class="header-area header-sticky fixed">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="logo">
-                            <a href="index.html"><img src="~/assets/img/logo/logo.png" alt="eduhome" /></a>
-                        </div>
-                    </div>
-                    <div class="col-md-9">
-                        <div class="content-wrapper one">
-                            <!-- Main Menu Start -->
-                            <div class="main-menu one text-end">
-                                <nav>
-                                    <ul>
-                                        <li>
-                                            <a asp-controller="Home" asp-action="Index">Course</a>
-                                            @* <ul>
-                                            you can able to add some thing here
-                                            </ul>
-                                            </li>
-                                            *@
-                                        <li><a href="about.html">About</a></li>
-                                        <li>
-                                            <a asp-controller="Courses" asp-action="Index">Course</a>
-
-                                                @* <ul>B
-                                            <li><a href="course.html">courses</a></li>
-                                            you can able to add here some section
-                                            <li><a href="course-details.html">courses details</a></li>
-                                            </ul>
-                                            </li>
-                                            *@
-                                        <li>
-                                            <a asp-controller="events" asp-action="Index">Event</a>
-                                                    @* <li><a href="event.html">event</a></li>
-                                            <ul>
-                                            <li><a href="event-left-side-bar.html">event left sidebar</a></li>
-                                            <li><a href="event-right-side-bar.html">event right sidebar</a></li>
-                                            <li><a href="event-details.html">event details</a></li>
-                                            </ul>
-                                            *@
-                                        </li>
-                                        <li class="hidden-sm">
-                                            <a href="teacher.html">teacher</a>
-                                                    @*    <ul>
-                                            <li><a href="teacher.html">teacher</a></li>
-                                            <li><a href="teacher-details.html">teacher details</a></li>
-                                            </ul>*@
-                                        </li>
-                                        <li>
-                                            <a asp-controller="Blogs" asp-action="Index">Blog</a>
-                                                    @*  <li><a href="blog.html">blog</a></li>
-                                            <ul>
-                                            <li><a href="blog-left-side-bar.html">blog left sidebar</a></li>
-                                            <li><a href="blog-right-side-bar.html">blog righ sidebar</a></li>
-                                            <li><a href="blog-details.html">blog details</a></li>
-                                            </ul>
-                                            *@
-                                        </li>
-                                        <li><a href="contact.html">Contact</a></li>
-                                        <li><a href="contact.html">Buy Now</a>
-                                        <li>
-                                            <a asp-controller="auth" asp-action="register">Register</a>
-                                                        @*  <li><a href="blog.html">blog</a></li>
-                                            <ul>
-                                            </ul>
-                                            *@
-                                        </li>
-                                        <li>
-                                                        @if (User.Identity.IsAuthenticated)
-                                                        {
-                                                <a style="color:white">@User.Identity.Name</a>
-                                                <ul>
-                                                    <li>         <a asp-controller="Auth" asp-action="logout">Log out</a></li>
-                                                </ul>
-                                                        }
-                                                        else
-                                                        {
-                                                <a asp-controller="auth" asp-action="login">Login</a>
-                                                        }
 
 
-                                        </li>
-
-                                        <li>
-                                    </ul>
-                                </nav>
-                            </div>
-                            <div class="mobile-menu one"></div>
-                            <!-- Main Menu End -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
+<!-- Mirrored from htmldemo.net/tm/eduhome/eduhome/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 24 Jun 2023 06:56:44 GMT -->
+@await Component.InvokeAsync("Header")
     <!-- Header Area End -->
     @RenderBody()
     <!-- Footer Start -->

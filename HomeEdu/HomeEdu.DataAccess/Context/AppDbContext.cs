@@ -20,5 +20,6 @@ namespace HomeEdu.DataAccess.Context
         public DbSet<Language> Languages { get; set; } = null!;
         public DbSet<SkillLevel> SkillLevels { get; set; } = null!;
         public DbSet<Assesments> Assesments { get; set; } = null!;
+        public DbSet<Setting> Settings { get; set; } = null!;
     }
 }
