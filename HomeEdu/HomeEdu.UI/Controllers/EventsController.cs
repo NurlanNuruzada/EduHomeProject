@@ -8,7 +8,6 @@ using static HomeEdu.UI.Helpers.Utilities.AppUserRole;
 
 namespace HomeEdu.UI.Controllers
 {
-    [Authorize(Roles = "Admin")]
     public class EventsController : Controller
     {
         private readonly AppDbContext _context;

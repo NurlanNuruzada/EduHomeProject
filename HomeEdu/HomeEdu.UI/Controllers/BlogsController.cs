@@ -11,7 +11,6 @@ using static HomeEdu.UI.Helpers.Utilities.AppUserRole;
 
 namespace HomeEdu.UI.Controllers
 {
-    [Authorize(Roles = "Admin")]
     public class BlogsController : Controller
     {
         private readonly AppDbContext _context;

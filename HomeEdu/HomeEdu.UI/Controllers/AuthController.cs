@@ -7,8 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HomeEdu.UI.Controllers
 {
-    [Authorize(Roles = "Admin")]
-    public class AuthController : Controller
+    public class AuthController 
+        : Controller
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _singInManager;
@@ -45,7 +45,7 @@ namespace HomeEdu.UI.Controllers
                 }
                 return View(newUser);
             }
-            await _userManager.AddToRoleAsync(user, AppUserRole.Member);
+            await _userManager.AddToRoleAsync(user, AppUserRole.Admin); 
             return RedirectToAction("Index", "Home");
         }
         public IActionResult Login()
@@ -62,6 +62,12 @@ namespace HomeEdu.UI.Controllers
             if (User is null)
             {
                 ModelState.AddModelError("", "Invalid Login!");
+                return View(User);
+            }  
+            if (UserName is null)
+            {
+                ModelState.AddModelError("", "Invalid Login!");
+                return View(User);
             }
             var signInResult = await _singInManager.PasswordSignInAsync(UserName, User.Password, User.RememberMe, true);
             if (signInResult.IsLockedOut)
