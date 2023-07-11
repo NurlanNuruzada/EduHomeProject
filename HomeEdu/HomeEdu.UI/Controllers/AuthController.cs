@@ -194,7 +194,7 @@ namespace HomeEdu.UI.Controllers
         [HttpGet]
         public IActionResult ResetPasswordConfirmation()
         {
-            return Ok();
+            return View();
         }
         public static string GetUserIP()
         {
