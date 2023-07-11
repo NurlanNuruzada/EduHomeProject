@@ -39,8 +39,8 @@
                 <div class="login">
                     <div class="login-form-container" style="transform: translate(50%);">
                         <div class="login-text">
-                            <h2>Register</h2>
-                            <span>Please Register filling bellow.</span>
+                            <h2>Login</h2>
+                            <span>Please Login by filling bellow.</span>
                         </div>
                         <div class="login-form">
                             <form class="needs-validation" method="post">
@@ -57,7 +57,9 @@
                                     <div class="login-toggle-btn">
                                         <input type="checkbox" id="remember">
                                         <label for="remember">Remember me</label>
-                                        <a asp-action="ForgotPassword">Forgot Password?</a>
+                                        <a style="color:#111" asp-action="ForgotPassword">Forgot Password?</a>
+                                        <br />
+                                        <a style="color:#111" asp-action="Register">Don't you have accound?</a>
                                     </div>
                                     <button type="submit" class="default-btn">Login</button>
                                 </div>

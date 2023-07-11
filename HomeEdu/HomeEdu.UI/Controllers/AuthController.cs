@@ -47,13 +47,18 @@ namespace HomeEdu.UI.Controllers
         [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> Register(RegisterVM newUser)
         {
-            if (!ModelState.IsValid) return View(newUser);
-            AppUser user = new()
+            if (!ModelState.IsValid)
+            {
+                return View(newUser);
+            }
+            AppUser user = new AppUser
             {
                 UserName = newUser.UserName,
                 Email = newUser.Email,
-                FullName = string.Concat(newUser.UserName, " ", newUser.LastName),
+                FullName = string.Concat(newUser.Name, " ", newUser.LastName),
+                EmailConfirmed = false
             };
+
             IdentityResult result = await _userManager.CreateAsync(user, newUser.Password);
             if (!result.Succeeded)
             {
@@ -63,7 +68,13 @@ namespace HomeEdu.UI.Controllers
                 }
                 return View(newUser);
             }
-            await _userManager.AddToRoleAsync(user, AppUserRole.Admin);
+
+            await _userManager.AddToRoleAsync(user, AppUserRole.Member);
+
+            var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            var confirmationLink = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, token }, Request.Scheme);
+            var message = new EmailVM(user.Email, $"Please confirm your email by clicking <a href='{confirmationLink}'>here</a>.", "Confirm your email");
+            _mailService.SendEmail(message);
             return RedirectToAction("Index", "Home");
         }
         public IActionResult Login()
@@ -114,7 +125,7 @@ namespace HomeEdu.UI.Controllers
         public IActionResult ForgotPassword()
         {
             return View();
-        }// bunu accond controllerder yaz
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ForgotPassword(ForgetPasswordViewModel ForgetPaVM)
@@ -127,7 +138,7 @@ namespace HomeEdu.UI.Controllers
                 return RedirectToAction(nameof(ForgotPasswordConfirmation));
 
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-            var ResetPasswordUrl = $"<a href=\"{Url.Action(nameof(ResetPassword), "Auth", new { token, email = user.Email }, Request.Scheme)}\">reset your password</a>";
+            var ResetPasswordUrl = $"<a Class=\"btn btn-danger\" href=\"{Url.Action(nameof(ResetPassword), "Auth", new { token, email = user.Email }, Request.Scheme)}\">reset your password</a>";
 
             var time = DateTime.Now.ToString();
             var userIp = GetUserIP().ToString();

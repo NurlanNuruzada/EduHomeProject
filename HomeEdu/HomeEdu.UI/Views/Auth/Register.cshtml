@@ -49,10 +49,14 @@
                                 <label asp-for="UserName"></label> <br />
                                 <span asp-validation-for="UserName" class="text-danger"></span>
                                 <input asp-for="UserName" />
+                                
+                                <label asp-for="Name"></label> <br />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                                <input asp-for="Name" />
 
                                 <label asp-for="LastName"></label> <br />
                                 <span asp-validation-for="LastName" class="text-danger"></span>
-                                <input asp-for="LastName" />
+                                <input asp-for="LastName" /> 
 
                                 <label asp-for="Email"></label> <br />
                                 <span asp-validation-for="Email" class="text-danger"></span>
@@ -69,9 +73,7 @@
 
                                 <div class="button-box">
                                     <div class="login-toggle-btn">
-                                        <input type="checkbox" id="remember">
-                                        <label for="remember">Remember me</label>
-                                        <a href="#">Forgot Password?</a>
+                                        <a style="color:#111" asp-action="Login">Do you already have accound?</a>
                                     </div>
                                     <button type="submit" class="default-btn">Register</button>
                                 </div>
