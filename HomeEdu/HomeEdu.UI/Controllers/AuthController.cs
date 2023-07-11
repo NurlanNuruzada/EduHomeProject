@@ -7,11 +7,10 @@ using HomeEdu.UI.ViewModels.EmailViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.EntityFrameworkCore;
-using NuGet.Common;
-using System.Security.Cryptography;
-using System.Text;
+using Microsoft.Extensions.Options;
+using NuGet.Protocol;
+using System.Net;
+using System.Net.Sockets;
 
 namespace HomeEdu.UI.Controllers
 {
@@ -23,18 +22,21 @@ namespace HomeEdu.UI.Controllers
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly AppDbContext _context;
         private readonly IEmailService _mailService;
+        private readonly TimeSpan _tokenLifespan;
 
         public AuthController(UserManager<AppUser> userManager,
                               SignInManager<AppUser> singInManager,
                               RoleManager<IdentityRole> roleManager,
                               AppDbContext context,
-                              IEmailService mailService)
+                              IEmailService mailService,
+                              IOptions<DataProtectionTokenProviderOptions> tokenOptions)
         {
             _userManager = userManager;
             _singInManager = singInManager;
             _roleManager = roleManager;
             _context = context;
             _mailService = mailService;
+            _tokenLifespan = tokenOptions.Value.TokenLifespan;
         }
 
         public IActionResult Register()
@@ -120,16 +122,30 @@ namespace HomeEdu.UI.Controllers
             if (!ModelState.IsValid)
                 return View(ForgetPaVM);
 
-            var user = await _userManager.FindByEmailAsync(ForgetPaVM.Email);//add here an user name 
+            var user = await _userManager.FindByEmailAsync(ForgetPaVM.Email);
             if (user == null)
-                return RedirectToAction(nameof(ForgotPasswordConfirmation));//wrong email or user name
+                return RedirectToAction(nameof(ForgotPasswordConfirmation));
 
-            var token = await _userManager.GeneratePasswordResetTokenAsync(user); // link for reset
-            var ResetPasswordUrl = $"<a href=\"{ Url.Action(nameof(ResetPassword), "Auth", new { token, email = user.Email }, Request.Scheme)}\">reset your password</a>";
+            var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+            var ResetPasswordUrl = $"<a href=\"{Url.Action(nameof(ResetPassword), "Auth", new { token, email = user.Email }, Request.Scheme)}\">reset your password</a>";
 
-            var message = new EmailVM( user.Email , ResetPasswordUrl, "reset password");
+            var time = DateTime.Now.ToString();
+            var userIp = GetUserIP().ToString();
+            var Username = user.UserName.ToString();
+            var Fullname = user.FullName.ToString();
+            string pathToHtmlFile = "Views\\Auth\\ResetPasswordLetter.cshtml";
+            string htmlContent = System.IO.File.ReadAllText(pathToHtmlFile);
+            string tokenLifetimeString = FormatTokenLifetime(_tokenLifespan);
 
-             _mailService.SendEmail(message);
+            htmlContent = htmlContent.Replace("{{action_url}}", ResetPasswordUrl);
+            htmlContent = htmlContent.Replace("{{Time}}", time);
+            htmlContent = htmlContent.Replace("{{IpAddress}}", userIp);
+            htmlContent = htmlContent.Replace("{{Username}}", Username);
+            htmlContent = htmlContent.Replace("{{Fullname}}", Fullname);
+            htmlContent = htmlContent.Replace("{{TokenLifetime}}", tokenLifetimeString);
+
+            var message = new EmailVM(user.Email, htmlContent, "reset password");
+            _mailService.SendEmail(message);
 
             return RedirectToAction(nameof(ForgotPasswordConfirmation));
         }
@@ -169,6 +185,48 @@ namespace HomeEdu.UI.Controllers
         {
             return Ok();
         }
+        public static string GetUserIP()
+        {
+            string ip = string.Empty;
+
+            try
+            {
+                IPHostEntry hostEntry = Dns.GetHostEntry(Dns.GetHostName());
+                IPAddress[] addresses = hostEntry.AddressList;
+
+                foreach (IPAddress address in addresses)
+                {
+                    if (address.AddressFamily == AddressFamily.InterNetwork)
+                    {
+                        ip = address.ToString();
+                        break;
+                    }
+                }
+            }
+            catch (SocketException ex)
+            {
+                Console.WriteLine("Error retrieving IP address: " + ex.Message);
+            }
+
+            return ip;
+        }
+        private static string FormatTokenLifetime(TimeSpan tokenLifetime)
+        {
+            string formattedLifetime = "";
+
+            if (tokenLifetime.Days > 0)
+            {
+                formattedLifetime += $"{tokenLifetime.Days} days ";
+            }
+
+            if (tokenLifetime.Hours > 0)
+            {
+                formattedLifetime += $"{tokenLifetime.Hours} hours";
+            }
+
+            return formattedLifetime.Trim();
+        }
+
     }
 }
 

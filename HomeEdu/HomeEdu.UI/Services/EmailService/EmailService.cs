@@ -22,7 +22,7 @@ namespace HomeEdu.UI.Services.EmailService
             email.From.Add(MailboxAddress.Parse(_config.GetSection("EmailConfiguration:Username").Value));
             email.To.Add(MailboxAddress.Parse(emailVM.To));
             email.Subject = emailVM.Subject;
-            email.Body = new TextPart(TextFormat.Html) { Text = emailVM.Body };
+            email.Body = new TextPart(TextFormat.Html) { Text = emailVM.Body  };
 
             using var smtp = new SmtpClient();
             int port = _config.GetValue<int>("EmailConfiguration:Port");
