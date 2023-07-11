@@ -1,9 +1,12 @@
 using HomeEdu.Core.Entities;
 using HomeEdu.DataAccess.Context;
+using HomeEdu.UI.Helpers.EmailSettings;
 using HomeEdu.UI.Services.Concretes;
+using HomeEdu.UI.Services.EmailService;
 using HomeEdu.UI.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Configuration;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddAutoMapper(typeof(Program));
@@ -21,11 +24,15 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(identityOptions =>
     identityOptions.Password.RequireUppercase = true;
 
 }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
+builder.Services.Configure<DataProtectionTokenProviderOptions>(opt =>
+   opt.TokenLifespan = TimeSpan.FromHours(2));
 builder.Services.AddScoped<IBlogService, BlogService>();
+builder.Services.AddScoped<IEmailService, EmailService>();
 var app = builder.Build();
 app.UseAuthentication();
 app.UseAuthorization(); 
 app.UseStaticFiles();
+
 app.MapControllerRoute(
     name: "areas",
             pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");
