@@ -84,33 +84,47 @@ namespace HomeEdu.UI.Controllers
         }
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public async Task<IActionResult> Login(LoginVM User)
+        public async Task<IActionResult> Login(LoginVM user)
         {
-            if (!ModelState.IsValid) return View(User);
-            AppUser UserName = await _userManager.FindByNameAsync(User.UserName);
-            if (User is null)
+            if (!ModelState.IsValid)
             {
-                ModelState.AddModelError("", "Invalid Login!");
-                return View(User);
+                return View(user);
             }
-            if (UserName is null)
+
+            AppUser? appUser = null;
+            if (!string.IsNullOrEmpty(user.LoginIdentifier))
             {
-                ModelState.AddModelError("", "Invalid Login!");
-                return View(User);
+                appUser = await _userManager.FindByEmailAsync(user.LoginIdentifier);
+
+                if (appUser == null)
+                {
+                    appUser = await _userManager.FindByNameAsync(user.LoginIdentifier);
+                }
             }
-            var signInResult = await _singInManager.PasswordSignInAsync(UserName, User.Password, User.RememberMe, true);
+
+            if (appUser == null)
+            {
+                ModelState.AddModelError("", "Invalid login!");
+                return View(user);
+            }
+
+            var signInResult = await _singInManager.PasswordSignInAsync(appUser, user.Password, user.RememberMe, true);
+
             if (signInResult.IsLockedOut)
             {
-                ModelState.AddModelError("", "Your accound Is Locked Try Later!");
-                return View(User);
+                ModelState.AddModelError("", "Your account is locked. Please try again later.");
+                return View(user);
             }
+
             if (!signInResult.Succeeded)
             {
-                ModelState.AddModelError("", "Invalid Login!");
-                return View(User);
+                ModelState.AddModelError("", "Invalid login!");
+                return View(user);
             }
+
             return RedirectToAction("Index", "Home");
         }
+
         [Authorize]
         public async Task<IActionResult> Logout()
         {

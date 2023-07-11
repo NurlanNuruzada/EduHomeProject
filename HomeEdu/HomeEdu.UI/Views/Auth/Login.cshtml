@@ -45,9 +45,11 @@
                         <div class="login-form">
                             <form class="needs-validation" method="post">
                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                <label asp-for="UserName"></label> <br />
-                                <span asp-validation-for="UserName" class="text-danger"></span>
-                                <input asp-for="UserName" />
+                                <div class="form-group">
+                                    <label asp-for="LoginIdentifier">Username or Email</label>
+                                    <input asp-for="LoginIdentifier" class="form-control" />
+                                    <span asp-validation-for="LoginIdentifier" class="text-danger"></span>
+                                </div>
 
                                 <label asp-for="Password"></label>  <br />
                                 <span asp-validation-for="Password" class="text-danger"></span>
