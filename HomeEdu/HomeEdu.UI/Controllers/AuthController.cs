@@ -185,8 +185,9 @@ namespace HomeEdu.UI.Controllers
             {
                 foreach (var error in resetPassResult.Errors)
                 {
-                    ModelState.TryAddModelError(error.Code, error.Description);
+                    ModelState.AddModelError("", error.Description);
                 }
+
                 return View();
             }
             return RedirectToAction(nameof(ResetPasswordConfirmation));
