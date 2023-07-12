@@ -11,6 +11,8 @@ using Microsoft.Extensions.Options;
 using NuGet.Protocol;
 using System.Net;
 using System.Net.Sockets;
+using System.Security.Claims;
+using System.Text;
 
 namespace HomeEdu.UI.Controllers
 {
@@ -58,7 +60,6 @@ namespace HomeEdu.UI.Controllers
                 FullName = string.Concat(newUser.Name, " ", newUser.LastName),
                 EmailConfirmed = false
             };
-
             IdentityResult result = await _userManager.CreateAsync(user, newUser.Password);
             if (!result.Succeeded)
             {
@@ -77,6 +78,64 @@ namespace HomeEdu.UI.Controllers
             _mailService.SendEmail(message);
             return RedirectToAction("Index", "Home");
         }
+        [AllowAnonymous]
+        public IActionResult GoogleSignIn()
+        {
+            var redirectUrl = Url.Action("GoogleSignInCallback", "Auth", null, Request.Scheme);
+            var properties = _singInManager.ConfigureExternalAuthenticationProperties("Google", redirectUrl);
+            return new ChallengeResult("Google", properties);
+        }
+
+        [AllowAnonymous]
+        public async Task<IActionResult> GoogleSignInCallback()
+        {
+            var info = await _singInManager.GetExternalLoginInfoAsync();
+            if (info == null)
+            {
+                // Handle the case when the external login information is not available
+                return RedirectToAction("Login");
+            }
+            string password = GenerateRandomPassword();
+            // Process the user's sign-in callback here
+            // You can access the user's information using info.Principal
+
+            // Check if the user already exists in the database
+            var user = await _userManager.FindByEmailAsync(info.Principal.FindFirstValue(ClaimTypes.Email));
+
+            if (user == null)
+            {
+                // If the user doesn't exist, create a new user account
+                user = new AppUser
+                {
+                    UserName = info.Principal.FindFirstValue(ClaimTypes.Email),
+                    Email = info.Principal.FindFirstValue(ClaimTypes.Email),
+                    FullName = info.Principal.FindFirstValue(ClaimTypes.Name),
+                    EmailConfirmed = true // Assuming Google already confirmed the email
+                };
+
+                var result = await _userManager.CreateAsync(user, password);
+                if (!result.Succeeded)
+                {
+                    // Handle the case when user creation fails
+                    // You may want to redirect to an error page or display an error message
+                    return RedirectToAction("Register");
+                }
+
+                // Assign a default role to the new user
+                await _userManager.AddToRoleAsync(user, AppUserRole.Member);
+            }
+            var FindUser = await _userManager.FindByEmailAsync(info.Principal.FindFirstValue(ClaimTypes.Email));
+            // Sign in the user
+            var signInResult = await _singInManager.PasswordSignInAsync(FindUser, password, false, true);
+            if (!signInResult.Succeeded)
+            {
+                ModelState.AddModelError("", "Invalid login!");
+                return RedirectToAction("Login");
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
         [AllowAnonymous]
         public IActionResult Login()
         {
@@ -256,6 +315,32 @@ namespace HomeEdu.UI.Controllers
 
             return formattedLifetime.Trim();
         }
+        public string GenerateRandomPassword()
+        {
+            const string uppercaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const string lowercaseLetters = "abcdefghijklmnopqrstuvwxyz";
+            const string nonAlphabeticChars = "!@#$%^&*";
+            const string numericChars = "0123456789";
+            const string allChars = uppercaseLetters + lowercaseLetters + nonAlphabeticChars + numericChars;
+
+            Random random = new Random();
+
+            StringBuilder passwordBuilder = new StringBuilder();
+            passwordBuilder.Append(uppercaseLetters[random.Next(uppercaseLetters.Length)]);
+            passwordBuilder.Append(lowercaseLetters[random.Next(lowercaseLetters.Length)]);
+            passwordBuilder.Append(nonAlphabeticChars[random.Next(nonAlphabeticChars.Length)]);
+            passwordBuilder.Append(numericChars[random.Next(numericChars.Length)]);
+
+            for (int i = 0; i < 4; i++)
+            {
+                passwordBuilder.Append(allChars[random.Next(allChars.Length)]);
+            }
+
+            string password = passwordBuilder.ToString();
+
+            return password;
+        }
+
 
     }
 }

@@ -28,6 +28,12 @@ builder.Services.Configure<DataProtectionTokenProviderOptions>(opt =>
    opt.TokenLifespan = TimeSpan.FromHours(2));
 builder.Services.AddScoped<IBlogService, BlogService>();
 builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.AddAuthentication()
+        .AddGoogle(options =>
+        {
+            options.ClientId = "47347698025-vqqvt8b7peo45j8p19l91cm7v5ipc2vc.apps.googleusercontent.com";
+            options.ClientSecret = "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";
+        });
 var app = builder.Build();
 app.UseAuthentication();
 app.UseAuthorization(); 
