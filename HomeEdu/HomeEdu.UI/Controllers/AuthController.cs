@@ -70,14 +70,58 @@ namespace HomeEdu.UI.Controllers
                 return View(newUser);
             }
 
-            await _userManager.AddToRoleAsync(user, AppUserRole.Member);
-
+            await _userManager.AddToRoleAsync(user, AppUserRole.Admin);
             var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-            var confirmationLink = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, token }, Request.Scheme);
-            var message = new EmailVM(user.Email, $"Please confirm your email by clicking <a href='{confirmationLink}'>here</a>.", "Confirm your email");
+            var confirmationUrl = $"<a href=\"{Url.Action(nameof(ConfirmEmail), "Auth", new { userId = user.Id , token}, Request.Scheme)}\">Confirm your password</a>";
+
+            var time = DateTime.Now.ToString();
+            var userIp = GetUserIP().ToString();
+            var Username = user.UserName.ToString();
+            var Fullname = user.FullName.ToString();
+
+            string pathToHtmlFile = "Views\\Auth\\EmailConfirmationLetter.cshtml";
+            string htmlContent = System.IO.File.ReadAllText(pathToHtmlFile);
+            string tokenLifetimeString = FormatTokenLifetime(_tokenLifespan);
+
+            htmlContent = htmlContent.Replace("{{action_url}}", confirmationUrl);
+            htmlContent = htmlContent.Replace("{{Time}}", time);
+            htmlContent = htmlContent.Replace("{{IpAddress}}", userIp);
+            htmlContent = htmlContent.Replace("{{Username}}", Username);
+            htmlContent = htmlContent.Replace("{{Fullname}}", Fullname);
+            htmlContent = htmlContent.Replace("{{TokenLifetime}}", tokenLifetimeString);
+
+            var message = new EmailVM(user.Email, htmlContent, "Confirm your email");////////////////////
             _mailService.SendEmail(message);
             return RedirectToAction("Index", "Home");
         }
+        public async Task<IActionResult> ConfirmEmail(string userId, string token)
+        {
+            if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(token))
+            {
+                // Invalid user ID or token
+                return RedirectToAction("Error");
+            }
+
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                // User not found
+                return RedirectToAction("Error");
+            }
+
+            var result = await _userManager.ConfirmEmailAsync(user, token);
+            if (!result.Succeeded)
+            {
+                // Failed to confirm email
+                return RedirectToAction("Error");
+            }
+            return View();
+        }
+        public IActionResult EmailConfirmation()
+        {
+            return View();
+        }
+        [HttpGet]
         [AllowAnonymous]
         public IActionResult GoogleSignIn()
         {
@@ -92,19 +136,13 @@ namespace HomeEdu.UI.Controllers
             var info = await _singInManager.GetExternalLoginInfoAsync();
             if (info == null)
             {
-                // Handle the case when the external login information is not available
                 return RedirectToAction("Login");
             }
             string password = GenerateRandomPassword();
-            // Process the user's sign-in callback here
-            // You can access the user's information using info.Principal
-
-            // Check if the user already exists in the database
             var user = await _userManager.FindByEmailAsync(info.Principal.FindFirstValue(ClaimTypes.Email));
 
             if (user == null)
             {
-                // If the user doesn't exist, create a new user account
                 user = new AppUser
                 {
                     UserName = info.Principal.FindFirstValue(ClaimTypes.Email),

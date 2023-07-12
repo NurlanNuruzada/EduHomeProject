@@ -4,27 +4,26 @@
 }
 
 <div id="id01" class="modal">
-    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+    <a asp-controller="home" asp-action="Index"><span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span></a>
     <div class="modal-content">
         <video autoplay="autoplay" muted="muted">
             <source src="https://d1k5j68ob7clqb.cloudfront.net/processed/thumb/o65xWW6EJwG99L1Sr2.mp4#t=0.001" type="video/mp4">
         </video>
-        <h3>Your password is Successfully Changed</h3>
-        <h4>You can Login with above button or just retun menu</h4>
+        <h3>Your email Successfully confirmed!</h3>
+        <h4>you can close this tab or get to the menu</h4>
         @Html.AntiForgeryToken()
-        <a asp-controller="home" style="background-color:lightslategray" asp-action="Index" class="btn btn-light waves-effect">Menu</a>
-        <a asp-controller="Auth" asp-action="login" class="btn btn-light waves-effect">login</a>
+        <a class="menu" asp-controller="home" asp-action="Index" class="btn btn-light waves-effect">Menu</a>
     </div>
 </div>
 
 <style>
     * {
         box-sizing: border-box;
-        font-family:Arial;
+        font-family: Arial;
         color: #1f1f1fb5
     }
 
-    a {
+    .menu {
         text-decoration: none;
         padding: 10px;
         color: white;
@@ -73,24 +72,17 @@
     }
 
     .waves-effect {
-        border-radius: 5px;
-        margin: 20px 5px;
-    }
-
-    .waves-effect2{
-        margin: 20px 5px;
+        margin: 20px 0;
     }
 </style>
 
 <script>
     // Get the modal element
     var modal = document.getElementById('id01');
-
     // Open the modal when the view is loaded
     window.addEventListener('DOMContentLoaded', function () {
         modal.style.display = 'flex';
     });
-
 
 </script>
 

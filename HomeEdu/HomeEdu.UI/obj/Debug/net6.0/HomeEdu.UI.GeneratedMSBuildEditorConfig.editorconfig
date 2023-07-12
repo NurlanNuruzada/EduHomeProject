@@ -136,6 +136,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Admin/Desktop/EduHomeProject/HomeEdu/HomeEdu.UI/Views/Auth/ConfirmEmail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxDb25maXJtRW1haWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/EduHomeProject/HomeEdu/HomeEdu.UI/Views/Auth/EmailConfirmationLetter.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxFbWFpbENvbmZpcm1hdGlvbkxldHRlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Admin/Desktop/EduHomeProject/HomeEdu/HomeEdu.UI/Views/Auth/ForgotPassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxGb3Jnb3RQYXNzd29yZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
