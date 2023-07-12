@@ -77,10 +77,14 @@ namespace HomeEdu.UI.Controllers
             _mailService.SendEmail(message);
             return RedirectToAction("Index", "Home");
         }
+        [AllowAnonymous]
         public IActionResult Login()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("index", "home");
+            }
             return View();
-
         }
         [HttpPost]
         [AutoValidateAntiforgeryToken]
@@ -89,7 +93,7 @@ namespace HomeEdu.UI.Controllers
             if (!ModelState.IsValid)
             {
                 return View(user);
-            }
+            }  
 
             AppUser? appUser = null;
             if (!string.IsNullOrEmpty(user.LoginIdentifier))
