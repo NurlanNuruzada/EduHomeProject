@@ -39,6 +39,52 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             return View(blogs);
         }
 
+        //blog category start
+        public async Task<IActionResult> GetBlogCaragory()
+        {
+            List<BlogCatagory> blogCatagories = await _context.BlogCatagories.ToListAsync();
+            return View(blogCatagories);
+        }
+        public IActionResult CreateBlogCaragory()
+        {
+            return View();
+        }
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public IActionResult CreateBlogCaragory(BlogCatagory blogCatagory)
+        {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "Couldn't add Categry!");
+                return View();
+            }
+            if (blogCatagory is null)
+            {
+                return View();
+            }
+            _context.BlogCatagories.AddAsync(blogCatagory);
+            _context.SaveChangesAsync();
+            return Redirect(nameof(GetBlogCaragory));
+        }
+        [AutoValidateAntiforgeryToken]
+        public async Task<IActionResult> DeleteBlogCategory(int Id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return NotFound();
+            }
+            BlogCatagory FingCatagory = await _context.BlogCatagories.FindAsync(Id);
+            if (FingCatagory is null)
+            {
+                return NotFound();
+            }
+            _context.Entry<BlogCatagory>(FingCatagory).State = EntityState.Deleted;
+            _context.SaveChanges();
+            return Redirect(nameof(Index));
+        }
+        //blog category end
+
+
         public async Task<IActionResult> Create()
         {
             ViewBag.Catagories = await _context.BlogCatagories.ToListAsync();
@@ -51,6 +97,11 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             if (!ModelState.IsValid)
             {
                 ViewBag.Catagories = await _context.BlogCatagories.ToListAsync();
+                return View(BlogVM);
+            }
+            if (BlogVM.Image is null)
+            {
+                ModelState.AddModelError("Image", "Image Can't be null!");
                 return View(BlogVM);
             }
             var catagory = _context.BlogCatagories.Find(CatagoryId);
@@ -135,14 +186,13 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             ViewBag.Catagories = await _context.BlogCatagories.ToListAsync();
             return View(BlogVM);
         }
-
         [HttpPost]
         [ActionName("Update")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(int Id, BlogVM BlogVM, int CatagoryId)
         {
             Blog? blogDb = await _context.Blogs.AsNoTracking().FirstOrDefaultAsync(s => s.Id == Id);
-            BlogVM.BlogCatagoryId= CatagoryId;
+            BlogVM.BlogCatagoryId = CatagoryId;
             if (BlogVM == null)
             {
                 return BadRequest();
@@ -153,36 +203,39 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
                 return View(BlogVM);
             }
             var catagory = await _context.BlogCatagories.AsNoTracking().FirstOrDefaultAsync(s => s.Id == CatagoryId); ;
-
-            if (catagory == null)
+            if (BlogVM.Image is not null)
             {
-                return Json("catargory not found");
+                if (catagory == null)
+                {
+                    return Json("catargory not found");
+                }
+                if (blogDb == null)
+                {
+                    return NotFound();
+                }
+                if (!BlogVM.Image.CheckFileFormat("image"))
+                {
+                    ModelState.AddModelError("Image", "Sellect Correct Format!");
+                    return View(blogDb);
+                }
+                if (!BlogVM.Image.CheckFileLength(300))
+                {
+                    ModelState.AddModelError("Image", "Size Must be less than 300 kb");
+                    return View(blogDb);
+                }
+                string filePath = await BlogVM.Image.CopyFileAsync(_env.WebRootPath, "assets", "img", "blog");
+                blogDb.ImagePath = filePath;
             }
-            if (blogDb == null)
-            {
-                return NotFound();
-            }
-            if (!BlogVM.Image.CheckFileFormat("image"))
-            {
-                ModelState.AddModelError("Image", "Sellect Correct Format!");
-                return View(blogDb);
-            }
-            if (!BlogVM.Image.CheckFileLength(300))
-            {
-                ModelState.AddModelError("Image", "Size Must be less than 300 kb");
-                return View(blogDb);
-            }
-            string filePath = await BlogVM.Image.CopyFileAsync(_env.WebRootPath, "assets", "img", "blog");
             blogDb.PostTime = BlogVM.PostTime;
-            blogDb.ImagePath = filePath;
             blogDb.Comment = BlogVM.Comment;
             blogDb.PostedBy = BlogVM.PostedBy;
             blogDb.BlogCatagoryId = CatagoryId;
             blogDb.CommentCount = BlogVM.CommentCount;
+            var BlogDb = _mapper.Map<Blog>(BlogVM);
             _context.Entry<Blog>(blogDb).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
-            //_context.Entry<Blog>(blog).State = EntityState.Modified;
+
 
         }
     }

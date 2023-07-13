@@ -9,8 +9,7 @@ namespace HomeEdu.UI.Areas.Admin.ViewModels.BlogViewModels
         public string? PostedBy { get; set; }
         [Required]
         public DateTime PostTime { get; set; }
-        [Required]
-        public IFormFile Image { get; set; }
+        public IFormFile? Image { get; set; }
         public int CommentCount { get; set; }
         [MaxLength(255)]
         public string? Comment { get; set; }

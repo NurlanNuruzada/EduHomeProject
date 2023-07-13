@@ -1,0 +1,50 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<BlogCatagory>
+
+@{
+    ViewData["Title"] = "GetBlogCaragory";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int count = 1;
+}
+
+
+
+<h1 style="color:cornflowerblue">Blog Category's List</h1>
+<a style="margin:20px 0px " asp-action="CreateBlogCaragory" class="btn btn-primary">Create New BlogCaragory<i class="far fa-plus-square"></i></a>
+<a style="margin:20px 0px;background-color:lightgrey;border-color:lightgrey" asp-action="Index" class="btn btn-primary">Return Back To Blog<i class="far fa-minus-square"></i></a>
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>#</th>
+                        <th>Category</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                @{
+                    var orderedBlogCa = Model.OrderByDescending(blogCa => blogCa.Id);
+                }
+
+                @foreach (var blogCa in orderedBlogCa)
+                {
+                    <tbody>
+                        <tr>
+                            <th scope="row">@count</th>
+                            <td>@blogCa.Catagory</td>
+                            <td>
+                                <a asp-action="DeleteBlogCategory" asp-route-id="@blogCa.Id" style="display:flex;align-items:center;gap: 10px; max-width: max-content;" class="btn btn-danger">Delete <i class="fas fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                    count++;
+                }
+
+
+
+            </table>
+        </div>
+
+    </div>
+</div>

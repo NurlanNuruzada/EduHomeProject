@@ -11,6 +11,7 @@
                 <h3 style="color:cornflowerblue">Create Blog</h3>
                 <form method="post" enctype="multipart/form-data">@*default orarag get dir*@
                 <div class="mb-3 row">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <label asp-for="Image" class="col-md-2 col-form-label"></label>
                     <div class="col-md-10">
                             <input class="form-control" asp-for="Image" />
