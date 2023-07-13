@@ -8,11 +8,13 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using NuGet.Common;
 using NuGet.Protocol;
 using System.Net;
 using System.Net.Sockets;
 using System.Security.Claims;
 using System.Text;
+using System.Web.Helpers;
 
 namespace HomeEdu.UI.Controllers
 {
@@ -377,6 +379,46 @@ namespace HomeEdu.UI.Controllers
             string password = passwordBuilder.ToString();
 
             return password;
+        }
+        public async Task<IActionResult> ResetAccPassword( string oldPassword, string newPassword)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            string userId = user.Id;
+            var model = new ResetAccPasswordViewModel { userId = userId , OldPassword = oldPassword ,Password = newPassword };
+            return View(model);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ResetAccPassword(ResetAccPasswordViewModel passwordViewModel)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            string userId = user.Id;
+            if (user == null)
+            {
+                return RedirectToAction("Error");
+            }
+            var isOldPasswordValid = await _userManager.CheckPasswordAsync(user, passwordViewModel.OldPassword);
+
+            if (!isOldPasswordValid)
+            {
+                ModelState.AddModelError("", "Incorrect old password");
+                return View();
+            }
+
+            // Generate a new password hash for the new password
+            var newPasswordHash = _userManager.PasswordHasher.HashPassword(user, passwordViewModel.Password);
+
+            // Update the user's password hash
+            user.PasswordHash = newPasswordHash;
+            var result = await _userManager.UpdateAsync(user);
+
+            if (!result.Succeeded)
+            {
+                // Failed to update the password
+                return RedirectToAction("Error");
+            }
+            // Password reset successful
+            return RedirectToAction(nameof(Login));
         }
 
 
