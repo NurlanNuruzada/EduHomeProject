@@ -101,11 +101,12 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var testimoniaVM = new TestimoniaVM
+            var testimoniaVM = new UpdateTestimonialViewModel
             {
                 Name = testimonials.Name,
                 Surname = testimonials.Surname,
                 Position = testimonials.Position,
+                Description = testimonials.Description,
             };
 
             return View(testimoniaVM);
@@ -114,7 +115,7 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
         [ActionName("Update")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(int id, TestimoniaVM testimoniaVM)
+        public async Task<IActionResult> Update(int id, UpdateTestimonialViewModel testimoniaVM)
         {
             if (id != testimoniaVM.Id)
             {

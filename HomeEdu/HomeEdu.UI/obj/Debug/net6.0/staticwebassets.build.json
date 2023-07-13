@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "jAx9qb4Je+TcSVmZ4OQ+ft8O60Xc77ltjQYN1beAhIQ=",
+  "Hash": "rKWnqXc537f2sSibLyNWUqGkGLXtyRau1SpIcD3KH9E=",
   "Source": "HomeEdu.UI",
   "BasePath": "_content/HomeEdu.UI",
   "Mode": "Default",
@@ -5593,6 +5593,23 @@
       "OriginalItemSpec": "wwwroot\\assets\\img\\blog\\78bed2c8-15a8-4c07-a734-b9943f060155blog1.jpg"
     },
     {
+      "Identity": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\wwwroot\\assets\\img\\blog\\bfd91a59-4d4a-463d-873e-7ca71956b1d7blog7.jpg",
+      "SourceId": "HomeEdu.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\wwwroot\\",
+      "BasePath": "_content/HomeEdu.UI",
+      "RelativePath": "assets/img/blog/bfd91a59-4d4a-463d-873e-7ca71956b1d7blog7.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\img\\blog\\bfd91a59-4d4a-463d-873e-7ca71956b1d7blog7.jpg"
+    },
+    {
       "Identity": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\wwwroot\\assets\\img\\blog\\blog1.jpg",
       "SourceId": "HomeEdu.UI",
       "SourceType": "Discovered",
@@ -5863,6 +5880,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\img\\blog\\d9fc8abd-8af1-487a-8bf2-6cc4a4158278365555a5-9a50-49b0-8ff1-f570f0a84f45blog9.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\wwwroot\\assets\\img\\blog\\dc134e17-f252-4bfa-a540-f67b27a58586blog9.jpg",
+      "SourceId": "HomeEdu.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\wwwroot\\",
+      "BasePath": "_content/HomeEdu.UI",
+      "RelativePath": "assets/img/blog/dc134e17-f252-4bfa-a540-f67b27a58586blog9.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\img\\blog\\dc134e17-f252-4bfa-a540-f67b27a58586blog9.jpg"
     },
     {
       "Identity": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\wwwroot\\assets\\img\\blog\\dfa3e1fe-884b-46c4-8d8d-a6db779d0f9bblog8.jpg",
@@ -7053,6 +7087,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\img\\post\\post3.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\wwwroot\\assets\\img\\slider\\9a22c2f5-fe59-438e-97cc-60aab3acc61fd5ef0ff6-a648-41b8-a0e2-767b227bbbddWIN_20230713_21_04_42_Pro.jpg",
+      "SourceId": "HomeEdu.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\wwwroot\\",
+      "BasePath": "_content/HomeEdu.UI",
+      "RelativePath": "assets/img/slider/9a22c2f5-fe59-438e-97cc-60aab3acc61fd5ef0ff6-a648-41b8-a0e2-767b227bbbddWIN_20230713_21_04_42_Pro.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\img\\slider\\9a22c2f5-fe59-438e-97cc-60aab3acc61fd5ef0ff6-a648-41b8-a0e2-767b227bbbddWIN_20230713_21_04_42_Pro.jpg"
     },
     {
       "Identity": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\wwwroot\\assets\\img\\slider\\b2a9f13f-74e8-47fb-a070-c0a9f37e3350slider1.jpg",

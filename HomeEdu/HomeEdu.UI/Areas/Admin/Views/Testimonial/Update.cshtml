@@ -1,5 +1,5 @@
 ﻿@using HomeEdu.UI.Areas.Admin.ViewModels.TestimoniaViewModel
-@model TestimoniaVM
+@model UpdateTestimonialViewModel
 @{
     ViewData["Title"] = "Update";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
@@ -32,9 +32,11 @@
 
     <div class="form-group">
         @Html.LabelFor(model => model.Image)
+        <br>
         @Html.TextBoxFor(model => model.Image, new { type = "file", @class = "form-control-file" })
         @Html.ValidationMessageFor(model => model.Image)
     </div>
+    <br>
     <button type="submit" class="btn btn-primary">Update</button>
     <a asp-area="Admin" asp-controller="Testimonial" asp-action="Index" class="btn btn-light waves-effect">Back to list</a>
 }
