@@ -284,6 +284,10 @@ namespace HomeEdu.UI.Controllers
         [HttpGet]
         public IActionResult ResetPassword(string token, string email)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("index", "home");
+            }
             var user = _userManager.FindByNameAsync(email);
             var model = new ResetPasswordViewModel { Token = token, Email = email };
             return View(model);
@@ -380,8 +384,13 @@ namespace HomeEdu.UI.Controllers
 
             return password;
         }
+        [Authorize]
         public async Task<IActionResult> ResetAccPassword( string oldPassword, string newPassword)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("index", "home");
+            }
             var user = await _userManager.GetUserAsync(User);
             string userId = user.Id;
             var model = new ResetAccPasswordViewModel { userId = userId , OldPassword = oldPassword ,Password = newPassword };
@@ -389,6 +398,7 @@ namespace HomeEdu.UI.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> ResetAccPassword(ResetAccPasswordViewModel passwordViewModel)
         {
             var user = await _userManager.GetUserAsync(User);
