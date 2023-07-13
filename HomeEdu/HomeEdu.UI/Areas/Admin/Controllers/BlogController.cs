@@ -9,22 +9,29 @@ using System.ComponentModel.DataAnnotations;
 using System.Security.Cryptography;
 using HomeEdu.UI.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
+using HomeEdu.UI.Areas.Admin.ViewModels.TestimoniaViewModel;
+using HomeEdu.UI.Helpers.Extentions;
+using HomeEdu.UI.Areas.Admin.ViewModels.CourseViewModel;
+using HomeEdu.DataAccess.Migrations;
+using System.Reflection.Metadata;
 
 namespace HomeEdu.UI.Areas.Admin.Controllers
 {
     //Blog blog = _mapper.Map<Blog>(BlogVM);
     [Area("Admin")]
-    [Authorize(Roles ="Admin")]
+    [Authorize(Roles = "Admin")]
     public class BlogController : Controller
     {
         private readonly AppDbContext _context;
         private readonly IMapper _mapper;
         private readonly IBlogService _blogService;
-        public BlogController(AppDbContext context, IMapper mapper, IBlogService blogService)
+        private readonly IWebHostEnvironment _env;
+        public BlogController(AppDbContext context, IMapper mapper, IBlogService blogService, IWebHostEnvironment env)
         {
             _context = context;
             _mapper = mapper;
             _blogService = blogService;
+            _env = env;
         }
         public async Task<IActionResult> Index()
         {
@@ -47,25 +54,41 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
                 return View(BlogVM);
             }
             var catagory = _context.BlogCatagories.Find(CatagoryId);
-
             if (catagory is null)
             {
-                return NotFound();
+                return NotFound("Catagory not Found");
             }
+            BlogVM.blogCatagory = catagory;
+            if (!ModelState.IsValid)
+            {
+                return View(BlogVM);
+            }
+            if (!BlogVM.Image.CheckFileFormat("image"))
+            {
+                ModelState.AddModelError("Image", "Sellect Correct Format!");
+                return View(BlogVM);
+            }
+            if (!BlogVM.Image.CheckFileLength(300))
+            {
+                ModelState.AddModelError("Image", "Size Must be less than 300 kb");
+                return View(BlogVM);
+            }
+            string filePath = await BlogVM.Image.CopyFileAsync(_env.WebRootPath, "assets", "img", "blog");
+            Blog Blog = _mapper.Map<Blog>(BlogVM);
+            Blog.ImagePath = filePath;
             DateTime time = DateTime.Now;
             Blog blog = new()
             {
                 PostedBy = BlogVM.PostedBy,
                 PostTime = time,
-                ImagePath = BlogVM.ImagePath,
-                CommentCount = BlogVM.CommentCount,
+                ImagePath = filePath,
+                CommentCount = 0,
                 Comment = BlogVM.Comment,
                 BlogCatagoryId = CatagoryId
             };
             await _context.Blogs.AddAsync(blog);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
-
         }
         public async Task<IActionResult> Delete(int id)
         {
@@ -92,20 +115,34 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
         }
         public async Task<IActionResult> Update(int id)
         {
-            Blog? blog = await _context.Blogs.FindAsync(id);
+            Blog? blog = await _context.Blogs
+                 .Where(e => e.Id == id)
+                 .Include(e => e.BlogCatagory)
+                 .FirstOrDefaultAsync();
+
             if (blog == null)
             {
                 return NotFound();
             }
-            BlogVM BlogVM =  _mapper.Map<BlogVM>(blog);
+
+            if (blog.BlogCatagory == null)
+            {
+                ModelState.AddModelError("", "BlogCatagoryNotFound");
+                return View();
+            }
+
+            var BlogVM = _mapper.Map<BlogVM>(blog);
             ViewBag.Catagories = await _context.BlogCatagories.ToListAsync();
             return View(BlogVM);
         }
+
         [HttpPost]
         [ActionName("Update")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(int Id, BlogVM BlogVM,int blogCatagoryId)
+        public async Task<IActionResult> Update(int Id, BlogVM BlogVM, int CatagoryId)
         {
+            Blog? blogDb = await _context.Blogs.AsNoTracking().FirstOrDefaultAsync(s => s.Id == Id);
+            BlogVM.BlogCatagoryId= CatagoryId;
             if (BlogVM == null)
             {
                 return BadRequest();
@@ -115,25 +152,38 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
                 ViewBag.Catagories = await _context.BlogCatagories.ToListAsync();
                 return View(BlogVM);
             }
-            var catagory = _context.BlogCatagories.Find(blogCatagoryId);
-            if(catagory== null)
+            var catagory = await _context.BlogCatagories.AsNoTracking().FirstOrDefaultAsync(s => s.Id == CatagoryId); ;
+
+            if (catagory == null)
             {
                 return Json("catargory not found");
             }
-            Blog? blogDb = await _context.Blogs.AsNoTracking().FirstOrDefaultAsync(s=>s.Id==Id);
             if (blogDb == null)
             {
                 return NotFound();
             }
+            if (!BlogVM.Image.CheckFileFormat("image"))
+            {
+                ModelState.AddModelError("Image", "Sellect Correct Format!");
+                return View(blogDb);
+            }
+            if (!BlogVM.Image.CheckFileLength(300))
+            {
+                ModelState.AddModelError("Image", "Size Must be less than 300 kb");
+                return View(blogDb);
+            }
+            string filePath = await BlogVM.Image.CopyFileAsync(_env.WebRootPath, "assets", "img", "blog");
             blogDb.PostTime = BlogVM.PostTime;
-            blogDb.ImagePath = BlogVM.ImagePath;
+            blogDb.ImagePath = filePath;
             blogDb.Comment = BlogVM.Comment;
             blogDb.PostedBy = BlogVM.PostedBy;
-            blogDb.BlogCatagoryId = blogCatagoryId;
+            blogDb.BlogCatagoryId = CatagoryId;
             blogDb.CommentCount = BlogVM.CommentCount;
             _context.Entry<Blog>(blogDb).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+            //_context.Entry<Blog>(blog).State = EntityState.Modified;
+
         }
     }
 }

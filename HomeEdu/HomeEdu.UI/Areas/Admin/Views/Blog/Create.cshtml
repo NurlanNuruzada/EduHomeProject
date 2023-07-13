@@ -9,12 +9,12 @@
         <div class="card">
             <div class="card-body">
                 <h3 style="color:cornflowerblue">Create Blog</h3>
-                <form method="post">@*default orarag get dir*@
+                <form method="post" enctype="multipart/form-data">@*default orarag get dir*@
                 <div class="mb-3 row">
-                        <label asp-for="ImagePath" class="col-md-2 col-form-label"></label>
+                        <label asp-for="Image" class="col-md-2 col-form-label"></label>
                     <div class="col-md-10">
-                            <input class="form-control" asp-for="ImagePath"/>
-                        <span  class="text-danger"  asp-validation-for="ImagePath"></span>
+                            <input class="form-control" asp-for="Image" />
+                            <span class="text-danger" asp-validation-for="Image"></span>
                     </div>
                 </div>
                 <div class="mb-3 row">
@@ -33,17 +33,9 @@
 
                 </div>
                 <div class="mb-3 row">
-                        <label asp-for="CommentCount" class="col-md-2 col-form-label"></label>
-                    <div class="col-md-10">
-                            <input class="form-control" asp-for="CommentCount" />
-                        <span class="text-danger" asp-validation-for="CommentCount"></span>
-                    </div>
-
-                </div>
-                <div class="mb-3 row">
                     <label class="col-md-2 col-form-label">Select Blog Catagory</label>
                     <div class="col-md-10">
-                            <select class="form-select" name="CourseCatagory">
+                            <select class="form-select" name="CatagoryId">
                             @foreach (var catagory in ViewBag.Catagories)
                             {
                                 <option value="@catagory.Id">@catagory.Catagory</option>

@@ -35,7 +35,7 @@
                         @foreach (var item in Model.Blogs)
                         {
                             <div class="blog-details-img">
-                                <img style="width:350px !important" src="@item.ImagePath" alt="blog-details">
+                                <img style="width:350px !important" src="\@item.ImagePath" alt="blog-details">
                             </div>
                             <h2>I must explain to you how all this a mistaken idea </h2>
                             <h6> @item.PostedBy / @item.PostTime.ToString("dd MMMM, yyyy hh:mm tt")  /  <i class="fa fa-comments-o"></i> @item.CommentCount / @item.BlogCatagory.Catagory</h6>
@@ -107,15 +107,15 @@
                             <div class="single-post" @(countBlog == 3 ? " mb-30" : "")>
                                 <div class="single-post-img">
                                     <a asp-controller="blogdetail" asp-action="Index" asp-route-id="@blog.Id">
-                                        <img style="width:90px;" src="@blog.ImagePath" alt="post">
+                                        <img style="width:90px;" src="\@blog.ImagePath" alt="post">
                                         <div class="blog-hover">
                                             <i class="fa fa-link"></i>
                                         </div>
                                     </a>
                                 </div>
                                 <div class="single-post-content">
-                                    <h4><a asp-controller="blogdetail" asp-action="Index" asp-route-id="@blog.Id">English Language Blogs for you</a></h4>
-                                    <p>@blog.PostedBy /  @blog.PostTime.ToString("dd MMMM, yyyy")</p>
+                                    <h4><a asp-controller="blogdetail" asp-action="Index" asp-route-id="@blog.Id">@blog.Comment</a></h4>
+                                    <p>@blog.PostedBy /  @blog.PostTime.ToString("dd MMMM, yyyy") / <i class="fa fa-comments-o"></i> @blog.CommentCount</p>
                                 </div>
                             </div>
                             countBlog++;
