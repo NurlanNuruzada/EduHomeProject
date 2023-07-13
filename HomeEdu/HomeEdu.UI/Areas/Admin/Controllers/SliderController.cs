@@ -10,7 +10,9 @@ using static HomeEdu.UI.Helpers.Utilities.AppUserRole;
 
 namespace HomeEdu.UI.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     [Authorize(Roles = "Admin")]
+
     public class SliderController : Controller
     {
         private readonly AppDbContext _context;
@@ -98,7 +100,7 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var sliderViewModel = new SliderViewModel
+            var sliderViewModel = new SliderUpdateViewModel
             {
                 Id = slider.Id,
                 Title = slider.Title,
@@ -107,11 +109,10 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
 
             return View(sliderViewModel);
         }
-        [Area("Admin")]
         [HttpPost]
         [ActionName("Update")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(int id, SliderViewModel updatedSliderViewModel)
+        public async Task<IActionResult> Update(int id, SliderUpdateViewModel updatedSliderViewModel)
         {
             if (id != updatedSliderViewModel.Id)
             {

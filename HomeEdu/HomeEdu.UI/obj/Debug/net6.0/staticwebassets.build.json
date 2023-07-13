@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "i3REneMZQV+y6354Bf58CR9Bk02gCziccytrvQDpbKQ=",
+  "Hash": "jAx9qb4Je+TcSVmZ4OQ+ft8O60Xc77ltjQYN1beAhIQ=",
   "Source": "HomeEdu.UI",
   "BasePath": "_content/HomeEdu.UI",
   "Mode": "Default",
@@ -5829,6 +5829,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\img\\blog\\d5ef0ff6-a648-41b8-a0e2-767b227bbbddWIN_20230713_21_04_42_Pro.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\wwwroot\\assets\\img\\blog\\d8478c6e-e958-4eb9-a00c-bb091ab9d7db78bed2c8-15a8-4c07-a734-b9943f060155blog1.jpg",
+      "SourceId": "HomeEdu.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\wwwroot\\",
+      "BasePath": "_content/HomeEdu.UI",
+      "RelativePath": "assets/img/blog/d8478c6e-e958-4eb9-a00c-bb091ab9d7db78bed2c8-15a8-4c07-a734-b9943f060155blog1.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\img\\blog\\d8478c6e-e958-4eb9-a00c-bb091ab9d7db78bed2c8-15a8-4c07-a734-b9943f060155blog1.jpg"
     },
     {
       "Identity": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\wwwroot\\assets\\img\\blog\\d9fc8abd-8af1-487a-8bf2-6cc4a4158278365555a5-9a50-49b0-8ff1-f570f0a84f45blog9.jpg",

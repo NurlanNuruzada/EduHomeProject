@@ -1,5 +1,5 @@
 ﻿@using HomeEdu.UI.Areas.Admin.ViewModels.SliderViewModel
-@model SliderViewModel
+@model SliderUpdateViewModel
 @{
     ViewData["Title"] = "Update";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
@@ -8,7 +8,6 @@
 @using (Html.BeginForm("Update", "Slider", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-
     <div class="form-group">
         @Html.LabelFor(model => model.Title)
         @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
@@ -23,11 +22,13 @@
 
     <div class="form-group">
         @Html.LabelFor(model => model.Image)
+        <br>
         @Html.TextBoxFor(model => model.Image, new { type = "file", @class = "form-control-file" })
         @Html.ValidationMessageFor(model => model.Image)
     </div>
-
+    <br>
     <button type="submit" class="btn btn-primary">Update</button>
+    <button asp-action="index" class="btn btn-light">Return To list</button>
 }
 
 
