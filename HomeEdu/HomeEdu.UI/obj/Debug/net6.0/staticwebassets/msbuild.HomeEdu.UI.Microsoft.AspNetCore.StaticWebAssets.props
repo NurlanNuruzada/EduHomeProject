@@ -6688,12 +6688,12 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\post\post3.jpg))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\slider\9a22c2f5-fe59-438e-97cc-60aab3acc61fd5ef0ff6-a648-41b8-a0e2-767b227bbbddWIN_20230713_21_04_42_Pro.jpg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\slider\36523bd9-4a20-45d3-bc4b-669035efa54bslider1.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>HomeEdu.UI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/HomeEdu.UI</BasePath>
-      <RelativePath>assets/img/slider/9a22c2f5-fe59-438e-97cc-60aab3acc61fd5ef0ff6-a648-41b8-a0e2-767b227bbbddWIN_20230713_21_04_42_Pro.jpg</RelativePath>
+      <RelativePath>assets/img/slider/36523bd9-4a20-45d3-bc4b-669035efa54bslider1.jpg</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -6702,14 +6702,14 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\slider\9a22c2f5-fe59-438e-97cc-60aab3acc61fd5ef0ff6-a648-41b8-a0e2-767b227bbbddWIN_20230713_21_04_42_Pro.jpg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\slider\36523bd9-4a20-45d3-bc4b-669035efa54bslider1.jpg))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\slider\b2a9f13f-74e8-47fb-a070-c0a9f37e3350slider1.jpg))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\slider\7a3b949d-604f-406e-8f16-0a4fdd46efb0WIN_20230713_21_04_42_Pro.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>HomeEdu.UI</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/HomeEdu.UI</BasePath>
-      <RelativePath>assets/img/slider/b2a9f13f-74e8-47fb-a070-c0a9f37e3350slider1.jpg</RelativePath>
+      <RelativePath>assets/img/slider/7a3b949d-604f-406e-8f16-0a4fdd46efb0WIN_20230713_21_04_42_Pro.jpg</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
@@ -6718,7 +6718,7 @@
       <AssetTraitValue></AssetTraitValue>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\slider\b2a9f13f-74e8-47fb-a070-c0a9f37e3350slider1.jpg))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\slider\7a3b949d-604f-406e-8f16-0a4fdd46efb0WIN_20230713_21_04_42_Pro.jpg))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\slider\home.png))">
       <SourceType>Package</SourceType>
