@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using static HomeEdu.UI.Helpers.Utilities.AppUserRole;
+using HomeEdu.UI.Areas.Admin.ViewModels.NoticeBoardViewModels;
 
 namespace HomeEdu.UI.Areas.Admin.Controllers
 {
@@ -24,7 +25,6 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             _mapper = mapper;
             _env = env;
         }
-        [Area("Admin")]
         public async Task<IActionResult> Index()
         {
             List<NoticeBoard> noticeBoards = await _context.noticeBoards.ToListAsync();
@@ -48,8 +48,7 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
 
             if (noticeBoard.Time <= DateTime.Now.Date)
             {
-                ModelState.AddModelError("Time", "Please select a future time.");
-                return View(noticeBoard);
+                return BadRequest();
             }
 
             await _context.noticeBoards.AddAsync(noticeBoard);
@@ -81,9 +80,7 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-
         [HttpGet]
-        [Area("Admin")]
         [ActionName("Update")]
         public async Task<IActionResult> Update(int id)
         {
@@ -92,7 +89,7 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            var noticeBoardDb = new NoticeBoard
+            var noticeBoardDb = new UpdateNoticeBoardViewModel
             {
                 Time = noticeBoard.Time,
                 Detail = noticeBoard.Detail,
@@ -100,10 +97,8 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             return View(noticeBoardDb);
         }
         [HttpPost]
-        [Area("Admin")]
-        [ActionName("Update")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(int id, NoticeBoard noticeBoard)
+        public async Task<IActionResult> Update(int id, UpdateNoticeBoardViewModel noticeBoard)
         {
             if (id != noticeBoard.Id)
             {
@@ -114,13 +109,19 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             {
                 return View(noticeBoard);
             }
-
+            if (noticeBoard.Time <= DateTime.Now.Date)
+            {
+                return BadRequest();
+            }
             NoticeBoard? noticeBoard1 = await _context.noticeBoards.FindAsync(id);
             if (noticeBoard1 == null)
             {
                 return BadRequest();
             }
+            if(noticeBoard.Time != null)
+            {
             noticeBoard1.Time = noticeBoard.Time;
+            }
             noticeBoard1.Detail = noticeBoard.Detail;
             _context.Entry(noticeBoard1).State = EntityState.Modified;
             await _context.SaveChangesAsync();

@@ -32,7 +32,7 @@
                         <tr>
                             <th scope="row">@count</th>
                             <td>@NoticeBoard.Detail</td>
-                            <td>@NoticeBoard.Time</td>
+                            <td>@NoticeBoard.Time.ToString("dd MMMM, yyyy hh:mm tt")</td>
                             <td>
                                 <a asp-action="Update" asp-route-id="@NoticeBoard.Id" style="display:flex;align-items:center; gap: 10px; max-width: max-content;" class="btn btn-warning">Edit <i class="fas fa-edit"></i></a>
                             </td>

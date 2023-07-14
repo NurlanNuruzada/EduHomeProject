@@ -12,7 +12,9 @@ using static HomeEdu.UI.Helpers.Utilities.AppUserRole;
 
 namespace HomeEdu.UI.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     [Authorize(Roles = "Admin")]
+
     public class TestimonialController : Controller
     {
         private readonly AppDbContext _context;
@@ -25,20 +27,17 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             _mapper = mapper;
             _env = env;
         }
-        [Area("Admin")]
         public async Task<IActionResult> Index()
         {
 
             List<testimonial> testimonials = await _context.testimonials.ToListAsync();
             return View(testimonials);
         }
-        [Area("Admin")]
         public async Task<IActionResult> Create()
         {
             ViewBag.Catagories = await _context.testimonials.ToListAsync();
             return View();
         }
-        [Area("Admin")]
         [HttpPost]
         [ActionName("Create")]
         [AutoValidateAntiforgeryToken]
@@ -66,7 +65,6 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
 
         }
-        [Area("Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             var testimonial = await _context.testimonials.FindAsync(id);
@@ -76,7 +74,6 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             }
             return View(testimonial);
         }
-        [Area("Admin")]
         [HttpPost]
         [ActionName("Delete")]
         [AutoValidateAntiforgeryToken]
@@ -91,7 +88,6 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        [Area("Admin")]
         [HttpGet]
         public async Task<IActionResult> Update(int id)
         {
@@ -111,7 +107,6 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
 
             return View(testimoniaVM);
         }
-        [Area("Admin")]
         [ActionName("Update")]
         [HttpPost]
         [ValidateAntiForgeryToken]

@@ -1,32 +1,39 @@
-﻿@using HomeEdu.UI.Areas.Admin.ViewModels.TestimoniaViewModel
-
-@model NoticeBoard
+﻿@model UpdateNoticeBoardViewModel
 @{
     ViewData["Title"] = "Update";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-@using (Html.BeginForm("Update", "NoticeBoard", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    @Html.AntiForgeryToken()
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h3 style="color:cornflowerblue">Update NoticeBoard</h3>
+                <form method="post" enctype="multipart/form-data">
+                    @*default orarag get dir*@
+                    <div class="mb-3 row">
+                        <label asp-for="Time" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="Time" min="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" />
+                            <span class="text-danger" asp-validation-for="Time"></span>
+                        </div>
+                    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Detail)
-        @Html.TextBoxFor(model => model.Detail, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.Detail)
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.Time)
-        @{
-            DateTime minDateTime = DateTime.Now.AddHours(24);
-            string minDateTimeString = minDateTime.ToString("yyyy-MM-ddTHH:mm");
-        }
-        @Html.TextBoxFor(model => model.Time, new { @class = "form-control", type = "datetime-local", min = minDateTimeString })
-        @Html.ValidationMessageFor(model => model.Time)
-    </div>
-    <button type="submit" class="btn btn-primary">Update</button>
-    <a asp-area="Admin" asp-controller="NoticeBoard" asp-action="Index" class="btn btn-light waves-effect">Back to list</a>
-}
-
+                    <div class="mb-3 row">
+                        <label asp-for="Detail" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="Detail" />
+                            <span class="text-danger" asp-validation-for="Detail"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary ">Submit</button>
+                        <a asp-area="Admin" asp-controller="NoticeBoard" asp-action="Index" class="btn btn-light ">Return</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div> <!-- end col -->
+</div>
 
 

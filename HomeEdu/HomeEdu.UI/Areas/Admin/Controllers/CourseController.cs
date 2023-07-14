@@ -12,6 +12,7 @@ using static HomeEdu.UI.Helpers.Utilities.AppUserRole;
 
 namespace HomeEdu.UI.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     [Authorize(Roles = "Admin")]
     public class CourseController : Controller
     {
@@ -23,13 +24,11 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             _context = context;
             _mapper = mapper;
         }
-        [Area("Admin")]
         public async Task<IActionResult> Index()
         {
             List<Course> courses = await _context.Courses.Include(e => e.CourseCatagory).ToListAsync();
             return View(courses);
         }
-        [Area("Admin")]
         public async Task<IActionResult> Details(int id)
         {
             Course? course = await _context.Courses
@@ -48,7 +47,6 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             }
             return View(course);
         }
-        [Area("Admin")]
         public async Task<IActionResult> Create()
         {
             ViewBag.Catagories = await _context.CourseCatagories.ToListAsync();
@@ -56,7 +54,6 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        [Area("Admin")]
         [ActionName("Create")]
         [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> Create(CourseViewModel courseViewModel, int CatagoryId)
@@ -95,7 +92,6 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        [Area("Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             var Course = await _context.Courses.FindAsync(id);
@@ -106,7 +102,6 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             return View(Course);
         }
         [HttpPost]
-        [Area("Admin")]
         [ActionName("Delete")]
         [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> DeletePost(int id)
@@ -120,7 +115,6 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        [Area("Admin")]
         public async Task<IActionResult> Update(int id)
         {
             Course? course = await _context.Courses
@@ -155,7 +149,6 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        [Area("Admin")]
         [ActionName("Update")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Update(int Id, CourseViewModel courseViewModel, int CatagoryId)

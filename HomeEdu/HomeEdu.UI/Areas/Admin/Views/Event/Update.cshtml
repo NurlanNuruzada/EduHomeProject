@@ -1,4 +1,4 @@
-﻿@model EventViewModel
+﻿@model UpdateEventViewModel
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
@@ -9,7 +9,21 @@
         <div class="card">
             <div class="card-body">
                 <h3 style="color:cornflowerblue">Update Event</h3>
-                <form method="post">
+                <form method="post" enctype="multipart/form-data">
+                    @if (!ViewData.ModelState.IsValid)
+                    {
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach (var key in ViewData.ModelState.Keys)
+                                {
+                                    foreach (var error in ViewData.ModelState[key].Errors)
+                                    {
+                                        <li>@error.ErrorMessage</li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    }
                     @*default orarag get dir*@
                     <div class="mb-3 row">
                         <img style="width:200px;" src="@Model.Image" />
@@ -31,14 +45,14 @@
                     <div class="mb-3 row">
                         <label asp-for="StartTime" class=" col-md-2 col-form-label"></label>
                         <div class="col-md-10">
-                            <input class="form-control" asp-for="StartTime" />
+                            <input class="form-control" asp-for="StartTime" min="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" />
                             <span class="text-danger" asp-validation-for="StartTime"></span>
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label asp-for="EndTime" class="col-md-2 col-form-label"></label>
                         <div class="col-md-10">
-                            <input class="form-control" asp-for="EndTime" />
+                            <input class="form-control" asp-for="EndTime" min="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" />
                             <span class="text-danger" asp-validation-for="EndTime"></span>
                         </div>
 
@@ -65,7 +79,7 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <button type="submit" asp-action="Update" class="btn btn-primary  ">Update</button>
+                        <button type="submit" class="btn btn-primary  ">Update</button>
                     </div>
                 </form>
                 <a asp-area="Admin" asp-controller="Event" asp-action="Index" class="btn btn-light ">Return</a>

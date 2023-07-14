@@ -4,32 +4,43 @@
     ViewData["Title"] = "Update";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h3 style="color:cornflowerblue">Create Blog</h3>
+                <form method="post" enctype="multipart/form-data">
+                    @*default orarag get dir*@
+                    <div class="mb-3 row">
+                        <label asp-for="Title" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="Title" />
+                            <span class="text-danger" asp-validation-for="Title"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label asp-for="Description" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="Description" />
+                            <span class="text-danger" asp-validation-for="Description"></span>
+                        </div>
+                    </div>   <div class="mb-3 row">
+                        <label asp-for="Image" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="Image" />
+                            <span class="text-danger" asp-validation-for="Image"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary ">Submit</button>
+                        <a asp-area="Admin" asp-controller="Slider" asp-action="Index" class="btn btn-light ">Return</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div> <!-- end col -->
+</div>
 
-@using (Html.BeginForm("Update", "Slider", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    @Html.AntiForgeryToken()
-    <div class="form-group">
-        @Html.LabelFor(model => model.Title)
-        @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.Title)
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Description)
-        @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.Description)
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Image)
-        <br>
-        @Html.TextBoxFor(model => model.Image, new { type = "file", @class = "form-control-file" })
-        @Html.ValidationMessageFor(model => model.Image)
-    </div>
-    <br>
-    <button type="submit" class="btn btn-primary">Update</button>
-    <button asp-action="index" class="btn btn-light">Return To list</button>
-}
 
 
 

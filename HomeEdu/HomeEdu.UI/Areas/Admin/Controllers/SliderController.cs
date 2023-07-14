@@ -25,20 +25,17 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             _mapper = mapper;
             _env = env;
         }
-        [Area("Admin")]
         public async Task<IActionResult> Index()
         {
 
             List<Slider> Slider = await _context.Sliders.ToListAsync();
             return View(Slider);
         }
-        [Area("Admin")]
         public async Task<IActionResult> Create()
         {
             ViewBag.Catagories = await _context.BlogCatagories.ToListAsync();
             return View();
         }
-        [Area("Admin")]
         [HttpPost]
         [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> Create(SliderViewModel sliderViewModel)
@@ -65,7 +62,6 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
 
         }
-        [Area("Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             var slider = await _context.Sliders.FindAsync(id);
@@ -75,7 +71,6 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             }
             return View(slider);
         }
-        [Area("Admin")]
         [HttpPost]
         [ActionName("Delete")]
         [AutoValidateAntiforgeryToken]
@@ -90,7 +85,6 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        [Area("Admin")]
         [HttpGet]
         public async Task<IActionResult> Update(int id)
         {

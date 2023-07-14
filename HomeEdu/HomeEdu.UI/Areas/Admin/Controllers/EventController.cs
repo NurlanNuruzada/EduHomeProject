@@ -16,6 +16,7 @@ using static HomeEdu.UI.Helpers.Utilities.AppUserRole;
 
 namespace HomeEdu.UI.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     [Authorize(Roles = "Admin")]
     public class EventController : Controller
     {
@@ -29,14 +30,12 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             _mapper = mapper;
             _env = env;
         }
-        [Area("Admin")]
         public async Task<IActionResult> Index()
         {
 
             List<Event> events = await _context.Events.Include(e => e.EventDetail).ToListAsync();
             return View(events);
         }
-        [Area("Admin")]
         public async Task<IActionResult> Details(int Id)
         {
             Event? @event = await _context.Events
@@ -47,14 +46,13 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
 
             return View(@event);
         }
-        [Area("Admin")]
         public async Task<IActionResult> Create()
         {
             ViewBag.Speakers = await _context.Speakers.ToListAsync();
             return View();
         }
         [HttpPost]
-        [Area("Admin")]
+      
         [ActionName("Create")]
         [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> Create(EventViewModel eventViewModel)
@@ -62,6 +60,11 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
 
             if (!ModelState.IsValid)
             {
+                return View(eventViewModel);
+            }
+            if (eventViewModel.Image is null)
+            {
+                ModelState.AddModelError("Image", "Please sellect Image!");
                 return View(eventViewModel);
             }
             if (!eventViewModel.Image.CheckFileFormat("image"))
@@ -76,19 +79,20 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             }
             if (eventViewModel.StartTime <= DateTime.Now.Date)
             {
-                ModelState.AddModelError("Time", "Please select a future time.");
+                ModelState.AddModelError("Time", "Please select a future time!");
                 return View(eventViewModel);
             }
             if (eventViewModel.EndTime <= DateTime.Now.Date)
             {
-                ModelState.AddModelError("Time", "Please select a future time.");
+                ModelState.AddModelError("Time", "Please select a future time!");
                 return View(eventViewModel);
             }
             if (eventViewModel.StartTime >= eventViewModel.EndTime)
             {
-                ModelState.AddModelError("Time", "Please select a Proper time.");
+                ModelState.AddModelError("Time", "Please select a Proper End And Start time!");
                 return View(eventViewModel);
             }
+            
             string filePath = await eventViewModel.Image.CopyFileAsync(_env.WebRootPath, "assets", "img", "event");
             var eventEntity = new Event
             {
@@ -108,7 +112,6 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        [Area("Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             var @event = await _context.Events.FindAsync(id);
@@ -119,7 +122,6 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             return View(@event);
         }
         [HttpPost]
-        [Area("Admin")]
         [ActionName("Delete")]
         [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> DeletePost(int id)
@@ -134,7 +136,6 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
         [HttpGet]
-        [Area("Admin")]
         public async Task<IActionResult> Update(int id)
         {
             Event? @event = await _context.Events
@@ -151,25 +152,37 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             {
                 @event.EventDetail = new EventDetail();
             }
-            var eventViewModel = _mapper.Map<EventViewModel>(@event);
+            var eventViewModel = _mapper.Map<UpdateEventViewModel>(@event);
             eventViewModel.EventDetailDescription = @event.EventDetail.Title;
             eventViewModel.EventDetailTitle = @event.EventDetail.Description;
             return View(eventViewModel);
         }
-
-
-        [Area("Admin")]
         [HttpPost]
         [ActionName("Update")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(int Id, EventViewModel eventViewModel)
+        public async Task<IActionResult> Update(int Id, UpdateEventViewModel eventViewModel)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(eventViewModel);
+            }
             if (eventViewModel == null)
             {
                 return NotFound();
             }
-            if (ModelState.IsValid)
+            if (eventViewModel.StartTime <= DateTime.Now.Date)
             {
+                ModelState.AddModelError("Time", "Please select a future time!");
+                return View(eventViewModel);
+            }
+            if (eventViewModel.EndTime <= DateTime.Now.Date)
+            {
+                ModelState.AddModelError("Time", "Please select a future time!");
+                return View(eventViewModel);
+            }
+            if (eventViewModel.StartTime >= eventViewModel.EndTime)
+            {
+                ModelState.AddModelError("Time", "Please select a Proper End And Start time!");
                 return View(eventViewModel);
             }
             Event? @event = _context.Events.Include(e => e.EventDetail).FirstOrDefault(e => e.Id == Id);

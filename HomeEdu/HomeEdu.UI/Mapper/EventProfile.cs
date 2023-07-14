@@ -7,7 +7,7 @@ namespace HomeEdu.UI.Mapper
     {
         public EventProfile()
         {
-            CreateMap<EventViewModel,Event>().ReverseMap();
+            CreateMap<UpdateEventViewModel, Event>().ReverseMap();
         }
     }
 }
