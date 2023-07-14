@@ -22,7 +22,7 @@ namespace HomeEdu.UI.Controllers
         : Controller
     {
         private readonly UserManager<AppUser> _userManager;
-        private readonly SignInManager<AppUser> _singInManager;
+        private readonly SignInManager<AppUser> signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly AppDbContext _context;
         private readonly IEmailService _mailService;
@@ -36,7 +36,7 @@ namespace HomeEdu.UI.Controllers
                               IOptions<DataProtectionTokenProviderOptions> tokenOptions)
         {
             _userManager = userManager;
-            _singInManager = singInManager;
+            signInManager = singInManager;
             _roleManager = roleManager;
             _context = context;
             _mailService = mailService;
@@ -125,56 +125,107 @@ namespace HomeEdu.UI.Controllers
         }
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult GoogleSignIn()
+        public async Task<IActionResult> Login(string returnUrl)
         {
-            var redirectUrl = Url.Action("GoogleSignInCallback", "Auth", null, Request.Scheme);
-            var properties = _singInManager.ConfigureExternalAuthenticationProperties("Google", redirectUrl);
-            return new ChallengeResult("Google", properties);
-        }
+            LoginVM model = new LoginVM
+            {
+                ReturnUrl = returnUrl,
+                ExternalLogins = (await signInManager.GetExternalAuthenticationSchemesAsync()).ToList()
+            };
 
+            return View(model);
+        }
         [AllowAnonymous]
-        public async Task<IActionResult> GoogleSignInCallback()
+        [HttpPost]
+        public IActionResult ExternalLogin(string provider, string returnUrl)
         {
-            var info = await _singInManager.GetExternalLoginInfoAsync();
+            var redirectUrl = Url.Action("ExternalLoginCallback", "Auth",
+                                    new { ReturnUrl = returnUrl });
+
+            var properties =
+                signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
+
+            return new ChallengeResult(provider, properties);
+        }
+        [AllowAnonymous]
+        public async Task<IActionResult>
+            ExternalLoginCallback(string returnUrl = null, string remoteError = null)
+        {
+            returnUrl = returnUrl ?? Url.Content("~/");
+
+            LoginVM loginViewModel = new LoginVM
+            {
+                ReturnUrl = returnUrl,
+                ExternalLogins =
+                        (await signInManager.GetExternalAuthenticationSchemesAsync()).ToList()
+            };
+
+            if (remoteError != null)
+            {
+                ModelState
+                    .AddModelError(string.Empty, $"Error from external provider: {remoteError}");
+
+                return View("Login", loginViewModel);
+            }
+
+            // Get the login information about the user from the external login provider
+            var info = await signInManager.GetExternalLoginInfoAsync();
             if (info == null)
             {
-                return RedirectToAction("Login");
+                ModelState
+                    .AddModelError(string.Empty, "Error loading external login information.");
+
+                return View("Login", loginViewModel);
             }
-            string password = GenerateRandomPassword();
-            var user = await _userManager.FindByEmailAsync(info.Principal.FindFirstValue(ClaimTypes.Email));
 
-            if (user == null)
+            // If the user already has a login (i.e if there is a record in AspNetUserLogins
+            // table) then sign-in the user with this external login provider
+            var signInResult = await signInManager.ExternalLoginSignInAsync(info.LoginProvider,
+                info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
+
+            if (signInResult.Succeeded)
             {
-                user = new AppUser
-                {
-                    UserName = info.Principal.FindFirstValue(ClaimTypes.Email),
-                    Email = info.Principal.FindFirstValue(ClaimTypes.Email),
-                    FullName = info.Principal.FindFirstValue(ClaimTypes.Name),
-                    EmailConfirmed = true // Assuming Google already confirmed the email
-                };
+                return LocalRedirect(returnUrl);
+            }
+            // If there is no record in AspNetUserLogins table, the user may not have
+            // a local account
+            else
+            {
+                // Get the email claim value
+                var email = info.Principal.FindFirstValue(ClaimTypes.Email);
 
-                var result = await _userManager.CreateAsync(user, password);
-                if (!result.Succeeded)
+                if (email != null)
                 {
-                    // Handle the case when user creation fails
-                    // You may want to redirect to an error page or display an error message
-                    return RedirectToAction("Register");
+                    // Create a new user without password if we do not have a user already
+                    var user = await _userManager.FindByEmailAsync(email);
+
+                    if (user == null)
+                    {
+                        user = new AppUser
+                        {
+                            UserName = info.Principal.FindFirstValue(ClaimTypes.Email),
+                            Email = info.Principal.FindFirstValue(ClaimTypes.Email)
+                        };
+
+                        await _userManager.CreateAsync(user);
+                    }
+
+                    // Add a login (i.e insert a row for the user in AspNetUserLogins table)
+                    await _userManager.AddLoginAsync(user, info);
+                    await signInManager.SignInAsync(user, isPersistent: false);
+
+                    return LocalRedirect(returnUrl);
                 }
 
-                // Assign a default role to the new user
-                await _userManager.AddToRoleAsync(user, AppUserRole.Member);
-            }
-            var FindUser = await _userManager.FindByEmailAsync(info.Principal.FindFirstValue(ClaimTypes.Email));
-            // Sign in the user
-            var signInResult = await _singInManager.PasswordSignInAsync(FindUser, password, false, true);
-            if (!signInResult.Succeeded)
-            {
-                ModelState.AddModelError("", "Invalid login!");
-                return RedirectToAction("Login");
-            }
+                // If we cannot find the user email we cannot continue
+                ViewBag.ErrorTitle = $"Email claim not received from: {info.LoginProvider}";
+                ViewBag.ErrorMessage = "Please contact support on Pragim@PragimTech.com";
 
-            return RedirectToAction("Index", "Home");
+                return View("Error");
+            }
         }
+
+
 
         [AllowAnonymous]
         public IActionResult Login()
@@ -211,7 +262,7 @@ namespace HomeEdu.UI.Controllers
                 return View(user);
             }
 
-            var signInResult = await _singInManager.PasswordSignInAsync(appUser, user.Password, user.RememberMe, true);
+            var signInResult = await signInManager.PasswordSignInAsync(appUser, user.Password, user.RememberMe, true);
 
             if (signInResult.IsLockedOut)
             {
@@ -233,7 +284,7 @@ namespace HomeEdu.UI.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                await _singInManager.SignOutAsync();
+                await signInManager.SignOutAsync();
             }
             return RedirectToAction("Index", "Home");
         }
