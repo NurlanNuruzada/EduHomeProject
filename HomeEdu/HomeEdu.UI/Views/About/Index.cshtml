@@ -175,9 +175,9 @@
                     <h3>notice board</h3>
                     <div class="notice-left">
                         <h3>notice board</h3>
-                        @foreach (var noticeBoard in Model.noticeBoards.OrderBy(b => b.Time).Take(10))
+                        @foreach (var noticeBoard in Model.noticeBoards.OrderByDescending(b => b.Time).Take(10))
                         {
-                            <div class="single-notice-left  @(count % 3 == 0 ? " pb-75": "mb-25 pb-25")">
+                            <div class="single-notice-left  @(count % 3 == 0 ? "mb-23 pb-20": "mb-25 pb-25")">
                                 <h4>@noticeBoard.Time.ToString("dd MMMM, yyyy")</h4>
                                 <p>@noticeBoard.Detail </p>
                             </div>

@@ -18,6 +18,7 @@ namespace HomeEdu.UI.Controllers
 
         public async Task<IActionResult> Index(int Id)
         {
+            var Blogs = await _context.Blogs.ToListAsync();
             var @event = await _context.Events.FindAsync(Id);
             var eventDetails = await _context.EventDetails
                 .Where(e => e.EventId == Id)
@@ -31,7 +32,8 @@ namespace HomeEdu.UI.Controllers
             {
                 Event = @event,
                 eventDetails = eventDetails,
-                 Speakers = speakers
+                 Speakers = speakers,
+                 Blog= Blogs
             };
 
             return View(eventDetailVM);

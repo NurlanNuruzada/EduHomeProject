@@ -64,7 +64,7 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             }
             _context.BlogCatagories.AddAsync(blogCatagory);
             _context.SaveChangesAsync();
-            return Redirect(nameof(GetBlogCaragory));
+            return RedirectToAction("GetBlogCaragory", "Blog");
         }
         [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> DeleteBlogCategory(int Id)
@@ -80,7 +80,7 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             }
             _context.Entry<BlogCatagory>(FingCatagory).State = EntityState.Deleted;
             _context.SaveChanges();
-            return Redirect(nameof(Index));
+            return RedirectToAction("GetBlogCaragory", "Blog");
         }
         //blog category end
 

@@ -22,5 +22,4 @@ public class EventDetail : IEntity
 
     // One-to-many relationship with Speaker
     public ICollection<Speaker> Speakers { get; set; }
-    public int EventDetailId { get; set; }
 }

@@ -33,7 +33,7 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
 
-            List<Event> events = await _context.Events.Include(e => e.EventDetail).ToListAsync();
+            List<Event>? events = await _context.Events.Include(e => e.EventDetail).ToListAsync();
             return View(events);
         }
         public async Task<IActionResult> Details(int Id)
@@ -229,7 +229,6 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        //blog category start
         public async Task<IActionResult> GetSpeakersCaragory()
         {
             List<Speaker> Speakers = await _context.Speakers.ToListAsync();
