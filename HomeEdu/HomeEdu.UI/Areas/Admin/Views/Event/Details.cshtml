@@ -116,6 +116,7 @@
                                                                                 {
                                                                                     <tr>
                                                                                         <th scope="row">@count</th>
+                                                                                        <td><img width="150" src="\@speaker.ImagePath" alt="section-title"></td>
                                                                                         <td>@(speaker?.Name)</td>
                                                                                         <td>@(speaker?.ImagePath)</td>
                                                                                         <td>@(speaker?.Position)</td>
@@ -141,6 +142,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <a asp-area="Admin" asp-controller="Event" asp-action="Index" class="btn btn-light ">Return</a>
                         </div>
                         <!-- end card body -->
                     </div>

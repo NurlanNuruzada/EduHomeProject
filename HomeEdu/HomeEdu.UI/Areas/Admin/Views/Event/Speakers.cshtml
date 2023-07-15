@@ -1,0 +1,55 @@
+﻿@model Event
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    int count = 1;
+}
+<a style="margin:20px 0px " asp-route-id="@(Model?.Id)" asp-action="AddSpeakers" class="btn btn-primary">Add new Speaker<i class="far fa-plus-square"></i></a>
+<h2 class="mb-3">Speakers: </h2>
+<div>
+    <div class="row">
+        <div class="table-responsive">
+            <table class="table mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>#</th>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>ImagePath</th>
+                        <th>Position</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model?.EventDetail?.Speakers == null || !Model.EventDetail.Speakers.Any())
+                    {
+                        <B><p>No speakers found.</p></B>
+                    }
+                    else
+                    {
+                        @foreach (var speaker in Model.EventDetail.Speakers)
+                        {
+                            <tr>
+                                <th scope="row">@count</th>
+                                <td><img width="150" src="\@(@speaker?.ImagePath)" alt="section-title"></td>
+                                <td>@(speaker?.Name)</td>
+                                <td>@(speaker?.ImagePath)</td>
+                                <td>@(speaker?.Position)</td>
+                                <td>
+                                    <a asp-action="DeleteSpeaker" asp-route-id="@(speaker?.Id)" style="display:flex;align-items:center;gap: 10px; max-width: max-content;" class="btn btn-danger">Delete <i class="fas fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                            count++;
+                        }
+                    }
+                </tbody>
+            </table>
+            <br />
+            <br />
+            <br />
+            <a asp-area="Admin" asp-controller="Event" asp-action="Index" class="btn btn-light ">Return</a>
+        </div>
+    </div>
+</div>
+

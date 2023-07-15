@@ -1,0 +1,46 @@
+﻿@model AddEventSpeakerViewModel
+@{
+    ViewData["Title"] = "AddSpeakers";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h3 style="color:cornflowerblue">Add Speaker</h3>
+                <form method="post" enctype="multipart/form-data">
+                    @if (!ViewData.ModelState.IsValid)
+                    {
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach (var key in ViewData.ModelState.Keys)
+                                {
+                                    foreach (var error in ViewData.ModelState[key].Errors)
+                                    {
+                                        <li>@error.ErrorMessage</li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    }
+                    <div class="mb-3 row">
+                        <label class="col-md-2 col-form-label">Add Speaker</label>
+                        <div class="col-md-10">
+                            <select  class="form-select" name="SpeakerId">
+                                @foreach (var speaker in ViewBag.Speakers)
+                                {
+                                    <option value="@speaker.Id"> name : @speaker.Name / surname : @speaker.Surname  / position : @speaker.Position / Passport code :  @speaker?.passCode</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary ">Submit</button>
+                        <a asp-area="Admin" asp-controller="Event" asp-action="Index" class="btn btn-light ">Return</a>
+                        <a asp-area="Admin" asp-controller="Speakers" asp-action="AddSpeaker" class="btn btn-success ">Or Create New Speaker</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div> <!-- end col -->
+</div>

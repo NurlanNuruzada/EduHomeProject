@@ -8,7 +8,6 @@
 
 <h1 style="color:cornflowerblue">Event's List</h1>
 <a style="margin:20px 0px " asp-action="Create" class="btn btn-primary">Create New Event <i class="far fa-plus-square"></i></a>
-<a style="margin:20px 10px ; background-color:green ;border-color:green" asp-action="GetSpeakersCaragory" class="btn btn-primary">Add New Speaker <i class="far fa-plus-square"></i></a>
 <div class="card">
     <div class="card-body">
         <div class="table-responsive">
@@ -20,6 +19,7 @@
                         <th>Event Title</th>
                         <th>Event StartTime</th>
                         <th>Event EndTime</th>
+                        <th></th>
                         <th></th>
                         <th></th>
                         <th></th>
@@ -46,6 +46,9 @@
                             </td>  
                             <td>
                                 <a asp-action="Details" asp-route-id="@(@event?.Id)" style="display:flex;align-items:center;gap: 10px; max-width: max-content;" class="btn btn-success">Details<i class="fas bx bxs-detail"></i></a>
+                            </td> 
+                            <td>
+                                <a asp-action="Speakers" asp-route-id="@(@event?.Id)" style="display:flex;align-items:center;gap: 10px; max-width: max-content;" class="btn btn-info">Speakers<i class="fas bx bxs-detail"></i></a>
                             </td>
                         </tr>
                     </tbody>

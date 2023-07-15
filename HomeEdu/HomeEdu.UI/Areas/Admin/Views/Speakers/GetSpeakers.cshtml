@@ -15,7 +15,9 @@
                         <th>#</th>
                         <th>Speaker Image </th>
                         <th>Name</th>
+                        <th>Surname</th>
                         <th>Position</th>
+                        <th>Passport Code</th>
                         <th></th>
                         <th></th>
                         <th></th>
@@ -28,15 +30,14 @@
                             <th scope="row">@count</th>
                             <td><img width="150" src="\@(speaker?.ImagePath)" alt="section-title"></td>
                             <td>@(speaker?.Name)</td>
+                            <td>@(speaker?.Surname)</td>
                             <td>@(speaker?.Position)</td>
+                            <td>@(speaker?.passCode)</td>
                             <td>
                                 <a asp-action="Update" asp-route-id="@(speaker?.Id)" style="display:flex;align-items:center; gap: 10px; max-width: max-content;" class="btn btn-warning">Edit <i class="fas fa-edit"></i></a>
                             </td>
                             <td>
                                 <a asp-action="Delete" asp-route-id="@(speaker?.Id)" style="display:flex;align-items:center;gap: 10px; max-width: max-content;" class="btn btn-danger">Delete <i class="fas fa-trash-alt"></i></a>
-                            </td>
-                            <td>
-                                <a asp-action="Details" asp-route-id="@(speaker?.Id)" style="display:flex;align-items:center;gap: 10px; max-width: max-content;" class="btn btn-success">Details<i class="fas bx bxs-detail"></i></a>
                             </td>
                         </tr>
                     </tbody>

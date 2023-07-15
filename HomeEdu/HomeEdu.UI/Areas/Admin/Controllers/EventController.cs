@@ -13,6 +13,7 @@ using System.Text.Json.Serialization;
 using System.Text.Json;
 using Microsoft.AspNetCore.Authorization;
 using static HomeEdu.UI.Helpers.Utilities.AppUserRole;
+using HomeEdu.UI.Areas.Admin.ViewModels.EventViewModels;
 
 namespace HomeEdu.UI.Areas.Admin.Controllers
 {
@@ -229,10 +230,68 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+        public async Task<IActionResult> Speakers(int Id)
+        {
+           Event? @event = await _context.Events
+                .Where(e => e.Id == Id)
+                .Include(e => e.EventDetail)
+                .ThenInclude(ed => ed.Speakers)
+                .FirstOrDefaultAsync();
 
+            return View(@event);
+        }
+        [HttpGet]
+        public async Task<IActionResult> AddSpeakers()
+        {
+            ViewBag.Speakers = await _context.Speakers.ToListAsync();
+            return View();
+        }
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddSpeakers(int Id, AddEventSpeakerViewModel viewModel)
+        {
+            if (viewModel.SpeakerId == 0)
+            {
+                ModelState.AddModelError("", "Speaker not found!");
+                return View(); // or handle it as appropriate for your scenario
+            }
+            Speaker speaker = await _context.Speakers.FindAsync(viewModel.SpeakerId);
+            if (speaker == null)
+            {
+                return View();
+            }
+            Event? @event = await _context.Events
+                .Where(e => e.Id == Id)
+                .Include(e => e.EventDetail)
+                .ThenInclude(ed => ed.Speakers)
+                .FirstOrDefaultAsync();
+            if (@event == null)
+            {
+                return NotFound();
+            }
+            speaker.EventDetailId = @event.EventDetail.Id;
 
+            if (@event.EventDetail == null)
+            {
+                @event.EventDetail = new EventDetail();
+            }
+            _context.EventDetails.Update(@event.EventDetail);
+            _context.Speakers.Update(speaker);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+        public async Task<IActionResult> DeleteSpeaker(int id)
+        {
+            Speaker speaker = await _context.Speakers.FindAsync(id);
+            if (speaker == null)
+            {
+                return NotFound();
+            }
+            speaker.EventDetailId = null;
+            _context.Speakers.Update(speaker);
+          await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
 
-      
 
     }
 }

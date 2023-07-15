@@ -104,7 +104,6 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             {
                 return BadRequest();
             }
-
             if (!ModelState.IsValid)
             {
                 return View(noticeBoard);

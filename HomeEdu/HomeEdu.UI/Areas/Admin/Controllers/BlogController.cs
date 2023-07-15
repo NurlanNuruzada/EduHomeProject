@@ -170,18 +170,15 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
                  .Where(e => e.Id == id)
                  .Include(e => e.BlogCatagory)
                  .FirstOrDefaultAsync();
-
             if (blog == null)
             {
                 return NotFound();
             }
-
             if (blog.BlogCatagory == null)
             {
                 ModelState.AddModelError("", "BlogCatagoryNotFound");
                 return View();
             }
-
             var BlogVM = _mapper.Map<BlogVM>(blog);
             ViewBag.Catagories = await _context.BlogCatagories.ToListAsync();
             return View(BlogVM);

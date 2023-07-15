@@ -76,30 +76,6 @@
                                 <span class="text-danger" asp-validation-for="Image"></span>
                             </div>
                         </div>
-                        @*      <div class="mb-3 row">
-                        <label class="col-md-2 col-form-label">Select Event Catagory</label>
-                        <div class="col-md-10">
-                        <select class="form-select" name="CatagoryId">
-                        @if ( == null || !Model.EventDetail.Speakers.Any())
-                        {
-                        <B><p>No speakers found.</p></B>
-                        }
-                        else
-                        {
-                        @foreach (var speaker in Model.EventDetail.Speakers)
-                        {
-                        <tr>
-                        <th scope="row">@count</th>
-                        <td>@(speaker?.Name)</td>
-                        <td>@(speaker?.ImagePath)</td>
-                        <td>@(speaker?.Position)</td>
-                        </tr>
-                        count++;
-                        }
-                        }
-                        </select>
-                        </div>
-                        </div>*@
                         <div class="mb-3">
                             <button type="submit" class="btn btn-primary ">Submit</button>
                             <a asp-area="Admin" asp-controller="Event" asp-action="Index" class="btn btn-light ">Return</a>
