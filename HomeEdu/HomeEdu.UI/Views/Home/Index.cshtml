@@ -110,7 +110,7 @@
                     <div class="single-course">
                         <div class="course-img">
                             <a asp-controller="CourseDetail" asp-action="Index" asp-route-id="@item.Id">
-                                <img src="@item.ImagePath" alt="course">
+                                <img style="width:100% ;height: 250px;" src="@item.ImagePath" alt="course">
                                 <div class="course-hover">
                                     <i class="fa fa-link"></i>
                                 </div>
@@ -213,7 +213,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="single-blog">
                         <div class="blog-img">
-                            <a asp-controller="blogdetail" asp-action="Index" asp-route-id="@blog.Id"><img src="@blog.ImagePath" alt="blog"></a>
+                            <a asp-controller="blogdetail" asp-action="Index" asp-route-id="@blog.Id"><img style="width:100% ;height: 250px;" src="@blog.ImagePath" alt="blog"></a>
                             <div class="blog-hover">
                                 <a href="blog-details.html"><i class="fa fa-link"></i></a>
                             </div>
@@ -223,7 +223,7 @@
                                 <p>by @blog.PostedBy / @blog.PostTime.ToString("dd MMMM, yyyy") / <i class="fa fa-comments-o"></i> @blog.CommentCount</p>
                             </div>
                             <div class="blog-bottom">
-                                <h2><a href="blog-details.html">@blog.Comment</a></h2>
+                                <h2><a asp-controller="blogdetail" asp-action="Index">@blog.Title</a></h2>
                                 <a asp-controller="blogdetail" asp-action="Index" asp-route-id="@blog.Id">read more</a>
                             </div>
                         </div>

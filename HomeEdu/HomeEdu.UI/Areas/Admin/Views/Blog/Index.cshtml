@@ -24,6 +24,7 @@
                         <th>Blog Catagory </th>
                         <th></th>
                         <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 @{
@@ -38,7 +39,7 @@
                             <td><img width="150" src="\@blog.ImagePath" alt="section-title"></td>
                             <td>@blog.PostedBy</td>
                             <td>@blog.PostTime.ToString("dd MMMM, yyyy")</td>
-                            <td>@blog.Comment</td>
+                            <td>@blog.Title</td>
                             <td>@blog.CommentCount</td>
                             <td>@blog.BlogCatagory.Catagory</td>
                             <td>
@@ -46,6 +47,9 @@
                             </td>
                             <td>
                                 <a asp-action="Delete" asp-route-id="@blog.Id" style="display:flex;align-items:center;gap: 10px; max-width: max-content;" class="btn btn-danger">Delete <i class="fas fa-trash-alt"></i></a>
+                            </td>
+                            <td>
+                                <a asp-action="Details" asp-route-id="@(@blog?.Id)" style="display:flex;align-items:center;gap: 10px; max-width: max-content;" class="btn btn-success">Details<i class="fas bx bxs-detail"></i></a>
                             </td>
                         </tr>
                     </tbody>

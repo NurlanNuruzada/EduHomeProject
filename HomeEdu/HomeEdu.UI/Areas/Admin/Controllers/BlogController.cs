@@ -82,9 +82,6 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             _context.SaveChanges();
             return RedirectToAction("GetBlogCaragory", "Blog");
         }
-        //blog category end
-
-
         public async Task<IActionResult> Create()
         {
             ViewBag.Catagories = await _context.BlogCatagories.ToListAsync();
@@ -135,7 +132,8 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
                 ImagePath = filePath,
                 CommentCount = 0,
                 Comment = BlogVM.Comment,
-                BlogCatagoryId = CatagoryId
+                BlogCatagoryId = CatagoryId,
+                Title = BlogVM.Title 
             };
             await _context.Blogs.AddAsync(blog);
             await _context.SaveChangesAsync();
@@ -180,6 +178,7 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
                 return View();
             }
             var BlogVM = _mapper.Map<BlogVM>(blog);
+            BlogVM.Comment = blog.Comment;
             ViewBag.Catagories = await _context.BlogCatagories.ToListAsync();
             return View(BlogVM);
         }
@@ -228,12 +227,22 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             blogDb.PostedBy = BlogVM.PostedBy;
             blogDb.BlogCatagoryId = CatagoryId;
             blogDb.CommentCount = BlogVM.CommentCount;
+            blogDb.Title = BlogVM.Title;
             var BlogDb = _mapper.Map<Blog>(BlogVM);
             _context.Entry<Blog>(blogDb).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
 
 
+        }
+        public async Task<IActionResult> Details(int Id)
+        {
+            Blog? Blog = await _context.Blogs
+                .Where(e => e.Id == Id)
+                .Include(e => e.BlogCatagory)
+                .FirstOrDefaultAsync();
+
+            return View(Blog);
         }
     }
 }

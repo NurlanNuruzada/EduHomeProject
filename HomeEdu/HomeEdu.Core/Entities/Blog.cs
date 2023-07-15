@@ -10,6 +10,7 @@ public class Blog : IEntity
     public string? ImagePath { get; set; }
     public int CommentCount { get; set; }
     public string? Comment { get; set; }
+    public string? Title { get; set; }
     public int BlogCatagoryId { get; set; }
     public BlogCatagory BlogCatagory { get; set; } = null!;
 }

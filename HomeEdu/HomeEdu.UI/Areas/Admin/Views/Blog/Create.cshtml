@@ -9,45 +9,53 @@
         <div class="card">
             <div class="card-body">
                 <h3 style="color:cornflowerblue">Create Blog</h3>
-                <form method="post" enctype="multipart/form-data">@*default orarag get dir*@
-                <div class="mb-3 row">
+                <form method="post" enctype="multipart/form-data">
+                    @*default orarag get dir*@
+                    <div class="mb-3 row">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <label asp-for="Image" class="col-md-2 col-form-label"></label>
-                    <div class="col-md-10">
+                        <div class="col-md-10">
                             <input class="form-control" asp-for="Image" />
                             <span class="text-danger" asp-validation-for="Image"></span>
+                        </div>
                     </div>
-                </div>
-                <div class="mb-3 row">
+                    <div class="mb-3 row">
                         <label asp-for="PostedBy" class=" col-md-2 col-form-label"></label>
-                    <div class="col-md-10">
+                        <div class="col-md-10">
                             <input class="form-control" asp-for="PostedBy" />
-                        <span class="text-danger" asp-validation-for="PostedBy"></span>
+                            <span class="text-danger" asp-validation-for="PostedBy"></span>
+                        </div>
                     </div>
-                </div>
-                <div class="mb-3 row">
+                    <div class="mb-3 row">
                         <label asp-for="Comment" class="col-md-2 col-form-label"></label>
-                    <div class="col-md-10">
-                            <input class="form-control" asp-for="Comment" />
-                        <span class="text-danger" asp-validation-for="Comment"></span>
+                        <div class="col-md-10">
+                            @*   <input class="form-control" asp-for="Comment" />*@
+                            <textarea id="tiny" name="Comment"> </textarea>
+                            <span class="text-danger" asp-validation-for="Comment"></span>
+                        </div>
                     </div>
-
-                </div>
-                <div class="mb-3 row">
-                    <label class="col-md-2 col-form-label">Select Blog Catagory</label>
-                    <div class="col-md-10">
+                    <div class="mb-3 row">
+                        <label asp-for="Title" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="Title" />
+                            <span class="text-danger" asp-validation-for="Title"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label class="col-md-2 col-form-label">Select Blog Catagory</label>
+                        <div class="col-md-10">
                             <select class="form-select" name="CatagoryId">
-                            @foreach (var catagory in ViewBag.Catagories)
-                            {
-                                <option value="@catagory.Id">@catagory.Catagory</option>
-                            }
-                        </select>
+                                @foreach (var catagory in ViewBag.Catagories)
+                                {
+                                    <option value="@catagory.Id">@catagory.Catagory</option>
+                                }
+                            </select>
+                        </div>
                     </div>
-                </div>
                     <div class="mb-3">
                         <button type="submit" class="btn btn-primary ">Submit</button>
-                    <a asp-area="Admin" asp-controller="blog" asp-action="Index" class="btn btn-light ">Return</a>
-                     </div>
+                        <a asp-area="Admin" asp-controller="blog" asp-action="Index" class="btn btn-light ">Return</a>
+                    </div>
                 </form>
             </div>
         </div>

@@ -31,8 +31,16 @@
                     <div class="mb-3 row">
                         <label asp-for="Comment" class="col-md-2 col-form-label"></label>
                         <div class="col-md-10">
-                            <input class="form-control" asp-for="Comment" />
+                            @*   <input class="form-control" asp-for="Comment" />*@
+                            <textarea asp-for="Comment" id="tiny" name="Comment"></textarea>
                             <span class="text-danger" asp-validation-for="Comment"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label asp-for="Title" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="Title" />
+                            <span class="text-danger" asp-validation-for="Title"></span>
                         </div>
                     </div>
                     <div class="mb-3 row">

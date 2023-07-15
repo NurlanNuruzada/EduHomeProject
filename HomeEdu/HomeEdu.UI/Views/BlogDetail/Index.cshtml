@@ -35,12 +35,12 @@
                         @foreach (var item in Model.Blogs)
                         {
                             <div class="blog-details-img">
-                                <img style="width:350px !important" src="\@item.ImagePath" alt="blog-details">
+                                <img style="width:100% ;height: 350px;" src="\@item.ImagePath" alt="blog-details">
                             </div>
                             <h2>I must explain to you how all this a mistaken idea </h2>
                             <h6> @item.PostedBy / @item.PostTime.ToString("dd MMMM, yyyy hh:mm tt")  /  <i class="fa fa-comments-o"></i> @item.CommentCount / @item.BlogCatagory.Catagory</h6>
-                            <h3>@item.Comment</h3>
-                            <p class="quote">I must explain to you how all this a mistaken idea of denouncing great explorer of the rut the is lder of human haness pcias unde omnis iste natus error sit voluptatem accusantium doloremque la udantium, totam rem aperiam</p>
+                            <h3>@item.Title</h3>
+                            <p class="quote">@Html.Raw(item.Comment)</p>
                         }
                     </div>
                     <div class="reply-area">
@@ -114,7 +114,7 @@
                                     </a>
                                 </div>
                                 <div class="single-post-content">
-                                    <h4><a asp-controller="blogdetail" asp-action="Index" asp-route-id="@blog.Id">@blog.Comment</a></h4>
+                                    <h4><a asp-controller="blogdetail" asp-action="Index" asp-route-id="@blog.Id">@blog.Title</a></h4>
                                     <p>@blog.PostedBy /  @blog.PostTime.ToString("dd MMMM, yyyy") / <i class="fa fa-comments-o"></i> @blog.CommentCount</p>
                                 </div>
                             </div>
