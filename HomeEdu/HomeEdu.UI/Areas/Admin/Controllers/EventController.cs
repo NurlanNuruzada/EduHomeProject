@@ -229,49 +229,10 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        public async Task<IActionResult> GetSpeakersCaragory()
-        {
-            List<Speaker> Speakers = await _context.Speakers.ToListAsync();
-            return View(Speakers);
-        }
-        public IActionResult CreateBlogCaragory()
-        {
-            return View();
-        }
-        [HttpPost]
-        [AutoValidateAntiforgeryToken]
-        public IActionResult CreateBlogCaragory(BlogCatagory blogCatagory)
-        {
-            if (!ModelState.IsValid)
-            {
-                ModelState.AddModelError("", "Couldn't add Categry!");
-                return View();
-            }
-            if (blogCatagory is null)
-            {
-                return View();
-            }
-            _context.BlogCatagories.AddAsync(blogCatagory);
-            _context.SaveChangesAsync();
-            return Redirect(nameof(GetSpeakersCaragory));
-        }
-        [AutoValidateAntiforgeryToken]
-        public async Task<IActionResult> DeleteBlogCategory(int Id)
-        {
-            if (!ModelState.IsValid)
-            {
-                return NotFound();
-            }
-            BlogCatagory FingCatagory = await _context.BlogCatagories.FindAsync(Id);
-            if (FingCatagory is null)
-            {
-                return NotFound();
-            }
-            _context.Entry<BlogCatagory>(FingCatagory).State = EntityState.Deleted;
-            _context.SaveChanges();
-            return Redirect(nameof(Index));
-        }
-        //blog category end
+
+
+
+      
 
     }
 }

@@ -1,13 +1,11 @@
 ﻿@model IEnumerable<Speaker>
-
 @{
-    ViewData["Title"] = "GetSpeakersCaragory";
+    ViewData["Title"] = "GetSpeakers";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
     int count = 1;
 }
-
-<h1 style="color:cornflowerblue">Event's List</h1>
-<a style="margin:20px 0px " asp-action="Create" class="btn btn-primary">Create New Event <i class="far fa-plus-square"></i></a>
+<h1 style="color:cornflowerblue">Speakers's List</h1>
+<a style="margin:20px 0px " asp-action="AddSpeaker" class="btn btn-primary">Add new Speaker<i class="far fa-plus-square"></i></a>
 <div class="card">
     <div class="card-body">
         <div class="table-responsive">
@@ -23,7 +21,6 @@
                         <th></th>
                     </tr>
                 </thead>
-               
                 @foreach (var speaker in Model)
                 {
                     <tbody>

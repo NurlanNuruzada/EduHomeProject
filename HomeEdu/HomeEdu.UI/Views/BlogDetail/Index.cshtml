@@ -12,7 +12,7 @@
                 <div class="col-12">
                     <div class="banner-content-wrapper">
                         <div class="banner-content">
-                            <h2>blog detail</h2>
+                            <h2>blog details</h2>
                         </div>
                     </div>
                 </div>
@@ -104,7 +104,7 @@
                         }
                         @foreach (var blog in Model.Blogs.OrderByDescending(b => b.PostTime).Take(3))
                         {
-                            <div class="single-post" @(countBlog == 3 ? " mb-30" : "")>
+                             <div class="single-post" @(countBlog == 3 ? " mb-30" : "")>
                                 <div class="single-post-img">
                                     <a asp-controller="blogdetail" asp-action="Index" asp-route-id="@blog.Id">
                                         <img style="width:90px;" src="\@blog.ImagePath" alt="post">
