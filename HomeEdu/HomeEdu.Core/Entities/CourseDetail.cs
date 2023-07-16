@@ -6,13 +6,13 @@ namespace HomeEdu.Core.Entities;
 public class CourseDetail : IEntity
 {
     public int Id { get; set; }
+    public int StudentsCount { get; set; }
     public int CourseFee { get; set; }
 
     [Required, MaxLength(5000)]
     public string CourseDescription { get; set; } = null!;
     public DateTime Starts { get; set; } 
     [Required]
-
     public DateTime Duration { get; set; }
     public DateTime ClassDuration { get; set; }
     // One-to-many relationship with Course

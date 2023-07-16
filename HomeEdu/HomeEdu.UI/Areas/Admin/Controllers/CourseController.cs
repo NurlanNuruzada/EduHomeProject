@@ -56,7 +56,6 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
         public async Task<IActionResult> Create()
         {
             ViewBag.Catagories = await _context.CourseCatagories.ToListAsync();
-
             return View();
         }
         [HttpPost]
@@ -112,6 +111,7 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
                     Duration = courseViewModel.Duration,
                     Starts = courseViewModel.Starts,
                     CourseFee = courseViewModel.CourseFee,
+                    StudentsCount = courseViewModel.StudentsCount,
                 }
 
             };
@@ -183,6 +183,7 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             updateCourseView.ClassDuration = course.CourseDetail.ClassDuration;
             updateCourseView.Duration = course.CourseDetail.Duration;
             updateCourseView.Starts = course.CourseDetail.Starts;
+            updateCourseView.StudentsCount = course.CourseDetail.StudentsCount;
             updateCourseView.CourseFee = course.CourseDetail.CourseFee;
             updateCourseView.CourseDetail.Assesments = course.CourseDetail.Assesments;
             updateCourseView.CourseDetail.Languages = course.CourseDetail.Languages;
@@ -215,20 +216,21 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             course.CourseDetail.ClassDuration = courseViewModel.ClassDuration;
             course.CourseDetail.Duration = courseViewModel.Duration;
             course.CourseDetail.Starts = courseViewModel.Starts;
+            course.CourseDetail.StudentsCount = courseViewModel.StudentsCount;
             course.CourseDetail.CourseFee = courseViewModel.CourseFee;
 
             var skillLevel = await _context.SkillLevels.FirstOrDefaultAsync(a => a.CourseDetailId == course.CourseDetail.Id);
             var assesments = await _context.Assesments.FirstOrDefaultAsync(a => a.CourseDetailId == course.CourseDetail.Id);
             var language = await _context.Languages.FirstOrDefaultAsync(a => a.CourseDetailId == course.CourseDetail.Id);
-            if (language is not null)
+            if (courseViewModel.Languages is not null)
             {
                 language.language = courseViewModel.Languages;
             }
-            if (skillLevel is not null)
+            if (courseViewModel.SkillLevels is not null)
             {
                 skillLevel.skillLevel = courseViewModel.SkillLevels;
             }
-            if (assesments is not null)
+            if (courseViewModel.Assesments is not null)
             {
                 assesments.assesments = courseViewModel.Assesments;
             }
