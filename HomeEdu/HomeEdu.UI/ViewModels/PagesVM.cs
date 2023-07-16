@@ -8,5 +8,6 @@ namespace HomeEdu.UI.ViewModels
         public IEnumerable<Blog>? Blogs { get; set; }
         public IEnumerable<Event>? Events { get; set; }
         public IEnumerable<BlogCatagory>? BlogCatagories { get; set; }
+        public IEnumerable<CourseCatagory>? CourseCatagories { get; set; }
     }
 }

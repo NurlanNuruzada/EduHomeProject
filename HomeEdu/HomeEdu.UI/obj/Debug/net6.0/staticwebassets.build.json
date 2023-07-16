@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "LDYxLjAWBUbXUtHjM9uwdbuNloPhPae1gWtZ3bRsVFE=",
+  "Hash": "XSIFU3QSjOTZm4SgnXDlg6Yk7fsrIYTxHw4xn4LZAHI=",
   "Source": "HomeEdu.UI",
   "BasePath": "_content/HomeEdu.UI",
   "Mode": "Default",
@@ -5880,6 +5880,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\img\\contact\\contact3.png"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\wwwroot\\assets\\img\\course\\0b66776b-7a59-42c9-84a0-1697803d6343course5.jpg",
+      "SourceId": "HomeEdu.UI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\wwwroot\\",
+      "BasePath": "_content/HomeEdu.UI",
+      "RelativePath": "assets/img/course/0b66776b-7a59-42c9-84a0-1697803d6343course5.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\img\\course\\0b66776b-7a59-42c9-84a0-1697803d6343course5.jpg"
     },
     {
       "Identity": "C:\\Users\\Admin\\Desktop\\EduHomeProject\\HomeEdu\\HomeEdu.UI\\wwwroot\\assets\\img\\course\\0bb4a561-e7f2-437c-97c0-33a3e5ba1c56course3.jpg",

@@ -23,6 +23,7 @@ namespace HomeEdu.UI.Controllers
             PagesVM pagesVM = new()
             {
                 Courses = await _context.Courses.ToListAsync(),
+                CourseCatagories = await _context.CourseCatagories.ToListAsync(),
                 Blogs = await _context.Blogs.ToListAsync()
             };
             if(pagesVM == null)

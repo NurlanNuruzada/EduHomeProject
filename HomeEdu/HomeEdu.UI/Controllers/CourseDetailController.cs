@@ -4,6 +4,7 @@ using HomeEdu.UI.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using static HomeEdu.UI.Helpers.Utilities.AppUserRole;
 
 namespace HomeEdu.UI.Controllers
@@ -24,7 +25,7 @@ namespace HomeEdu.UI.Controllers
                 .Where(c => c.Id == id)
                 .Select(c => new CouseDetailViewModel
                 {
-                    Blogs = _context.Blogs.Include(B=>B.BlogCatagory).ToList(),
+                    Blogs = _context.Blogs.Include(B => B.BlogCatagory).ToList(),
                     Course = c,
                     CourseDetail = c.CourseDetail,
                     CourseCatagory = c.CourseCatagory,
@@ -33,7 +34,7 @@ namespace HomeEdu.UI.Controllers
                     Language = _context.Languages.FirstOrDefault(l => l.CourseDetailId == c.CourseDetail.Id),
                 })
                 .ToListAsync();
-            if(courseDetailVMs == null)
+            if (courseDetailVMs == null)
             {
                 return NotFound();
             }
@@ -45,14 +46,14 @@ namespace HomeEdu.UI.Controllers
                 }
                 if (courseDetailVM.SkillLevel == null)
                 {
-                    courseDetailVM.SkillLevel = new SkillLevel(); 
+                    courseDetailVM.SkillLevel = new SkillLevel();
                 }
                 if (courseDetailVM.Language == null)
                 {
-                    courseDetailVM.Language = new Language(); 
+                    courseDetailVM.Language = new Language();
                 }
             }
-
+            ViewBag.Courses = await _context.CourseCatagories.ToListAsync();
             return View(courseDetailVMs.FirstOrDefault());
         }
 

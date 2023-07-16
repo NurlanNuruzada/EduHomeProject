@@ -28,7 +28,7 @@
                 <div class="col-lg-8">
                     <div class="courses-details">
                         <div class="courses-details-img">
-                            <img style="width:60%" src="@Model.Course.ImagePath" alt="courses-details">
+                            <img style="width:60%" src="/@Model.Course.ImagePath" alt="courses-details">
                         </div>
                         <div class="course-details-content">
                             <h2>@Model.Course.Title</h2>
@@ -36,7 +36,7 @@
                             <div class="course-details-left">
                                 <div class="single-course-left">
                                     <h3>about course</h3>
-                                    <p>@Model.CourseDetail.CourseDescription</p>
+                                    <p>@Html.Raw(@Model.CourseDetail.CourseDescription)</p>
                                 </div>
                             </div>
                             <div class="course-details-right">
@@ -95,12 +95,19 @@
                         <div class="single-blog-widget mb-50">
                             <h3>categories</h3>
                             <ul>
-                                <li><a href="~/assets/#">CSS Engineering (10)</a></li>
-                                <li><a href="~/assets/#">Political Science (12)</a></li>
-                                <li><a href="~/assets/#">Micro Biology (08)</a></li>
-                                <li><a href="~/assets/#">HTML5 &amp; CSS3 (15)</a></li>
-                                <li><a href="~/assets/#">Web Design (20)</a></li>
-                                <li><a href="~/assets/#">PHP (23)</a></li>
+                            @foreach (var item in ViewBag.Courses)
+                            {
+                                @if (@item == null)
+                                {
+                                    <li><a href="#">No Catagory found!</a></li>
+                                    break;
+                                }
+                                else
+                                {
+
+                                    <li> <a value="@item.Id"> @item.Catagory</a> </li>
+                                }
+                            }
                             </ul>
                         </div>
                         <div class="single-blog-widget mb-50">
@@ -116,18 +123,20 @@
                         }
                         @foreach (var blog in Model.Blogs.OrderByDescending(b => b.PostTime).Take(3))
                         {
-                            <div class="single-post" @(countBlog == 3 ? " mb-30" : "")>
-                                <div class="single-post-img">
-                                    <a asp-controller="blogdetail" asp-action="Index" asp-route-id="@blog.Id">
-                                        <img style="width:90px;" src="@blog.ImagePath" alt="post">
-                                        <div class="blog-hover">
-                                            <i class="fa fa-link"></i>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="single-post-content">
-                                    <h4><a asp-controller="blogdetail" asp-action="Index" asp-route-id="@blog.Id">English Language Blogs for you</a></h4>
-                                    <p>@blog.PostedBy /  @blog.PostTime.ToString("dd MMMM, yyyy")</p>
+                            <div class="single-blog-widget mb-50">
+                                <div class="single-post " mb-50 @* @(countBlog == 2 ? " mb-50" : "")*@>
+                                    <div class="single-post-img">
+                                        <a asp-controller="blogdetail" asp-action="Index" asp-route-id="@blog.Id">
+                                            <img style="width:90px;" src="\@blog.ImagePath" alt="post">
+                                            <div class="blog-hover">
+                                                <i class="fa fa-link"></i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="single-post-content">
+                                        <h4><a asp-controller="blogdetail" asp-action="Index" asp-route-id="@blog.Id">@blog.Title</a></h4>
+                                        <p>@blog.PostedBy /  @blog.PostTime.ToString("dd MMMM, yyyy")</p>
+                                    </div>
                                 </div>
                             </div>
                             countBlog++;

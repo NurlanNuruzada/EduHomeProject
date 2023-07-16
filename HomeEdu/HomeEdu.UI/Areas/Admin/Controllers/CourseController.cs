@@ -237,7 +237,6 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
         public async Task<IActionResult> GetCourseCaragory()
         {
             List<CourseCatagory> courseCatagory = await _context.CourseCatagories.ToListAsync();

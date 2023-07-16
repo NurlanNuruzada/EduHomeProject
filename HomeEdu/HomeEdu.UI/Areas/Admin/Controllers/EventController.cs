@@ -154,8 +154,8 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
                 @event.EventDetail = new EventDetail();
             }
             var eventViewModel = _mapper.Map<UpdateEventViewModel>(@event);
-            eventViewModel.EventDetailDescription = @event.EventDetail.Title;
-            eventViewModel.EventDetailTitle = @event.EventDetail.Description;
+            eventViewModel.EventDetailTitle = @event.EventDetail.Title;
+            eventViewModel.EventDetailDescription = @event.EventDetail.Description;
             return View(eventViewModel);
         }
         [HttpPost]
@@ -196,8 +196,6 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             {
                 @event.EventDetail = new EventDetail();
             }
-            @event.EventDetail.Title = eventViewModel. EventDetailTitle; 
-            @event.EventDetail.Description = eventViewModel.EventDetailDescription;
             if (@event.EventDetail == null)
             {
                 return Json(eventViewModel);
@@ -219,7 +217,7 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
                 string filePath = await eventViewModel.Image.CopyFileAsync(_env.WebRootPath, "assets", "img", "slider");
                 @event.EventDetail.ImagePath = filePath;
             }
-            @event.Title = eventViewModel.Title;
+            @event.Title = eventViewModel.Title.ToString();
             @event.StartTime = eventViewModel.StartTime;
             @event.EndTime = eventViewModel.EndTime;
             @event.Location = eventViewModel.Location;

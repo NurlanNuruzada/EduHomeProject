@@ -33,7 +33,7 @@
                                     <div class="single-course">
                                         <div class="course-img">
                                             <a asp-controller="CourseDetail" asp-action="Index" asp-route-id="@item.Id">
-                                                <img src="@item.ImagePath" alt="course">
+                                                <img style="width:100%;height:200px" src="@item.ImagePath" alt="course">
                                                 <div class="course-hover">
                                                     <i class="fa fa-link"></i>
                                                 </div>
@@ -75,12 +75,19 @@
                         <div class="single-blog-widget mb-50">
                             <h3>categories</h3>
                             <ul>
-                                <li><a href="/assets/#">CSS Engineering (10)</a></li>
-                                <li><a href="/assets/#">Political Science (12)</a></li>
-                                <li><a href="/assets/#">Micro Biology (08)</a></li>
-                                <li><a href="/assets/#">HTML5 &amp; CSS3 (15)</a></li>
-                                <li><a href="/assets/#">Web Design (20)</a></li>
-                                <li><a href="/assets/#">PHP (23)</a></li>
+                            @foreach (var item in Model.BlogCatagories)
+                            {
+                                @if (@item == null)
+                                {
+                                    <li><a href="#">No Catagory found!</a></li>
+                                    break;
+                                }
+                                else
+                                {
+
+                                    <li> <a value="@item.Id"> @item.Catagory</a> </li>
+                                }
+                            }
                             </ul>
                         </div>
                         <div class="single-blog-widget mb-50">
@@ -106,7 +113,7 @@
                                         </a>
                                     </div>
                                     <div class="single-post-content">
-                                        <h4><a asp-controller="blogdetail" asp-action="Index" asp-route-id="@blog.Id">English Language Blogs for you</a></h4>
+                                        <h4><a asp-controller="blogdetail" asp-action="Index" asp-route-id="@blog.Id">@blog.Title</a></h4>
                                         <p>@blog.PostedBy /  @blog.PostTime.ToString("dd MMMM, yyyy")</p>
                                     </div>
                                 </div>
