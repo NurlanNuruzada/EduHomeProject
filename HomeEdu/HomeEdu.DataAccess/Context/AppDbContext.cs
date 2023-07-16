@@ -21,5 +21,7 @@ namespace HomeEdu.DataAccess.Context
         public DbSet<SkillLevel> SkillLevels { get; set; } = null!;
         public DbSet<Assesments> Assesments { get; set; } = null!;
         public DbSet<Setting> Settings { get; set; } = null!;
+        public DbSet<Teachers> Teachers { get; set; } = null!;
+        public DbSet<TeacherDetails>  TeacherDetails { get; set; } = null!;
     }
 }

@@ -1,0 +1,110 @@
+﻿@model Teachers
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-content">
+    <div class="container-fluid">
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                    <h4 class="mb-sm-0 font-size-18">Teachers Details</h4>
+
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">te</a></li>
+                            <li class="breadcrumb-item active">Teacher Details</li>
+                        </ol>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- end page title -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="pt-3">
+                            <div class="row justify-content-center">
+                                <div class="col-xl-8">
+                                    <div>
+                                        <div class="text-center">
+                                            <div class="mb-4">
+                                                <a href="javascript: void(0);" class="badge bg-light font-size-12">
+                                                    <i class="bx bx-purchase-tag-alt align-middle text-muted me-1"></i> Teachers
+                                                </a>
+                                            </div>
+                                            <h4>Teacher Details</h4>
+                                        </div>
+
+                                        <hr>
+                                        <div class="text-center">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <div>
+                                                        <p class="text-muted mb-2">Category</p>
+                                                        <h5 class="font-size-15">@Model?.Name</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="mt-4 mt-sm-0">
+                                                        <p class="text-muted mb-2">Posted By</p>
+                                                        <h5 class="font-size-15">@Model?.Surname</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="mt-4 mt-sm-0">
+                                                        <p class="text-muted mb-2">Post Time</p>
+                                                        <h5 class="font-size-15">@Model?.Profession</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-2">
+                                            <img src="\@Model.ImagePath" style=" width: 100%;height :360px" alt="Teachers Image" />
+                                            <b> <p>TeachersDetail Image Path:</p></b><span>@Model?.ImagePath?</span>
+                                        </div>  
+                                        <div class="mt-2">
+                                            <b> <p>About Teacher:</p></b> <span>@Html.Raw(@Model?.TeacherDetails.AboutMe)</span>
+                                        </div>
+                                        <div class="mt-4">
+                                            <div class="text-muted font-size-14">
+                                                <div class="mt-4">
+                                                    <div class="course-details-right">
+                                                        <h3>About teacher</h3>
+                                                        <ul>
+                                                            <li>Degree <span>@Model?.TeacherDetails?.Degree</span></li>
+                                                            <li>Experience <span>@Model?.TeacherDetails?.Exoerience </span></li>
+                                                            <li>Hobbies <span>@Model?.TeacherDetails?.Hobbies</span></li>
+                                                            <li>Faculty <span>@Model?.TeacherDetails?.Faculty</span></li>
+                                                            <li>MailAdress <span>@Model?.TeacherDetails?.MailAdress</span></li>
+                                                            <li>PhoneNumber <span>@Model?.TeacherDetails?.PhoneNumber</span></li>
+                                                            <li>TeamLeader <span>@Model?.TeacherDetails?.TeamLeader%</span></li>
+                                                            <li>Development <span>@Model?.TeacherDetails?.Development%</span></li>
+                                                            <li>Design <span>@Model?.TeacherDetails?.Design%</span></li>
+                                                            <li>Innovation <span>@Model?.TeacherDetails?.Innovation%</span></li>
+                                                            <li>Communucation <span>@Model?.TeacherDetails?.Communucation%</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <hr>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a asp-area="Admin" asp-controller="Teachers" asp-action="Index" class="btn btn-light ">Return</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>

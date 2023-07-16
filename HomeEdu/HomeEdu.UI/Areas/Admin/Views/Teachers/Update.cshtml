@@ -1,0 +1,163 @@
+﻿@{
+    ViewData["Title"] = "AddSpeaker";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@model UpdateTeacherViewModel
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h3 style="color:cornflowerblue">Add Teacher</h3>
+                <form method="post" enctype="multipart/form-data" class="needs-validation">
+                    @if (!ViewData.ModelState.IsValid)
+                    {
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach (var key in ViewData.ModelState.Keys)
+                                {
+                                    foreach (var error in ViewData.ModelState[key].Errors)
+                                    {
+                                        <li>@error.ErrorMessage</li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    }
+                    @*default orarag get dir*@
+                    <div class="mb-3 row">
+                        <label asp-for="Image" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="Image" />
+                            <span class="text-danger" asp-validation-for="Image"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label asp-for="Name" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="Name" />
+                            <span class="text-danger" asp-validation-for="Name"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label asp-for="Surname" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="Surname" />
+                            <span class="text-danger" asp-validation-for="Surname"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label asp-for="Profession" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="Profession" />
+                            <span class="text-danger" asp-validation-for="Profession"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label asp-for="Degree" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="Degree" />
+                            <span class="text-danger" asp-validation-for="Degree"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label asp-for="Exoerience" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="Exoerience" />
+                            <span class="text-danger" asp-validation-for="Exoerience"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label asp-for="Hobbies" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="Hobbies" />
+                            <span class="text-danger" asp-validation-for="Hobbies"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label asp-for="Faculty" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="Faculty" />
+                            <span class="text-danger" asp-validation-for="Faculty"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label asp-for="MailAdress" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="MailAdress" />
+                            <span class="text-danger" asp-validation-for="MailAdress"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label asp-for="PhoneNumber" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="PhoneNumber" />
+                            <span class="text-danger" asp-validation-for="PhoneNumber"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label asp-for="Skype" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="Skype" />
+                            <span class="text-danger" asp-validation-for="Skype"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label asp-for="Language" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="Language" />
+                            <span class="text-danger" asp-validation-for="Language"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label asp-for="TeamLeader" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="TeamLeader" />
+                            <span class="text-danger" asp-validation-for="TeamLeader"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label asp-for="Development" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="Development" />
+                            <span class="text-danger" asp-validation-for="Development"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label asp-for="Design" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="Design" />
+                            <span class="text-danger" asp-validation-for="Design"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label asp-for="Innovation" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="Innovation" />
+                            <span class="text-danger" asp-validation-for="Innovation"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label asp-for="Communucation" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <input class="form-control" asp-for="Communucation" />
+                            <span class="text-danger" asp-validation-for="Communucation"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label asp-for="AboutMe" class="col-md-2 col-form-label"></label>
+                        <div class="col-md-10">
+                            <textarea id="tiny" class="form-control" asp-for="AboutMe"></textarea>
+                            <span class="text-danger" asp-validation-for="AboutMe"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary ">Submit</button>
+                        <a asp-area="Admin" asp-controller="Teachers" asp-action="Index" class="btn btn-light ">Return</a>
+                    </div>
+                </form>
+                <partial name="_ValudationScript" />
+            </div>
+        </div>
+    </div> <!-- end col -->
+</div>
+
