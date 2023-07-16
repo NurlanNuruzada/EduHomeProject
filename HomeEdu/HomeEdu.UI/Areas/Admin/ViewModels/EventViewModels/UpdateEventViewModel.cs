@@ -14,7 +14,6 @@ namespace HomeEdu.UI.Areas.Admin.ViewModels.EventViewModel
         [StringLength(100, ErrorMessage = "Location cannot exceed 100 characters.")]
         public string Location { get; set; } = null!;
         public IFormFile? Image { get; set; }
-
         public string EventDetailTitle { get; set; } = null!;
 
         [StringLength(900, ErrorMessage = "Event detail description cannot exceed 900 characters.")]

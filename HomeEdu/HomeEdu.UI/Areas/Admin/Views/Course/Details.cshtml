@@ -68,14 +68,12 @@
                                         </div>
 
                                         <div class="mt-2">
-                                            <img src="@Model?.ImagePath?" style=" width: 100%;" alt="Event Image" />
+                                            <img src="/@Model?.ImagePath?" style=" width: 100%; height:350px" alt="Event Image" />
                                             <b> <p>EventDetail Image Path:</p></b><span>@Model?.ImagePath?</span>
                                         </div>
                                         <div class="mt-2">
                                             <div class="mt-2">
-                                                <b><p>AboutCourse:</p></b> <span>@Model?.CourseDetail?.AboutCourse</span>
-                                                <b><p>HowToApply:</p></b> <span>@Model?.CourseDetail?.HowToApply</span>
-                                                <b><p>Certification:</p></b> <span>@Model?.CourseDetail?.Certification</span>
+                                                <b><p>AboutCourse:</p></b> <span>@Html.Raw(@Model?.CourseDetail?.CourseDescription)</span>
                                             </div>
                                             <div class="mt-4">
                                                 <div class="text-muted font-size-14">
@@ -107,7 +105,7 @@
                                                 </div>
                                                 <hr>
                                             </div>
-
+                                            <a asp-area="Admin" asp-controller="Course" asp-action="Index" class="btn btn-light waves-effect">Back to list</a>
                                         </div>
                                     </div>
                                 </div>

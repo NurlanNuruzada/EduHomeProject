@@ -9,6 +9,7 @@
 
 <h1 style="color:cornflowerblue">Course's List</h1>
 <a style="margin:20px 0px " asp-action="Create" class="btn btn-primary">Create New Course <i class="far fa-plus-square"></i></a>
+<a style="margin:20px 10px ; background-color:green ;border-color:green" asp-action="GetCourseCaragory" class="btn btn-primary">Create New Course Category <i class="far fa-plus-square"></i></a>
 
 <div class="card">
     <div class="card-body">
@@ -34,7 +35,7 @@
                     <tbody>
                         <tr>
                             <th scope="row">@count</th>
-                            <td><img width="150" src="@(@Course?.ImagePath)" alt="section-title"></td>
+                            <td><img width="150" src="/@Course?.ImagePath" alt="section-title"></td>
                             <td>@(@Course?.Title)</td>
                             <td>@(@Course?.Description)</td>
                             <td>

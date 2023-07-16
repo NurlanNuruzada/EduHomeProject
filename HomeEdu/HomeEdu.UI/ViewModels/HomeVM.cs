@@ -11,6 +11,7 @@ namespace HomeEdu.UI.ViewModels
         public IEnumerable<NoticeBoard> noticeBoards { get; set; } = null!; 
         public IEnumerable<Event> events { get; set; } = null!; 
         public IEnumerable<Course> Courses { get; set; } = null!; 
+        public IEnumerable<BlogCatagory>? BlogCatagories { get; set; }
 
     }
 }

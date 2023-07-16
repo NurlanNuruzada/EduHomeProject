@@ -9,6 +9,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using static HomeEdu.UI.Helpers.Utilities.AppUserRole;
+using HomeEdu.UI.Areas.Admin.ViewModels.CourseViewModels;
+using HomeEdu.UI.Helpers.Extentions;
+using HomeEdu.UI.Services.Interfaces;
 
 namespace HomeEdu.UI.Areas.Admin.Controllers
 {
@@ -18,11 +21,14 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
     {
         private readonly AppDbContext _context;
         private readonly IMapper _mapper;
-
-        public CourseController(AppDbContext context, IMapper mapper)
+        private readonly IBlogService _blogService;
+        private readonly IWebHostEnvironment _env;
+        public CourseController(AppDbContext context, IMapper mapper, IBlogService blogService, IWebHostEnvironment env)
         {
             _context = context;
             _mapper = mapper;
+            _blogService = blogService;
+            _env = env;
         }
         public async Task<IActionResult> Index()
         {
@@ -56,15 +62,39 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
         [HttpPost]
         [ActionName("Create")]
         [AutoValidateAntiforgeryToken]
-        public async Task<IActionResult> Create(CourseViewModel courseViewModel, int CatagoryId)
+        public async Task<IActionResult> Create(CreateCourseViewModel courseViewModel, int CatagoryId)
         {
-
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                ViewBag.Catagories = await _context.CourseCatagories.ToListAsync();
+                ViewBag.Catagories = await _context.BlogCatagories.ToListAsync();
+                return View(courseViewModel);
+            }
+            if (courseViewModel.Image is null)
+            {
+                ModelState.AddModelError("Image", "Image Can't be null!");
                 return View(courseViewModel);
             }
             var catagory = _context.CourseCatagories.Find(CatagoryId);
+            if (catagory is null)
+            {
+                return NotFound("Catagory not Found");
+            }
+            courseViewModel.CourseCatagory = catagory;
+            if (!ModelState.IsValid)
+            {
+                return View(courseViewModel);
+            }
+            if (!courseViewModel.Image.CheckFileFormat("image"))
+            {
+                ModelState.AddModelError("Image", "Sellect Correct Format!");
+                return View(courseViewModel);
+            }
+            if (!courseViewModel.Image.CheckFileLength(300))
+            {
+                ModelState.AddModelError("Image", "Size Must be less than 300 kb");
+                return View(courseViewModel);
+            }
+            string filePath = await courseViewModel.Image.CopyFileAsync(_env.WebRootPath, "assets", "img", "course");
             if (catagory is null)
             {
                 return BadRequest();
@@ -73,13 +103,11 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             {
                 Title = courseViewModel.Title,
                 Description = courseViewModel.Description,
-                ImagePath = courseViewModel.ImagePath,
+                ImagePath = filePath,
                 CourseCatagoryId = CatagoryId,
                 CourseDetail = new CourseDetail
                 {
-                    AboutCourse = courseViewModel.AboutCourse,
-                    HowToApply = courseViewModel.HowToApply,
-                    Certification = courseViewModel.Certification,
+                    CourseDescription = courseViewModel.CourseDescription,
                     ClassDuration = courseViewModel.ClassDuration,
                     Duration = courseViewModel.Duration,
                     Starts = courseViewModel.Starts,
@@ -131,21 +159,16 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             {
                 course.CourseDetail = new CourseDetail();
             }
-
-            var courseViewModel = _mapper.Map<CourseViewModel>(course);
+            UpdateCourseViewModel updateCourseView = new();
+            updateCourseView = _mapper.Map<UpdateCourseViewModel>(course);
             Course? courseDb = await _context.Courses.FindAsync(id);
-            courseViewModel.ImagePath = courseDb.ImagePath;
-            courseViewModel.HowToApply = course.CourseDetail.HowToApply;
-            courseViewModel.AboutCourse = course.CourseDetail.AboutCourse;
-            courseViewModel.Certification = course.CourseDetail.Certification;
-            courseViewModel.ClassDuration = course.CourseDetail.ClassDuration;
-            courseViewModel.Duration= course.CourseDetail.Duration ;
-          courseViewModel.Starts=   course.CourseDetail.Starts ;
-           courseViewModel.CourseFee = course.CourseDetail.CourseFee  ;
+            updateCourseView.CourseDescription = course.CourseDetail.CourseDescription;
+            updateCourseView.ClassDuration = course.CourseDetail.ClassDuration;
+            updateCourseView.Duration = course.CourseDetail.Duration;
+            updateCourseView.Starts = course.CourseDetail.Starts;
+            updateCourseView.CourseFee = course.CourseDetail.CourseFee;
             ViewBag.Catagories = await _context.CourseCatagories.ToListAsync();
-
-
-            return View(courseViewModel);
+            return View(updateCourseView);
         }
 
         [HttpPost]
@@ -163,7 +186,7 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             }
 
             course.Title = courseViewModel.Title;
-            course.ImagePath = courseViewModel.ImagePath;
+            //course.ImagePath = courseViewModel.ImagePath;
             course.Description = courseViewModel.Description;
             course.CourseCatagoryId = CatagoryId;
 
@@ -172,9 +195,7 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
                 course.CourseDetail = new CourseDetail();
             }
 
-            course.CourseDetail.HowToApply = courseViewModel.HowToApply;
-            course.CourseDetail.AboutCourse = courseViewModel.AboutCourse;
-            course.CourseDetail.Certification = courseViewModel.Certification;
+            course.CourseDetail.CourseDescription = courseViewModel.CourseDescription;
             course.CourseDetail.ClassDuration = courseViewModel.ClassDuration;
             course.CourseDetail.Duration = courseViewModel.Duration;
             course.CourseDetail.Starts = courseViewModel.Starts;
@@ -184,5 +205,53 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public async Task<IActionResult> GetCourseCaragory()
+        {
+            List<CourseCatagory> courseCatagory = await _context.CourseCatagories.ToListAsync();
+            return View(courseCatagory);
+        }
+        public IActionResult CreateCourseCaragory()
+        {
+            return View();
+        }
+        [HttpPost]
+        [AutoValidateAntiforgeryToken]
+        public async Task<IActionResult> CreateCourseCaragory(CourseCatagory CourseCatagory)
+        {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "Couldn't add Categry!");
+                return View();
+            }
+            if (CourseCatagory is null)
+            {
+                return View();
+            }
+            CourseCatagory CCatagory = await _context.CourseCatagories.FirstOrDefaultAsync(C => C.Catagory == CourseCatagory.Catagory);
+            if (CCatagory is not null)
+            {
+                ModelState.AddModelError("", "this Categry already exist!");
+                return View();
+            }
+            _context.CourseCatagories.AddAsync(CourseCatagory);
+            _context.SaveChangesAsync();
+            return RedirectToAction("Index", "Course");
+        }
+        [AutoValidateAntiforgeryToken]
+        public async Task<IActionResult> DeleteCourseCategory(int Id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return NotFound();
+            }
+            CourseCatagory courseCatagory = await _context.CourseCatagories.FindAsync(Id);
+            if (courseCatagory is null)
+            {
+                return NotFound();
+            }
+            _context.Entry<CourseCatagory>(courseCatagory).State = EntityState.Deleted;
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Blog");
+        }
     }
 }

@@ -294,29 +294,19 @@ namespace HomeEdu.DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("AboutCourse")
-                        .IsRequired()
-                        .HasMaxLength(900)
-                        .HasColumnType("nvarchar(900)");
-
-                    b.Property<string>("Certification")
-                        .IsRequired()
-                        .HasMaxLength(900)
-                        .HasColumnType("nvarchar(900)");
-
                     b.Property<DateTime>("ClassDuration")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("CourseDescription")
+                        .IsRequired()
+                        .HasMaxLength(5000)
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("CourseFee")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Duration")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("HowToApply")
-                        .IsRequired()
-                        .HasMaxLength(900)
-                        .HasColumnType("nvarchar(900)");
 
                     b.Property<DateTime>("Starts")
                         .HasColumnType("datetime2");

@@ -25,7 +25,8 @@ namespace HomeEdu.UI.Controllers
             PagesVM pagesVM = new()
             {
                 Courses = await _context.Courses.Include(c => c.CourseDetail).ToListAsync(),
-                Blogs = await _context.Blogs.ToListAsync()
+                Blogs = await _context.Blogs.ToListAsync(),
+                BlogCatagories = await _context.BlogCatagories.ToListAsync(),
             };
             if (pagesVM == null)
             {

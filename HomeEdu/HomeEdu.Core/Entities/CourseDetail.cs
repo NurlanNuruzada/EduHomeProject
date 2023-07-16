@@ -8,16 +8,8 @@ public class CourseDetail : IEntity
     public int Id { get; set; }
     public int CourseFee { get; set; }
 
-    [Required, MaxLength(900)]
-    public string AboutCourse { get; set; } = null!;
-
-    [Required, MaxLength(900)]
-    public string HowToApply { get; set; } = null!;
-
-    [Required, MaxLength(900)]
-    public string Certification { get; set; } = null!;
-    [Required]
-
+    [Required, MaxLength(5000)]
+    public string CourseDescription { get; set; } = null!;
     public DateTime Starts { get; set; } 
     [Required]
 

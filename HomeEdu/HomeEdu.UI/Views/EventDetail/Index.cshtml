@@ -28,7 +28,7 @@
             <div class="col-lg-8">
                 <div class="event-details">
                     <div class="event-details-img">
-                        <img src="\@Model.Event.EventDetail.ImagePath" alt="event-details">
+                        <img style="width:100%; height:350px;" src="\@Model.Event.EventDetail.ImagePath" alt="event-details">
                         <div class="event-date">
                             <h3>@Model.Event.StartTime.Day <span>@Model.Event.StartTime.ToString("MMMM")</span></h3>
                         </div>
@@ -39,7 +39,10 @@
                             <li><span>time : </span>@Model.Event.StartTime.ToString("hh:mm tt") - @Model.Event.EndTime.ToString("hh:mm tt")</li>
                             <li><span>venue : </span>@Model.Event.Location</li>
                         </ul>
-                        <p>@Model.Event.EventDetail.Description</p>
+                        <h3><b>Event Title:</b></h3>
+                        <p>@(@Model.Event.EventDetail.Title)</p>
+                        <h3><b>Event Description:</b></h3>
+                        <p>@Html.Raw(@Model.Event.EventDetail.Description)</p>
                         <div class="speakers-area fix">
                             <h4>speakers</h4>
                             @foreach (var Speaker in Model.Speakers)
@@ -96,30 +99,19 @@
                         </div>
                     </div>
                     <div class="single-blog-widget mb-50">
-                        <h3>categories</h3>
-                        <ul>
-                            <li><a href="~/assets/#">CSS Engineering (10)</a></li>
-                            <li><a href="~/assets/#">Political Science (12)</a></li>
-                            <li><a href="~/assets/#">Micro Biology (08)</a></li>
-                            <li><a href="~/assets/#">HTML5 &amp; CSS3 (15)</a></li>
-                            <li><a href="~/assets/#">Web Design (20)</a></li>
-                            <li><a href="~/assets/#">PHP (23)</a></li>
-                        </ul>
-                    </div>
-                    <div class="single-blog-widget mb-50">
                         <div class="single-blog-banner">
                             <a href="~/assets/blog-details.html" id="blog"><img src="~/assets/img/blog/blog-img.jpg" alt="blog"></a>
                             <h2>best<br> eductaion<br> theme</h2>
                         </div>
                     </div>
-                    <div class="single-blog-widget mb-50">
-                        <h3>latest Blog post</h3>
-                        @{
-                            int countBlog = 1;
-                        }
-                        @foreach (var blog in Model.Blog.OrderByDescending(b => b.PostTime).Take(3))
-                        {
-                            <div class="single-post" @(countBlog == 3 ? " mb-30" : "")>
+                    <h3>latest Blog post</h3>
+                    @{
+                        int countBlog = 1;
+                    }
+                    @foreach (var blog in Model.Blog.OrderByDescending(b => b.PostTime).Take(3))
+                    {
+                        <div class="single-blog-widget mb-50">
+                            <div class="single-post " mb-50 @* @(countBlog == 2 ? " mb-50" : "")*@>
                                 <div class="single-post-img">
                                     <a asp-controller="blogdetail" asp-action="Index" asp-route-id="@blog.Id">
                                         <img style="width:90px;" src="\@blog.ImagePath" alt="post">
@@ -129,13 +121,13 @@
                                     </a>
                                 </div>
                                 <div class="single-post-content">
-                                    <h4><a asp-controller="blogdetail" asp-action="Index" asp-route-id="@blog.Id">English Language Blogs for you</a></h4>
+                                    <h4><a asp-controller="blogdetail" asp-action="Index" asp-route-id="@blog.Id">@blog.Title</a></h4>
                                     <p>@blog.PostedBy /  @blog.PostTime.ToString("dd MMMM, yyyy")</p>
                                 </div>
                             </div>
-                            countBlog++;
-                        }
-                    </div>
+                        </div>
+                        countBlog++;
+                    }
                     <div class="single-blog-widget">
                         <h3>tags</h3>
                         <div class="single-tag">
@@ -183,4 +175,4 @@
         </div>
     </div>
     <!-- Subscribe End -->
-    </div>
+</div>

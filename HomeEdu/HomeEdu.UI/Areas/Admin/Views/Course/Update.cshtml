@@ -1,4 +1,4 @@
-﻿@model CourseViewModel
+﻿@model UpdateCourseViewModel
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
@@ -9,16 +9,16 @@
         <div class="card">
             <div class="card-body">
                 <h3 style="color:cornflowerblue">Update Blog</h3>
-                <form method="post">
+                <form method="post" enctype="multipart/form-data">
                     @*default orarag get dir*@
                     <div class="mb-3 row">
-                        <img style="width:200px;" src="@Model.ImagePath" />
+                        <img style="width:200px;" src="@Model.Image" />
                     </div>
                     <div class="mb-3 row">
-                        <label asp-for="ImagePath" class="col-md-2 col-form-label"></label>
+                        <label asp-for="Image" class="col-md-2 col-form-label"></label>
                         <div class="col-md-10">
-                            <input class="form-control" asp-for="ImagePath" />
-                            <span class="text-danger" asp-validation-for="ImagePath"></span>
+                            <input class="form-control" asp-for="Image" />
+                            <span class="text-danger" asp-validation-for="Image"></span>
                         </div>
                     </div>
                     <div class="mb-3 row">
@@ -44,24 +44,10 @@
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label asp-for="AboutCourse" class="col-md-2 col-form-label"></label>
+                        <label asp-for="CourseDescription" class="col-md-2 col-form-label"></label>
                         <div class="col-md-10">
-                            <input class="form-control" asp-for="AboutCourse" />
-                            <span class="text-danger" asp-validation-for="AboutCourse"></span>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label asp-for="HowToApply" class="col-md-2 col-form-label"></label>
-                        <div class="col-md-10">
-                            <input class="form-control" asp-for="HowToApply" />
-                            <span class="text-danger" asp-validation-for="HowToApply"></span>
-                        </div>
-                    </div>
-                    <div class="mb-3 row">
-                        <label asp-for="Certification" class="col-md-2 col-form-label"></label>
-                        <div class="col-md-10">
-                            <input class="form-control" asp-for="Certification" />
-                            <span class="text-danger" asp-validation-for="Certification"></span>
+                            <textarea id="tiny" class="form-control" asp-for="CourseDescription"></textarea>
+                            <span class="text-danger" asp-validation-for="CourseDescription"></span>
                         </div>
                     </div>
                     <div class="mb-3 row">
@@ -89,6 +75,7 @@
                         <label class="col-md-2 col-form-label">Select Blog Catagory</label>
                         <div class="col-md-10">
                             <select class="form-select" name="CatagoryId">
+                                <option value="@Model.CourseCatagoryId">@Model.CourseCatagory</option>
                                 @foreach (var catagory in ViewBag.Catagories)
                                 {
                                     <option value="@catagory.Id">@catagory.Catagory</option>
@@ -100,7 +87,7 @@
                         <button type="submit" asp-action="Update" class="btn btn-primary  ">Update</button>
                     </div>
                 </form>
-                <a asp-area="Admin" asp-controller="blog" asp-action="Index" class="btn btn-light ">Return</a>
+                <a asp-area="Admin" asp-controller="Course" asp-action="Index" class="btn btn-light ">Return</a>
 
             </div>
         </div>

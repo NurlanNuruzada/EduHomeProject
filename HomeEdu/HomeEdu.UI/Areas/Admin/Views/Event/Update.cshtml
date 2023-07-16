@@ -74,10 +74,11 @@
                     <div class="mb-3 row">
                         <label asp-for="EventDetailDescription" class="col-md-2 col-form-label"></label>
                         <div class="col-md-10">
-                            <input class="form-control" asp-for="EventDetailDescription" />
+                            <textarea asp-for="EventDetailDescription" id="tiny" name="EventDetailDescription"></textarea>
                             <span class="text-danger" asp-validation-for="EventDetailDescription"></span>
                         </div>
                     </div>
+
                     <div class="mb-3">
                         <button type="submit" class="btn btn-primary  ">Update</button>
                     </div>

@@ -196,8 +196,8 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             {
                 @event.EventDetail = new EventDetail();
             }
-            @event.EventDetail.Title = eventViewModel.EventDetailDescription; 
-            @event.EventDetail.Description = eventViewModel.EventDetailTitle;
+            @event.EventDetail.Title = eventViewModel. EventDetailTitle; 
+            @event.EventDetail.Description = eventViewModel.EventDetailDescription;
             if (@event.EventDetail == null)
             {
                 return Json(eventViewModel);

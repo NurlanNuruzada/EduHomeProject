@@ -21,9 +21,9 @@ namespace HomeEdu.UI.Controllers
         {
             HomeVM homeVM = new()
             {
-                Blogs = await _context.Blogs.Where(s => s.Id == Id).ToListAsync()
+                Blogs = await _context.Blogs.Where(s => s.Id == Id).ToListAsync(),
+                BlogCatagories = await _context.BlogCatagories.ToListAsync(),
             };
-            ViewBag.Catagories = await _context.Blogs.Include(c => c.BlogCatagory).ToListAsync();
             List<Blog> Blogs = await _context.Blogs.Include(c => c.BlogCatagory).ToListAsync();
             return View(homeVM);
         }

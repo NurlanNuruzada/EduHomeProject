@@ -75,16 +75,17 @@
                     <div class="single-blog-widget mb-50">
                         <h3>categories</h3>
                         <ul>
-                            @foreach (var Catagory in Model.Courses)
+                            @foreach (var item in Model.BlogCatagories)
                             {
-                                @if (@Catagory.CourseCatagory == null)
+                                @if (@item == null)
                                 {
                                     <li><a href="#">No Catagory found!</a></li>
                                     break;
                                 }
                                 else
                                 {
-                                    <li><a href="#">@Catagory.CourseCatagory.Catagory</a></li>
+
+                                    <li> <a value="@item.Id"> @item.Catagory</a> </li>
                                 }
                             }
                         </ul>
@@ -95,40 +96,30 @@
                             <h2>best<br> eductaion<br> theme</h2>
                         </div>
                     </div>
-                    <div class="single-blog-widget mb-50">
-                        <h3>latest course posts</h3>
-                        @{
-                            int countBlog = 1;
-                        }
-                        @foreach (var course in Model.Courses.OrderByDescending(b => b.CourseDetail.Starts).Take(3))
-                        {
-                            <div class="single-post" @(countBlog == 3 ? "mb-30" : "mb-30")>
+                    <h3>latest Blog post</h3>
+                    @{
+                        int countBlog = 1;
+                    }
+                    @foreach (var blog in Model.Blogs.OrderByDescending(b => b.PostTime).Take(3))
+                    {
+                        <div class="single-blog-widget mb-50">
+                            <div class="single-post" @(countBlog == 3 ? " mb-30" : "")>
                                 <div class="single-post-img">
-                                    <a asp-controller="CourseDetail" asp-action="Index" asp-route-id="@course.Id">
-                                        <img style="width:90px;" src="@course.ImagePath" alt="post">
+                                    <a asp-controller="blogdetail" asp-action="Index" asp-route-id="@blog.Id">
+                                        <img style="width:90px;" src="@blog.ImagePath" alt="post">
                                         <div class="blog-hover">
                                             <i class="fa fa-link"></i>
                                         </div>
                                     </a>
                                 </div>
                                 <div class="single-post-content">
-                                    <h4><a asp-controller="CourseDetail" asp-action="Index" asp-route-id="@course.Id">@course.Description</a></h4>
-                                    <p>@course.Title  / @course.CourseDetail.Starts.ToString("MMMM dd, yyyy")</p>
+                                    <h4><a asp-controller="blogdetail" asp-action="Index" asp-route-id="@blog.Id">@blog.Title</a></h4>
+                                    <p>@blog.PostedBy /  @blog.PostTime.ToString("dd MMMM, yyyy")</p>
                                 </div>
                             </div>
-                        }
-                        <div class="single-blog-widget">
-                            <h3>tags</h3>
-                            <div class="single-tag">
-                                <a href="blog-details.html" class="mr-10 mb-10">course</a>
-                                <a href="blog-details.html" class="mr-10 mb-10">education</a>
-                                <a href="blog-details.html" class="mb-10">teachers</a>
-                                <a href="blog-details.html" class="mr-10">learning</a>
-                                <a href="blog-details.html" class="mr-10">university</a>
-                                <a href="blog-details.html">events</a>
-                            </div>
                         </div>
-                    </div>
+                        countBlog++;
+                    }
                 </div>
             </div>
         </div>

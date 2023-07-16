@@ -85,9 +85,18 @@
                     <div class="single-blog-widget mb-47">
                         <h3>categories</h3>
                         <ul>
-                            @foreach (var item in Model.Blogs)
+                            @foreach (var item in Model.BlogCatagories)
                             {
-                                <li><a href="~/assets/#">CSS Engineering (10)</a></li>
+                                @if (@item == null)
+                                {
+                                    <li><a href="#">No Catagory found!</a></li>
+                                    break;
+                                }
+                                else
+                                {
+
+                                    <li> <a value="@item.Id"> @item.Catagory</a> </li>
+                                }
                             }
                         </ul>
                     </div>
@@ -97,17 +106,17 @@
                             <h2>best<br> eductaion<br> theme</h2>
                         </div>
                     </div>
-                    <div class="single-blog-widget mb-47">
-                        <h3>latest Blog post</h3>
-                        @{
-                            int countBlog = 1;
-                        }
-                        @foreach (var blog in Model.Blogs.OrderByDescending(b => b.PostTime).Take(3))
-                        {
-                             <div class="single-post" @(countBlog == 3 ? " mb-30" : "")>
+                    <h3>latest Blog post</h3>
+                    @{
+                        int countBlog = 1;
+                    }
+                    @foreach (var blog in Model.Blogs.OrderByDescending(b => b.PostTime).Take(3))
+                    {
+                        <div class="single-blog-widget mb-50">
+                            <div class="single-post" @(countBlog == 3 ? " mb-30" : "")>
                                 <div class="single-post-img">
                                     <a asp-controller="blogdetail" asp-action="Index" asp-route-id="@blog.Id">
-                                        <img style="width:90px;" src="\@blog.ImagePath" alt="post">
+                                        <img style="width:90px;" src="/@blog.ImagePath" alt="post">
                                         <div class="blog-hover">
                                             <i class="fa fa-link"></i>
                                         </div>
@@ -115,11 +124,12 @@
                                 </div>
                                 <div class="single-post-content">
                                     <h4><a asp-controller="blogdetail" asp-action="Index" asp-route-id="@blog.Id">@blog.Title</a></h4>
-                                    <p>@blog.PostedBy /  @blog.PostTime.ToString("dd MMMM, yyyy") / <i class="fa fa-comments-o"></i> @blog.CommentCount</p>
+                                    <p>@blog.PostedBy /  @blog.PostTime.ToString("dd MMMM, yyyy")</p>
                                 </div>
                             </div>
-                            countBlog++;
-                        }
+                        </div>
+                        countBlog++;
+                    }
                     </div>
                     <div class="single-blog-widget">
                         <h3>tags</h3>

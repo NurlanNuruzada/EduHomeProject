@@ -15,7 +15,7 @@ public class CourseViewModel
     public CourseCatagory? CourseCatagory { get; set; }
 
     [Required]
-    public string? ImagePath { get; set; }
+    public IFormFile? Image { get; set; }
 
     public int CourseDetailId { get; set; }
     public CourseDetail? CourseDetail { get; set; }
@@ -23,14 +23,8 @@ public class CourseViewModel
     [Required]
     public int CourseFee { get; set; }
 
-    [Required, MaxLength(900)]
-    public string? AboutCourse { get; set; }
-
-    [Required, MaxLength(900)]
-    public string? HowToApply { get; set; }
-
-    [Required, MaxLength(900)]
-    public string? Certification { get; set; }
+    [Required, MaxLength(5000)]
+    public string? CourseDescription { get; set; }
 
     [Required]
     public DateTime Duration { get; set; }

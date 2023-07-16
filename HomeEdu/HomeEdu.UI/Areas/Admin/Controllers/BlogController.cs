@@ -222,7 +222,6 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
                 string filePath = await BlogVM.Image.CopyFileAsync(_env.WebRootPath, "assets", "img", "blog");
                 blogDb.ImagePath = filePath;
             }
-            blogDb.PostTime = BlogVM.PostTime;
             blogDb.Comment = BlogVM.Comment;
             blogDb.PostedBy = BlogVM.PostedBy;
             blogDb.BlogCatagoryId = CatagoryId;

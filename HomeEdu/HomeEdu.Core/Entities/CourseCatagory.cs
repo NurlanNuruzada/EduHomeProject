@@ -10,6 +10,6 @@ public class CourseCatagory : IEntity
     public string? Catagory { get; set; }
 
     // One-to-many relationship with Course
-    public ICollection<Course> Courses { get; set; } 
+    public ICollection<Course>? Courses { get; set; } 
 }
 
