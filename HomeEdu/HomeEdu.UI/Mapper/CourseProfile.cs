@@ -11,6 +11,7 @@ namespace HomeEdu.UI.Mapper
         {
             CreateMap<CourseViewModel, Course>().ReverseMap();
             CreateMap<UpdateCourseViewModel, Course>().ReverseMap();
+            CreateMap<CreateCourseViewModel, Course>().ReverseMap();
         }
     }
 }

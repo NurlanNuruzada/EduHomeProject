@@ -118,6 +118,23 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             await _context.Courses.AddAsync(Course);
             await _context.CourseDetails.AddAsync(Course.CourseDetail);
             await _context.SaveChangesAsync();
+            var language = new Language
+            {
+                CourseDetailId = Course.CourseDetail.Id,
+                language = courseViewModel.Languages
+            };
+            var Skill = new SkillLevel
+            {
+                CourseDetailId = Course.CourseDetail.Id,
+                skillLevel = courseViewModel.SkillLevels
+            };
+            var Assement = new Assesments
+            {
+                CourseDetailId = Course.CourseDetail.Id,
+                assesments = courseViewModel.Assesments
+            };
+            await _context.AddRangeAsync(Assement, language, Skill);
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
         public async Task<IActionResult> Delete(int id)
@@ -167,14 +184,16 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             updateCourseView.Duration = course.CourseDetail.Duration;
             updateCourseView.Starts = course.CourseDetail.Starts;
             updateCourseView.CourseFee = course.CourseDetail.CourseFee;
+            updateCourseView.CourseDetail.Assesments = course.CourseDetail.Assesments;
+            updateCourseView.CourseDetail.Languages = course.CourseDetail.Languages;
+            updateCourseView.CourseDetail.SkillLevels = course.CourseDetail.SkillLevels;
             ViewBag.Catagories = await _context.CourseCatagories.ToListAsync();
             return View(updateCourseView);
         }
-
         [HttpPost]
         [ActionName("Update")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(int Id, CourseViewModel courseViewModel, int CatagoryId)
+        public async Task<IActionResult> Update(int Id, UpdateCourseViewModel courseViewModel, int CatagoryId)
         {
             Course? course = await _context.Courses
      .Include(c => c.CourseDetail)
@@ -184,22 +203,36 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-
             course.Title = courseViewModel.Title;
             //course.ImagePath = courseViewModel.ImagePath;
             course.Description = courseViewModel.Description;
             course.CourseCatagoryId = CatagoryId;
-
             if (course.CourseDetail == null)
             {
                 course.CourseDetail = new CourseDetail();
             }
-
             course.CourseDetail.CourseDescription = courseViewModel.CourseDescription;
             course.CourseDetail.ClassDuration = courseViewModel.ClassDuration;
             course.CourseDetail.Duration = courseViewModel.Duration;
             course.CourseDetail.Starts = courseViewModel.Starts;
             course.CourseDetail.CourseFee = courseViewModel.CourseFee;
+
+            var skillLevel = await _context.SkillLevels.FirstOrDefaultAsync(a => a.CourseDetailId == course.CourseDetail.Id);
+            var assesments = await _context.Assesments.FirstOrDefaultAsync(a => a.CourseDetailId == course.CourseDetail.Id);
+            var language = await _context.Languages.FirstOrDefaultAsync(a => a.CourseDetailId == course.CourseDetail.Id);
+            if (language is not null)
+            {
+                language.language = courseViewModel.Languages;
+            }
+            if (skillLevel is not null)
+            {
+                skillLevel.skillLevel = courseViewModel.SkillLevels;
+            }
+            if (assesments is not null)
+            {
+                assesments.assesments = courseViewModel.Assesments;
+            }
+
             _context.Entry<Course>(course).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));

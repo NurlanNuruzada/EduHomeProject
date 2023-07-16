@@ -10,7 +10,9 @@ namespace HomeEdu.UI.Areas.Admin.ViewModels.CourseViewModels
 
         [Required, MaxLength(150)]
         public string? Description { get; set; }
-
+        public string? Languages { get; set; }
+        public string? Assesments { get; set; }
+        public string? SkillLevels { get; set; }
         public int CourseCatagoryId { get; set; }
         public CourseCatagory? CourseCatagory { get; set; }
         public IFormFile? Image { get; set; } 
