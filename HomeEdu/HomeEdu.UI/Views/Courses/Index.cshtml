@@ -88,7 +88,7 @@
                         <style>
                             .page-link2 {
                                 border-radius: 5px;
-                                width:60px;
+                                width: 60px;
                             }
                         </style>
                     </div>
@@ -109,21 +109,17 @@
                     </div>
                     <div class="single-blog-widget mb-50">
                         <h3>categories</h3>
-                        <ul>
-                            @foreach (var item in Model.CourseCatagories)
-                            {
-                                @if (@item == null)
+                        <form id="search" asp-controller="Courses" asp-action="Index" method="get">
+                            <ul>
+                                <li><a asp-controller="Courses" asp-action="Index">All</a></li>
+                                @foreach (var item in Model.CourseCatagories)
                                 {
-                                    <li><a href="#">No Catagory found!</a></li>
-                                    break;
+                                    <li>
+                                        <a asp-controller="Courses" asp-action="Index" asp-route-CaID="@item.Id">@item.Catagory</a>
+                                    </li>
                                 }
-                                else
-                                {
-
-                                    <li> <a value="@item.Id"> @item.Catagory</a> </li>
-                                }
-                            }
-                        </ul>
+                            </ul>
+                        </form>
                     </div>
                     <div class="single-blog-widget mb-50">
                         <div class="single-blog-banner">

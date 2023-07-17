@@ -20,7 +20,7 @@ namespace HomeEdu.UI.Controllers
             _context = context;
             _mapper = mapper;
         }
-        public async Task<IActionResult> Index(string search,int pg = 1)
+        public async Task<IActionResult> Index(int CaID,string search,int pg = 1)
         {
             PagesVM pagesVM = new()
             {
@@ -42,8 +42,20 @@ namespace HomeEdu.UI.Controllers
             pagesVM.blgoData = pagesVM.Blogs.Skip(recSkip).Take(pager.PageSize).ToList();
             if (string.IsNullOrEmpty(search))
             {
-                TempData["InfoMessage"] = "Please Provide Search Value";
-                pagesVM.blgoData = pagesVM.Blogs.Skip(recSkip).Take(pager.PageSize).ToList();
+                if (CaID != 0)
+                {
+                    var BlogsByCategory = pagesVM.blgoData.Where(c => c.BlogCatagoryId == CaID).ToList();
+                    int BlogsByCategoryCount = BlogsByCategory.Count;
+                    pager = new Pager(BlogsByCategoryCount, pg, pageSize);
+                    recSkip = (pg - 1) * pageSize;
+                    pagesVM.blgoData = BlogsByCategory.Skip(recSkip).Take(pager.PageSize).ToList();
+                    ViewBag.pager = pager;
+                }
+                else
+                {
+                    pagesVM.blgoData = pagesVM.blgoData.Skip(recSkip).Take(pager.PageSize).ToList();
+                }
+
                 return View(pagesVM);
             }
             else

@@ -107,21 +107,17 @@
                     </div>
                     <div class="single-blog-widget mb-50">
                         <h3>categories</h3>
-                        <ul>
-                            @foreach (var item in Model.BlogCatagories)
-                            {
-                                @if (@item == null)
+                        <form id="search" asp-controller="Blogs" asp-action="Index" method="get">
+                            <ul>
+                                <li><a asp-controller="Blogs" asp-action="Index">All</a></li>
+                                @foreach (var item in Model.BlogCatagories)
                                 {
-                                    <li><a href="#">No Catagory found!</a></li>
-                                    break;
+                                    <li>
+                                        <a asp-controller="Blogs" asp-action="Index" asp-route-CaID="@item.Id">@item.Catagory</a>
+                                    </li>
                                 }
-                                else
-                                {
-
-                                    <li> <a value="@item.Id"> @item.Catagory</a> </li>
-                                }
-                            }
-                        </ul>
+                            </ul>
+                        </form>
                     </div>
                     <div class="single-blog-widget mb-50">
                         <div class="single-blog-banner">

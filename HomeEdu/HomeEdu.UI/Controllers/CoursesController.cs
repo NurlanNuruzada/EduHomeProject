@@ -18,31 +18,47 @@ namespace HomeEdu.UI.Controllers
             _context = context;
             _mapper = mapper;
         }
-        public async Task<IActionResult> Index(string search,int pg = 1)
+        public async Task<IActionResult> Index(int CaID = 0, string search = "", int pg = 1)
         {
-          
-            PagesVM pagesVM = new()
+            PagesVM pagesVM = new PagesVM()
             {
                 Courses = await _context.Courses.ToListAsync(),
                 CourseCatagories = await _context.CourseCatagories.ToListAsync(),
                 Blogs = await _context.Blogs.ToListAsync()
             };
+
             if (pagesVM == null)
             {
                 return NotFound();
             }
+
             const int pageSize = 6;
+
             if (pg < 1)
                 pg = 1;
-            int rescCout = pagesVM.Courses.Count();
-            var pager = new Pager(rescCout, pg, pageSize);
+
+            int resCount = pagesVM.Courses.Count();
+            var pager = new Pager(resCount, pg, pageSize);
             int recSkip = (pg - 1) * pageSize;
-            this.ViewBag.pager = pager;
-            pagesVM.Data = pagesVM.Courses.Skip(recSkip).Take(pager.PageSize).ToList();
+
+            ViewBag.pager = pager;
+
             if (string.IsNullOrEmpty(search))
             {
-                TempData["InfoMessage"] = "Please Provide Search Value";
-                pagesVM.Data = pagesVM.Courses.Skip(recSkip).Take(pager.PageSize).ToList();
+                if (CaID != 0)
+                {
+                    var coursesByCategory = pagesVM.Courses.Where(c => c.CourseCatagoryId == CaID).ToList();
+                    int coursesByCategoryCount = coursesByCategory.Count;
+                    pager = new Pager(coursesByCategoryCount, pg, pageSize);
+                    recSkip = (pg - 1) * pageSize;
+                    pagesVM.Data = coursesByCategory.Skip(recSkip).Take(pager.PageSize).ToList();
+                    ViewBag.pager = pager;
+                }
+                else
+                {
+                    pagesVM.Data = pagesVM.Courses.Skip(recSkip).Take(pager.PageSize).ToList();
+                }
+
                 return View(pagesVM);
             }
             else
@@ -53,9 +69,10 @@ namespace HomeEdu.UI.Controllers
                 recSkip = (pg - 1) * pageSize;
                 pagesVM.Data = searchByTitle.Skip(recSkip).Take(pager.PageSize).ToList();
                 ViewBag.pager = pager;
+
                 return View(pagesVM);
             }
-            return View(pagesVM);
         }
+
     }
 }
