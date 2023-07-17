@@ -26,7 +26,7 @@ namespace HomeEdu.UI.Controllers
                 CourseCatagories = await _context.CourseCatagories.ToListAsync(),
                 Blogs = await _context.Blogs.ToListAsync()
             };
-            if(pagesVM == null)
+            if (pagesVM == null)
             {
                 return NotFound();
             }
@@ -36,9 +36,9 @@ namespace HomeEdu.UI.Controllers
             int rescCout = pagesVM.Courses.Count();
             var pager = new Pager(rescCout, pg, pageSize);
             int recSkip = (pg - 1) * pageSize;
-            var data = pagesVM.Courses.Skip(recSkip).Take(pager.PageSize).ToList();
             this.ViewBag.pager = pager;
-            return View(data);
+            pagesVM.Data = pagesVM.Courses.Skip(recSkip).Take(pager.PageSize).ToList();
+            return View(pagesVM);
         }
     }
 }

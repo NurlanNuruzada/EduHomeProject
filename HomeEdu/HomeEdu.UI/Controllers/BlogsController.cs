@@ -20,18 +20,27 @@ namespace HomeEdu.UI.Controllers
             _context = context;
             _mapper = mapper;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int pg = 1)
         {
             PagesVM pagesVM = new()
             {
-                Courses = await _context.Courses.Include(c => c.CourseDetail).ToListAsync(),
                 Blogs = await _context.Blogs.ToListAsync(),
+                Courses = await _context.Courses.Include(c => c.CourseDetail).ToListAsync(),
                 BlogCatagories = await _context.BlogCatagories.ToListAsync(),
             };
             if (pagesVM == null)
             {
                 return NotFound();
             }
+            const int pageSize = 6;
+            if (pg < 1)
+                pg = 1;
+            int rescCout = pagesVM.Blogs.Count();
+            var pager = new Pager(rescCout, pg, pageSize);
+            int recSkip = (pg - 1) * pageSize;
+            this.ViewBag.pager = pager;
+
+            pagesVM.blgoData = pagesVM.Blogs.Skip(recSkip).Take(pager.PageSize).ToList();
             return View(pagesVM);
         }
     }

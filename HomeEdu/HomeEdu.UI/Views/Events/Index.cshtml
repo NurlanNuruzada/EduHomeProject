@@ -2,6 +2,13 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_SeccondLayout.cshtml";
+    Pager pager = new Pager();
+    int pageNo = 0;
+    if (ViewBag.Pager != null)
+    {
+        pager = ViewBag.Pager;
+        pageNo = pager.CurrentPage;
+    }
 }
 <!-- Banner Area Start -->
 <div class="banner-area-wrapper">
@@ -26,7 +33,7 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="row">
-                    @foreach (var Event in Model.Events)
+                    @foreach (var Event in Model.EventsData)
                     {
                         <div class="col-md-6">
                             <div class="single-event mb-60">
@@ -54,6 +61,41 @@
                             </div>
                         </div>
                     }
+                    <div class="col-md-12">
+                        <div>
+                            <div>
+                                @if (pager.TotalPages > 0)
+                                {
+                                    <div class="pagination justify-content-end">
+                                        <ul style="display: flex;gap: 5px;font-size: 20px;">
+                                            @for (var pge = 1; pge <= pager.EndPages + 2; pge++)
+                                            {
+                                                <p class="page-item @(pge == pager.CurrentPage ? "active" : "")">
+                                                    <a class="page-link" asp-controller="Events" asp-action="Index" asp-route-pg="@pge">@pge</a>
+                                                </p>
+                                            }
+                                            @if (pager.CurrentPage < pager.TotalPages + 2)
+                                            {
+                                                <li>
+                                                    <a class="page-link2" asp-controller="Events" asp-action="Index" asp-route-pg="@(pager.CurrentPage + 1)">Next</a>
+
+                                                </li>
+                                                <li>
+                                                    <a class="page-link2" asp-controller="Events" asp-action="Index" asp-route-pg="@(pager.TotalPages)">Last</a>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <style>
+                            .page-link2 {
+                                border-radius: 5px;
+                                width: 60px;
+                            }
+                        </style>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-4">
