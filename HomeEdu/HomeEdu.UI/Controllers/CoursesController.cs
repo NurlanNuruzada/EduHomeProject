@@ -37,42 +37,29 @@ namespace HomeEdu.UI.Controllers
             if (pg < 1)
                 pg = 1;
 
-            int resCount = pagesVM.Courses.Count();
+            var filteredCourses = pagesVM.Courses;
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                filteredCourses = filteredCourses.Where(c => c.Title.ToLower().Contains(search.ToLower()));
+            }
+
+            if (CaID != 0)
+            {
+                filteredCourses = filteredCourses.Where(c => c.CourseCatagoryId == CaID);
+            }
+
+            int resCount = filteredCourses.Count();
             var pager = new Pager(resCount, pg, pageSize);
             int recSkip = (pg - 1) * pageSize;
 
             ViewBag.pager = pager;
 
-            if (string.IsNullOrEmpty(search))
-            {
-                if (CaID != 0)
-                {
-                    var coursesByCategory = pagesVM.Courses.Where(c => c.CourseCatagoryId == CaID).ToList();
-                    int coursesByCategoryCount = coursesByCategory.Count;
-                    pager = new Pager(coursesByCategoryCount, pg, pageSize);
-                    recSkip = (pg - 1) * pageSize;
-                    pagesVM.Data = coursesByCategory.Skip(recSkip).Take(pager.PageSize).ToList();
-                    ViewBag.pager = pager;
-                }
-                else
-                {
-                    pagesVM.Data = pagesVM.Courses.Skip(recSkip).Take(pager.PageSize).ToList();
-                }
+            pagesVM.Data = filteredCourses.Skip(recSkip).Take(pager.PageSize).ToList();
 
-                return View(pagesVM);
-            }
-            else
-            {
-                var searchByTitle = pagesVM.Courses.Where(c => c.Title.ToLower().Contains(search.ToLower())).ToList();
-                int searchResultCount = searchByTitle.Count;
-                pager = new Pager(searchResultCount, pg, pageSize);
-                recSkip = (pg - 1) * pageSize;
-                pagesVM.Data = searchByTitle.Skip(recSkip).Take(pager.PageSize).ToList();
-                ViewBag.pager = pager;
-
-                return View(pagesVM);
-            }
+            return View(pagesVM);
         }
+
 
     }
 }
