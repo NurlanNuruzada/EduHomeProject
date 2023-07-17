@@ -22,10 +22,18 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             _mapper = mapper;
             _env = env;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int pg = 1)
         {
             List<Teachers> Teachers = await _context.Teachers.ToListAsync();
-            return View(Teachers);
+            const int pageSize = 6;
+            if (pg < 1)
+                pg = 1;
+            int rescCout = Teachers.Count();
+            var pager = new Pager(rescCout, pg, pageSize);
+            int recSkip = (pg - 1) * pageSize;
+            var data = Teachers.Skip(recSkip).Take(pager.PageSize).ToList();
+            this.ViewBag.pager = pager;
+            return View(data);
         }
         public async Task<IActionResult> Addteacher()
         {

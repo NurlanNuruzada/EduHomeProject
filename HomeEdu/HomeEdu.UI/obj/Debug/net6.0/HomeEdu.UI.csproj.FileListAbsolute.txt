@@ -763,3 +763,5 @@ C:\Users\Admin\Desktop\EduHomeProject\HomeEdu\HomeEdu.UI\bin\Debug\net6.0\System
 C:\Users\Admin\Desktop\EduHomeProject\HomeEdu\HomeEdu.UI\bin\Debug\net6.0\System.Web.WebPages.dll
 C:\Users\Admin\Desktop\EduHomeProject\HomeEdu\HomeEdu.UI\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.Google.dll
 C:\Users\Admin\Desktop\EduHomeProject\HomeEdu\HomeEdu.UI\bin\Debug\net6.0\Microsoft.Web.Infrastructure.dll
+C:\Users\Admin\Desktop\EduHomeProject\HomeEdu\HomeEdu.UI\bin\Debug\net6.0\PagedList.dll
+C:\Users\Admin\Desktop\EduHomeProject\HomeEdu\HomeEdu.UI\bin\Debug\net6.0\PagedList.Mvc.dll

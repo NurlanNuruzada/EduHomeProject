@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 using static HomeEdu.UI.Helpers.Utilities.AppUserRole;
 using HomeEdu.UI.Areas.Admin.ViewModels.NoticeBoardViewModels;
+using Microsoft.Extensions.Logging;
 
 namespace HomeEdu.UI.Areas.Admin.Controllers
 {
@@ -25,10 +26,18 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             _mapper = mapper;
             _env = env;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int pg = 1)
         {
             List<NoticeBoard> noticeBoards = await _context.noticeBoards.ToListAsync();
-            return View(noticeBoards);
+            const int pageSize = 6;
+            if (pg < 1)
+                pg = 1;
+            int rescCout = noticeBoards.Count();
+            var pager = new Pager(rescCout, pg, pageSize);
+            int recSkip = (pg - 1) * pageSize;
+            var data = noticeBoards.Skip(recSkip).Take(pager.PageSize).ToList();
+            this.ViewBag.pager = pager;
+            return View(data);
         }
         public IActionResult Create()
         {

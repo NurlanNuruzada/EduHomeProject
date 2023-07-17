@@ -49,25 +49,25 @@
                                     <li><a href="contact.html">Contact</a></li>
                                     <li>
                                         <a asp-controller="auth" asp-action="register">Register</a>
-                                                    @*  <li><a href="blog.html">blog</a></li>
+                                                @*  <li><a href="blog.html">blog</a></li>
                                         <ul>
                                         </ul>
                                         *@
                                     </li>
                                     <li>
-                                                    @if (User.Identity.IsAuthenticated)
-                                                    {
+                                                @if (User.Identity.IsAuthenticated)
+                                                {
                                             <a style="color:white">@User.Identity.Name</a>
                                             <ul>
                                                 <li>         <a asp-controller="Auth" asp-action="logout">Log out</a><i class="bx bx-exit"></i></li>
-                                                <li>         <a asp-controller="Auth" asp-action="ResetAccPassword">Reset Password</a><i class="bx bx-exit"></i></li>
+                                                <li>         <a asp-controller="Auth" asp-action="ForgotPassword">Reset Password</a><i class="bx bx-exit"></i></li>
                                             </ul>
 
-                                                    }
-                                                    else
-                                                    {
+                                                }
+                                                else
+                                                {
                                             <a asp-controller="auth" asp-action="login">Login</a>
-                                                    }
+                                                }
                                     </li>
 
                                     <li>

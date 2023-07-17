@@ -277,6 +277,7 @@ namespace HomeEdu.UI.Controllers
             return RedirectToAction("Index", "Home");
         }
         [Authorize]
+        [AutoValidateAntiforgeryToken]
         public async Task<IActionResult> Logout()
         {
             if (User.Identity.IsAuthenticated)
@@ -286,7 +287,6 @@ namespace HomeEdu.UI.Controllers
             return RedirectToAction("Index", "Home");
         }
         [HttpGet]
-        //$"<a href=\"{Url.Action(nameof(ResetPassword), "Auth", new { token, email = user.Email }, Request.Scheme)}\">reset your password</a>";
         public IActionResult ForgotPassword()
         {
             return View();
@@ -329,6 +329,7 @@ namespace HomeEdu.UI.Controllers
             return View();
         }
         [HttpGet]
+        [AutoValidateAntiforgeryToken]
         public IActionResult ResetPassword(string token, string email)
         {
             if (User.Identity.IsAuthenticated)
@@ -364,6 +365,7 @@ namespace HomeEdu.UI.Controllers
             return RedirectToAction(nameof(ResetPasswordConfirmation));
         }
         [HttpGet]
+        [AutoValidateAntiforgeryToken]
         public IActionResult ResetPasswordConfirmation()
         {
             return View();

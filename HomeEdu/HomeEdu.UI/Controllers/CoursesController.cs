@@ -18,7 +18,7 @@ namespace HomeEdu.UI.Controllers
             _context = context;
             _mapper = mapper;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int pg = 1)
         {
             PagesVM pagesVM = new()
             {
@@ -30,7 +30,15 @@ namespace HomeEdu.UI.Controllers
             {
                 return NotFound();
             }
-            return View(pagesVM);
+            const int pageSize = 6;
+            if (pg < 1)
+                pg = 1;
+            int rescCout = pagesVM.Courses.Count();
+            var pager = new Pager(rescCout, pg, pageSize);
+            int recSkip = (pg - 1) * pageSize;
+            var data = pagesVM.Courses.Skip(recSkip).Take(pager.PageSize).ToList();
+            this.ViewBag.pager = pager;
+            return View(data);
         }
     }
 }

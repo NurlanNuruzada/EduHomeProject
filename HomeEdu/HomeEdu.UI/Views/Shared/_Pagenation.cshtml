@@ -1,0 +1,34 @@
+﻿
+
+@model HomeEdu.Core.Entities.Pager
+
+<div>
+    @if (@Model.TotalPages > 0)
+    {
+        <div class="pagination justify-content-end">
+            <ul style="display: flex;gap: 5px;font-size: 20px;">
+                @for (var pge = 1; pge <= @Model.EndPages + 2; pge++)
+                {
+                    <p class="page-item @(pge == @Model.CurrentPage ? "active" : "")">
+                        <a class="page-link" asp-controller="@Model" asp-action="Index" asp-route-pg="@pge">@pge</a>
+                    </p>
+                }
+                @if (@Model.CurrentPage < @Model.TotalPages + 2)
+                {
+                    <li>
+                        <a class="page-link" asp-controller="Speaker" asp-action="Index" asp-route-pg="@(@Model.CurrentPage + 1)">Next</a>
+
+                    </li>
+                    <li>
+                        <a class="page-link" asp-controller="Speaker" asp-action="Index" asp-route-pg="@(@Model.TotalPages)">Last</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+</div>
+<style>
+    .page-link {
+        border-radius: 5px;
+    }
+</style>

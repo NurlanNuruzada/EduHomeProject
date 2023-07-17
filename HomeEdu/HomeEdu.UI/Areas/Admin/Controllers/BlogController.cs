@@ -33,10 +33,18 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             _blogService = blogService;
             _env = env;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int pg=1)
         {
             List<Blog> blogs = await _blogService.GetAllBlogAsync();
-            return View(blogs);
+            const int pageSize = 6;
+            if (pg < 1)
+                pg = 1;
+            int rescCout = blogs.Count();
+            var pager = new Pager(rescCout,pg,pageSize);
+            int recSkip = (pg - 1) * pageSize;
+            var data = blogs.Skip(recSkip).Take(pager.PageSize).ToList();
+            this.ViewBag.pager = pager;
+            return View(data);
         }
 
         //blog category start

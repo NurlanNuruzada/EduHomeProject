@@ -22,10 +22,18 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             _mapper = mapper;
             _env = env;
         }
-        public async Task<IActionResult> GetSpeakers()
+        public async Task<IActionResult> Index(int pg = 1)
         {
             List<Speaker> Speakers = await _context.Speakers.ToListAsync();
-            return View(Speakers);
+            const int pageSize = 6;
+            if (pg < 1)
+                pg = 1;
+            int rescCout = Speakers.Count();
+            var pager = new Pager(rescCout, pg, pageSize);
+            int recSkip = (pg - 1) * pageSize;
+            var data = Speakers.Skip(recSkip).Take(pager.PageSize).ToList();
+            this.ViewBag.pager = pager;
+            return View(data);
         }
         public async Task<IActionResult> AddSpeaker()
         {
@@ -60,7 +68,7 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             speaker.ImagePath = filePath;
             await _context.Speakers.AddAsync(speaker);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(GetSpeakers));
+            return RedirectToAction(nameof(Index));
         }
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
@@ -79,7 +87,7 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             var Speaker = await _context.Speakers.FindAsync(id);
             _context.Speakers.Remove(Speaker);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(GetSpeakers));
+            return RedirectToAction(nameof(Index));
         }
         public async Task<IActionResult> Update(int id)
         {
@@ -136,7 +144,7 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             speaker.passCode = SpeakerVM.passCode;
             _context.Speakers.Update(speaker);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(GetSpeakers));
+            return RedirectToAction(nameof(Index));
         }
     }
 }
