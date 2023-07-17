@@ -97,29 +97,24 @@
             <div class="col-lg-4">
                 <div class="blog-sidebar right">
                     <div class="single-blog-widget mb-50">
-                        <h3>search</h3>
+                        <h3>Search and Categories</h3>
                         <div class="blog-search">
                             <form id="search" asp-controller="Courses" asp-action="Index" method="get">
                                 <input type="search" placeholder="Search..." name="search">
+                                    <br />
+                                    <h3>categories</h3>
+                                <select class="form-select" name="CaID">
+                                    <option value="0">All</option>
+                                    @foreach (var item in Model.CourseCatagories)
+                                    {
+                                        <option value="@item.Id">@item.Catagory</option>
+                                    }
+                                </select>
                                 <button type="submit">
                                     <span><i class="fa fa-search"></i></span>
                                 </button>
                             </form>
                         </div>
-                    </div>
-                    <div class="single-blog-widget mb-50">
-                        <h3>categories</h3>
-                        <form id="search" asp-controller="Courses" asp-action="Index" method="get">
-                            <ul>
-                                <li><a asp-controller="Courses" asp-action="Index">All</a></li>
-                                @foreach (var item in Model.CourseCatagories)
-                                {
-                                    <li>
-                                        <a asp-controller="Courses" asp-action="Index" asp-route-CaID="@item.Id">@item.Catagory</a>
-                                    </li>
-                                }
-                            </ul>
-                        </form>
                     </div>
                     <div class="single-blog-widget mb-50">
                         <div class="single-blog-banner">

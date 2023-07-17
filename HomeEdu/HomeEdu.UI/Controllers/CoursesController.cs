@@ -43,18 +43,19 @@ namespace HomeEdu.UI.Controllers
             {
                 filteredCourses = filteredCourses.Where(c => c.Title.ToLower().Contains(search.ToLower()));
             }
-
             if (CaID != 0)
             {
                 filteredCourses = filteredCourses.Where(c => c.CourseCatagoryId == CaID);
             }
-
             int resCount = filteredCourses.Count();
             var pager = new Pager(resCount, pg, pageSize);
             int recSkip = (pg - 1) * pageSize;
-
             ViewBag.pager = pager;
-
+            //search by both 
+            if (!string.IsNullOrEmpty(search) && CaID != 0)
+            {
+                pagesVM.Data = filteredCourses.Skip(recSkip).Take(pager.PageSize).Where(C => C.CourseCatagoryId == CaID).ToList();
+            }
             pagesVM.Data = filteredCourses.Skip(recSkip).Take(pager.PageSize).ToList();
 
             return View(pagesVM);
