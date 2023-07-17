@@ -212,8 +212,37 @@ namespace HomeEdu.UI.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Catagories = await _context.BlogCatagories.ToListAsync();
+                return View(courseViewModel);
+            }
+            if (courseViewModel.Image is not null)
+            {
+                var catagory = _context.CourseCatagories.Find(CatagoryId);
+                if (catagory is null)
+                {
+                    return NotFound("Catagory not Found");
+                }
+                courseViewModel.CourseCatagory = catagory;
+                if (!ModelState.IsValid)
+                {
+                    return View(courseViewModel);
+                }
+                if (!courseViewModel.Image.CheckFileFormat("image"))
+                {
+                    ModelState.AddModelError("Image", "Sellect Correct Format!");
+                    return View(courseViewModel);
+                }
+                if (!courseViewModel.Image.CheckFileLength(300))
+                {
+                    ModelState.AddModelError("Image", "Size Must be less than 300 kb");
+                    return View(courseViewModel);
+                }
+                string filePath = await courseViewModel.Image.CopyFileAsync(_env.WebRootPath, "assets", "img", "course");
+                course.ImagePath = filePath;
+            }
             course.Title = courseViewModel.Title;
-            //course.ImagePath = courseViewModel.ImagePath;
             course.Description = courseViewModel.Description;
             course.CourseCatagoryId = CatagoryId;
             if (course.CourseDetail == null)

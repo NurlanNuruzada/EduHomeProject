@@ -110,9 +110,8 @@
                                             <li><a href="/assets/blog-details.html">blog details</a></li>
                                             </ul>*@
                                         </li>
-                                        <li><a href="/assets/contact.html">Contact</a></li>
+                                        <li> <a asp-controller="Contact" asp-action="Index">Contact</a>
                                         <li>
-                                            <a href="/assets/contact.html">Buy Now</a>
                                         </li>
                                     </ul>
                                 </nav>
@@ -126,7 +125,7 @@
                                 </ul>
                                 <div class="search">
                                     <div class="search-form">
-                                        <form id="search-form" action="#">
+                                        <form id="search-form" method="get" action="#">
                                             <input type="search" placeholder="Search here..." name="search">
                                             <button type="submit">
                                                 <span><i class="fa fa-search"></i></span>

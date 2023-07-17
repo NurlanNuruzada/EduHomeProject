@@ -1,4 +1,5 @@
-﻿using HomeEdu.DataAccess.Context;
+﻿using HomeEdu.Core.Entities;
+using HomeEdu.DataAccess.Context;
 using HomeEdu.UI.ViewModels;
 using HomeEdu.UI.ViewModels.AboutViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -22,6 +23,7 @@ namespace HomeEdu.UI.Controllers
                 testimonials = await _context.testimonials.ToListAsync(),
                 noticeBoards = await _context.noticeBoards.ToListAsync(),
                 Courses = await _context.Courses.ToListAsync(),
+                Teachers = await _context.Teachers.ToListAsync(),
             };
             return View(aboutVM);
         }

@@ -18,7 +18,7 @@ namespace HomeEdu.UI.Controllers
             _context = context;
             _mapper = mapper;
         }
-        public async Task<IActionResult> Index(int pg = 1)
+        public async Task<IActionResult> Index(string search, int pg = 1)
         {
             PagesVM pagesVM = new()
             {
@@ -38,7 +38,22 @@ namespace HomeEdu.UI.Controllers
             this.ViewBag.pager = pager;
 
             pagesVM.EventsData = pagesVM.Events.Skip(recSkip).Take(pager.PageSize).ToList();
-            return View(pagesVM);
+            if (string.IsNullOrEmpty(search))
+            {
+                TempData["InfoMessage"] = "Please Provide Search Value";
+                pagesVM.EventsData = pagesVM.EventsData.Skip(recSkip).Take(pager.PageSize).ToList();
+                return View(pagesVM);
+            }
+            else
+            {
+                var searchByTitle = pagesVM.EventsData.Where(c => c.Title.ToLower().Contains(search.ToLower())).ToList();
+                int searchResultCount = searchByTitle.Count;
+                pager = new Pager(searchResultCount, pg, pageSize);
+                recSkip = (pg - 1) * pageSize;
+                pagesVM.EventsData = searchByTitle.Skip(recSkip).Take(pager.PageSize).ToList();
+                ViewBag.pager = pager;
+                return View(pagesVM);
+            }
         }
     }
 }

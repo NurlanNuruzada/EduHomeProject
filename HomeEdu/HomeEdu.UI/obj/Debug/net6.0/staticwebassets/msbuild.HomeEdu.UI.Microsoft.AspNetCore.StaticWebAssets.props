@@ -5664,6 +5664,38 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\course\759a22c1-9620-4cfb-9a0e-4b117239a7decourse2.jpg))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\course\83d41458-1ea6-4ee9-87fc-ebddcbd39ea5WhatsApp Image 2023-07-17 at 08.55.22.jpeg))">
+      <SourceType>Package</SourceType>
+      <SourceId>HomeEdu.UI</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/HomeEdu.UI</BasePath>
+      <RelativePath>assets/img/course/83d41458-1ea6-4ee9-87fc-ebddcbd39ea5WhatsApp Image 2023-07-17 at 08.55.22.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\course\83d41458-1ea6-4ee9-87fc-ebddcbd39ea5WhatsApp Image 2023-07-17 at 08.55.22.jpeg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\course\97adf39b-aa44-4a35-a386-40b5f41d6786WhatsApp Image 2023-07-17 at 08.55.22.jpeg))">
+      <SourceType>Package</SourceType>
+      <SourceId>HomeEdu.UI</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/HomeEdu.UI</BasePath>
+      <RelativePath>assets/img/course/97adf39b-aa44-4a35-a386-40b5f41d6786WhatsApp Image 2023-07-17 at 08.55.22.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\course\97adf39b-aa44-4a35-a386-40b5f41d6786WhatsApp Image 2023-07-17 at 08.55.22.jpeg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\course\a49dfaff-c46c-4633-85c8-cc6d5f326556course2.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>HomeEdu.UI</SourceId>
@@ -5919,6 +5951,22 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\course\courses-details.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\course\WhatsApp Image 2023-07-17 at 08.55.22.jpeg))">
+      <SourceType>Package</SourceType>
+      <SourceId>HomeEdu.UI</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/HomeEdu.UI</BasePath>
+      <RelativePath>assets/img/course/WhatsApp Image 2023-07-17 at 08.55.22.jpeg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\course\WhatsApp Image 2023-07-17 at 08.55.22.jpeg))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\assets\img\event\0328d70d-1ffc-45e2-ae88-8042ecad5d2fdb27e564-e7ae-45ca-a1da-3a07d064e120event6.jpg))">
       <SourceType>Package</SourceType>
